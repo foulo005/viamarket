@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,12 +44,28 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.0.0\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.0.0\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -158,14 +175,66 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="DataAccess\AspNetRoles.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\AspNetUserClaims.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\AspNetUserLogins.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\AspNetUsers.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Category.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Currency.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\C__MigrationHistory.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\Item.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\MarketContext.cs" />
+    <Compile Include="DataAccess\Table.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ViaMarketModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViaMarketModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ViaMarketModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\ViaMarketModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViaMarketModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +246,27 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="DataAccess\ViaMarketModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ViaMarketModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DataAccess\ViaMarketModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ViaMarketModel.edmx</DependentUpon>
+      <LastGenOutput>ViaMarketModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataAccess\ViaMarketModel.edmx.diagram">
+      <DependentUpon>ViaMarketModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="DataAccess\ViaMarketModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ViaMarketModel.edmx</DependentUpon>
+      <LastGenOutput>ViaMarketModel.cs</LastGenOutput>
+    </Content>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -189,6 +279,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Tests\WebApiTest.html" />
+    <Content Include="Views\Category\Category.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -224,6 +316,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
