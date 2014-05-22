@@ -13,7 +13,6 @@
         <EntityTypeShape EntityType="Model.Category" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Currency" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Item" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Table" Width="1.5" PointX="0.75" PointY="8" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Item_ToUser" ManuallyRouted="false" />

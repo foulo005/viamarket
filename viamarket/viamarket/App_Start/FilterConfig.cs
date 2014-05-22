@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace viamarket
+namespace ViaMarket
 {
     public class FilterConfig
     {
