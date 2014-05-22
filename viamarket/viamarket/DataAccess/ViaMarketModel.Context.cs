@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace viamarket.DataAccess
+namespace ViaMarket.DataAccess
 {
     using System;
     using System.Data.Entity;
@@ -33,6 +33,5 @@ namespace viamarket.DataAccess
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Currency> Currency { get; set; }
         public virtual DbSet<Item> Item { get; set; }
-        public virtual DbSet<Table> Table { get; set; }
     }
 }

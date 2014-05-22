@@ -6,9 +6,9 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using viamarket.App_Start;
+using ViaMarket.App_Start;
 
-namespace viamarket
+namespace ViaMarket
 {
     public class MvcApplication : System.Web.HttpApplication
     {

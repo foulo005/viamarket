@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using viamarket.Models;
 
-namespace viamarket.Controllers
+namespace ViaMarket.Controllers
 {
     [Authorize]
     public class AccountController : Controller

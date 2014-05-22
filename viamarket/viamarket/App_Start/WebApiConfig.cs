@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 
-namespace viamarket.App_Start
+namespace ViaMarket.App_Start
 {
     public static class WebApiConfig
     {

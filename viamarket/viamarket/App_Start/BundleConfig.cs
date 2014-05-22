@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace viamarket
+namespace ViaMarket
 {
     public class BundleConfig
     {

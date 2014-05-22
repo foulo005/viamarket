@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace viamarket.Properties {
+namespace ViaMarket.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
