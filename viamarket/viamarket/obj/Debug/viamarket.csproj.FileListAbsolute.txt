@@ -174,3 +174,4 @@ D:\GitHub\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.MicrosoftAcc
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.csprojResolveAssemblyReference.cache
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.dll
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.pdb
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.csprojResolveAssemblyReference.cache
