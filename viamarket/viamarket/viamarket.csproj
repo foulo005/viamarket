@@ -204,7 +204,6 @@
     <Compile Include="DataAccess\Item.cs">
       <DependentUpon>ViaMarketModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DataAccess\MarketContext.cs" />
     <Compile Include="DataAccess\Table.cs">
       <DependentUpon>ViaMarketModel.tt</DependentUpon>
     </Compile>
@@ -226,6 +225,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Product.cs" />
