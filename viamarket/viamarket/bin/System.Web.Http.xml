@@ -4,12 +4,9 @@
     <name>System.Web.Http</name>
   </assembly>
   <members>
-<<<<<<< HEAD
     <member name="T:System.Net.Http.HttpRequestMessageExtensions">
       <summary>Provides extension methods for <see cref="T:System.Net.Http.HttpRequestMessage" />.</summary>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Net.Http.HttpRequestMessageExtensions.CreateErrorResponse(System.Net.Http.HttpRequestMessage,System.Net.Http.InvalidByteRangeException)"></member>
     <member name="M:System.Net.Http.HttpRequestMessageExtensions.CreateErrorResponse(System.Net.Http.HttpRequestMessage,System.Net.HttpStatusCode,System.Exception)">
       <summary>Creates an <see cref="T:System.Net.Http.HttpResponseMessage" /> that represents an exception.</summary>
@@ -183,12 +180,9 @@
       <param name="value">The value of the content.</param>
       <typeparam name="T">The type of the value to retrieve.</typeparam>
     </member>
-<<<<<<< HEAD
     <member name="T:System.Net.Http.Formatting.MediaTypeFormatterExtensions">
       <summary>Represents extensions for adding <see cref="T:System.Net.Http.Formatting.MediaTypeMapping" /> items to a <see cref="T:System.Net.Http.Formatting.MediaTypeFormatter" />. </summary>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Net.Http.Formatting.MediaTypeFormatterExtensions.AddUriPathExtensionMapping(System.Net.Http.Formatting.MediaTypeFormatter,System.String,System.Net.Http.Headers.MediaTypeHeaderValue)"></member>
     <member name="M:System.Net.Http.Formatting.MediaTypeFormatterExtensions.AddUriPathExtensionMapping(System.Net.Http.Formatting.MediaTypeFormatter,System.String,System.String)"></member>
     <member name="T:System.Net.Http.Formatting.UriPathExtensionMapping">
@@ -219,20 +213,12 @@
     <member name="T:System.Web.Http.AcceptVerbsAttribute">
       <summary>Represents an attribute that specifies which HTTP methods an action method will respond to.</summary>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.AcceptVerbsAttribute.#ctor(System.String)">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.AcceptVerbsAttribute" /> class by using the action method it will respond to.</summary>
       <param name="method">The HTTP method that the action method will respond to.</param>
     </member>
     <member name="M:System.Web.Http.AcceptVerbsAttribute.#ctor(System.String[])">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.AcceptVerbsAttribute" /> class by using a list of HTTP methods that the action method will respond to.</summary>
-=======
-    <member name="M:System.Web.Http.AcceptVerbsAttribute.#ctor(System.Net.Http.HttpMethod)"></member>
-    <member name="M:System.Web.Http.AcceptVerbsAttribute.#ctor(System.Net.Http.HttpMethod[])"></member>
-    <member name="M:System.Web.Http.AcceptVerbsAttribute.#ctor(System.String)"></member>
-    <member name="M:System.Web.Http.AcceptVerbsAttribute.#ctor(System.String[])">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.AcceptVerbsAttribute" /> class by using a list of HTTP methods that the action method will respond to..</summary>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
       <param name="methods">The HTTP methods that the action method will respond to.</param>
     </member>
     <member name="P:System.Web.Http.AcceptVerbsAttribute.HttpMethods">
@@ -260,13 +246,10 @@
       <summary>Defines properties and methods for API controller.</summary>
     </member>
     <member name="M:System.Web.Http.ApiController.#ctor"></member>
-<<<<<<< HEAD
     <member name="P:System.Web.Http.ApiController.ActionContext">
       <summary>Gets the action context.</summary>
       <returns>The action context.</returns>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.ApiController.BadRequest">
       <summary>Creates a <see cref="T:System.Web.Http.Results.BadRequestResult" />.</summary>
       <returns>A <see cref="T:System.Web.Http.Results.BadRequestResult" />.</returns>
@@ -330,20 +313,14 @@
       <summary>Creates a <see cref="T:System.Web.Http.Results.CreatedNegotiatedContentResult`1" /> (201 Created) with the specified values.</summary>
       <returns>A <see cref="T:System.Web.Http.Results.CreatedNegotiatedContentResult`1" /> with the specified values.</returns>
       <param name="location">The location at which the content has been created.</param>
-<<<<<<< HEAD
       <param name="content">The content value to negotiate and format in the entity body.</param>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
       <typeparam name="T">The type of content in the entity body.</typeparam>
     </member>
     <member name="M:System.Web.Http.ApiController.Created``1(System.Uri,``0)">
       <summary>Creates a <see cref="T:System.Web.Http.Results.CreatedNegotiatedContentResult`1" /> (201 Created) with the specified values.</summary>
       <returns>A <see cref="T:System.Web.Http.Results.CreatedNegotiatedContentResult`1" /> with the specified values.</returns>
       <param name="location">The location at which the content has been created.</param>
-<<<<<<< HEAD
       <param name="content">The content value to negotiate and format in the entity body.</param>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
       <typeparam name="T">The type of content in the entity body.</typeparam>
     </member>
     <member name="M:System.Web.Http.ApiController.CreatedAtRoute``1(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},``0)">
@@ -391,29 +368,20 @@
     <member name="M:System.Web.Http.ApiController.Json``1(``0)">
       <summary>Creates a <see cref="T:System.Web.Http.Results.JsonResult`1" /> (200 OK) with the specified value.</summary>
       <returns>A <see cref="T:System.Web.Http.Results.JsonResult`1" /> with the specified value.</returns>
-<<<<<<< HEAD
       <param name="content">The content value to serialize in the entity body.</param>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
       <typeparam name="T">The type of content in the entity body.</typeparam>
     </member>
     <member name="M:System.Web.Http.ApiController.Json``1(``0,Newtonsoft.Json.JsonSerializerSettings)">
       <summary>Creates a <see cref="T:System.Web.Http.Results.JsonResult`1" /> (200 OK) with the specified values.</summary>
       <returns>A <see cref="T:System.Web.Http.Results.JsonResult`1" /> with the specified values.</returns>
-<<<<<<< HEAD
       <param name="content">The content value to serialize in the entity body.</param>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
       <param name="serializerSettings">The serializer settings.</param>
       <typeparam name="T">The type of content in the entity body.</typeparam>
     </member>
     <member name="M:System.Web.Http.ApiController.Json``1(``0,Newtonsoft.Json.JsonSerializerSettings,System.Text.Encoding)">
       <summary>Creates a <see cref="T:System.Web.Http.Results.JsonResult`1" /> (200 OK) with the specified values.</summary>
       <returns>A <see cref="T:System.Web.Http.Results.JsonResult`1" /> with the specified values.</returns>
-<<<<<<< HEAD
       <param name="content">The content value to serialize in the entity body.</param>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
       <param name="serializerSettings">The serializer settings.</param>
       <param name="encoding">The content encoding.</param>
       <typeparam name="T">The type of content in the entity body.</typeparam>
@@ -433,7 +401,6 @@
     <member name="M:System.Web.Http.ApiController.Ok``1(``0)">
       <summary>Creates an <see cref="T:System.Web.Http.Results.OkNegotiatedContentResult`1" /> with the specified values.</summary>
       <returns>An <see cref="T:System.Web.Http.Results.OkNegotiatedContentResult`1" /> with the specified values.</returns>
-<<<<<<< HEAD
       <param name="content">The content value to negotiate and format in the entity body.</param>
       <typeparam name="T">The type of content in the entity body.</typeparam>
     </member>
@@ -459,20 +426,13 @@
       <param name="routeName">The name of the route to use for generating the URL.</param>
       <param name="routeValues">The route data to use for generating the URL.</param>
     </member>
-=======
-      <typeparam name="T">The type of content in the entity body.</typeparam>
-    </member>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="P:System.Web.Http.ApiController.Request">
       <summary>Gets or sets the HttpRequestMessage of the current <see cref="T:System.Web.Http.ApiController" />.</summary>
       <returns>The HttpRequestMessage of the current <see cref="T:System.Web.Http.ApiController" />.</returns>
     </member>
     <member name="P:System.Web.Http.ApiController.RequestContext">
       <summary>Gets the request context.</summary>
-<<<<<<< HEAD
       <returns>The request context.</returns>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     </member>
     <member name="M:System.Web.Http.ApiController.ResponseMessage(System.Net.Http.HttpResponseMessage)">
       <summary>Creates a <see cref="T:System.Web.Http.Results.ResponseMessageResult" /> with the specified response.</summary>
@@ -502,7 +462,6 @@
       <summary>Returns the current principal associated with this request.</summary>
       <returns>The current principal associated with this request.</returns>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.ApiController.Validate``1(``0)">
       <summary>Validates the given entity and adds the validation errors to the model state under the empty prefix, if any.</summary>
       <param name="entity">The entity being validated.</param>
@@ -514,8 +473,6 @@
       <param name="keyPrefix">The key prefix under which the model state errors would be added in the model state.</param>
       <typeparam name="TEntity">The type of the entity to be validated.</typeparam>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.AuthorizeAttribute">
       <summary>Specifies the authorization filter that verifies the request's <see cref="T:System.Security.Principal.IPrincipal" />.</summary>
     </member>
@@ -548,23 +505,6 @@
       <summary>Gets or sets the authorized users. </summary>
       <returns>The users string. </returns>
     </member>
-<<<<<<< HEAD
-=======
-    <member name="T:System.Web.Http.DefaultRouteAttribute">
-      <summary>Annotates a controller with a route template that applies to any actions within the controller that don't already have a route template.</summary>
-    </member>
-    <member name="M:System.Web.Http.DefaultRouteAttribute.#ctor">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.DefaultRouteAttribute" /> class.  </summary>
-    </member>
-    <member name="M:System.Web.Http.DefaultRouteAttribute.#ctor(System.String)">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.DefaultRouteAttribute" /> class. </summary>
-      <param name="routeTemplate">The route template for the controller.</param>
-    </member>
-    <member name="P:System.Web.Http.DefaultRouteAttribute.RouteTemplate">
-      <summary>Gets the route template describing the URI pattern to match against.</summary>
-      <returns>Returns <see cref="T:System.String" />.</returns>
-    </member>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.FromBodyAttribute">
       <summary> An attribute that specifies that an action parameter comes only from the entity body of the incoming <see cref="T:System.Net.Http.HttpRequestMessage" />. </summary>
     </member>
@@ -668,15 +608,11 @@
     </member>
     <member name="M:System.Web.Http.HttpConfigurationExtensions.BindParameter(System.Web.Http.HttpConfiguration,System.Type,System.Web.Http.ModelBinding.IModelBinder)"></member>
     <member name="M:System.Web.Http.HttpConfigurationExtensions.MapHttpAttributeRoutes(System.Web.Http.HttpConfiguration)"></member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.HttpConfigurationExtensions.MapHttpAttributeRoutes(System.Web.Http.HttpConfiguration,System.Web.Http.Routing.IInlineConstraintResolver)">
       <summary>Maps the attribute-defined routes for the application.</summary>
       <param name="configuration">The server configuration.</param>
       <param name="constraintResolver">The constraint resolver.</param>
     </member>
-=======
-    <member name="M:System.Web.Http.HttpConfigurationExtensions.MapHttpAttributeRoutes(System.Web.Http.HttpConfiguration,System.Web.Http.Routing.HttpRouteBuilder)"></member>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.HttpConfigurationExtensions.SuppressHostPrincipal(System.Web.Http.HttpConfiguration)"></member>
     <member name="T:System.Web.Http.HttpDeleteAttribute">
       <summary>Specifies that an action supports the DELETE HTTP method.</summary>
@@ -684,13 +620,10 @@
     <member name="M:System.Web.Http.HttpDeleteAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HttpDeleteAttribute" /> class.</summary>
     </member>
-<<<<<<< HEAD
     <member name="P:System.Web.Http.HttpDeleteAttribute.HttpMethods">
       <summary>Gets the http methods that correspond to this attribute.</summary>
       <returns>The http methods that correspond to this attribute.</returns>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.HttpError">
       <summary>Defines a serializable container for storing error information. This information is stored  as key/value pairs. The dictionary keys to look up standard error information are available on the <see cref="T:System.Web.Http.HttpErrorKeys" /> type.</summary>
     </member>
@@ -793,78 +726,60 @@
     <member name="M:System.Web.Http.HttpGetAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HttpGetAttribute" /> class.</summary>
     </member>
-<<<<<<< HEAD
     <member name="P:System.Web.Http.HttpGetAttribute.HttpMethods">
       <summary>Gets the http methods that correspond to this attribute.</summary>
       <returns>The http methods that correspond to this attribute.</returns>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.HttpHeadAttribute">
       <summary> Specifies that an action supports the HEAD HTTP method. </summary>
     </member>
     <member name="M:System.Web.Http.HttpHeadAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HttpHeadAttribute" /> class.</summary>
     </member>
-<<<<<<< HEAD
     <member name="P:System.Web.Http.HttpHeadAttribute.HttpMethods">
       <summary>Gets the http methods that correspond to this attribute.</summary>
       <returns>The http methods that correspond to this attribute.</returns>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.HttpOptionsAttribute">
       <summary>Represents an attribute that is used to restrict an HTTP method so that the method handles only HTTP OPTIONS requests.</summary>
     </member>
     <member name="M:System.Web.Http.HttpOptionsAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HttpOptionsAttribute" /> class.</summary>
     </member>
-<<<<<<< HEAD
     <member name="P:System.Web.Http.HttpOptionsAttribute.HttpMethods">
       <summary>Gets the http methods that correspond to this attribute.</summary>
       <returns>The http methods that correspond to this attribute.</returns>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.HttpPatchAttribute">
       <summary> Specifies that an action supports the PATCH HTTP method. </summary>
     </member>
     <member name="M:System.Web.Http.HttpPatchAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HttpPatchAttribute" /> class.</summary>
     </member>
-<<<<<<< HEAD
     <member name="P:System.Web.Http.HttpPatchAttribute.HttpMethods">
       <summary>Gets the http methods that correspond to this attribute.</summary>
       <returns>The http methods that correspond to this attribute.</returns>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.HttpPostAttribute">
       <summary>Specifies that an action supports the POST HTTP method. </summary>
     </member>
     <member name="M:System.Web.Http.HttpPostAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HttpPostAttribute" /> class.</summary>
     </member>
-<<<<<<< HEAD
     <member name="P:System.Web.Http.HttpPostAttribute.HttpMethods">
       <summary>Gets the http methods that correspond to this attribute.</summary>
       <returns>The http methods that correspond to this attribute.</returns>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.HttpPutAttribute">
       <summary>Represents an attribute that is used to restrict an HTTP method so that the method handles only HTTP PUT requests.</summary>
     </member>
     <member name="M:System.Web.Http.HttpPutAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.HttpPutAttribute" /> class.</summary>
     </member>
-<<<<<<< HEAD
     <member name="P:System.Web.Http.HttpPutAttribute.HttpMethods">
       <summary>Gets the http methods that correspond to this attribute.</summary>
       <returns>The http methods that correspond to this attribute.</returns>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.HttpResponseException">
       <summary> An exception that allows for a given <see cref="T:System.Net.Http.HttpResponseMessage" /> to be returned to the client. </summary>
     </member>
@@ -982,18 +897,12 @@
     <member name="P:System.Web.Http.HttpRouteCollection.Item(System.Int32)">
       <summary>Gets or sets the element at the specified index.</summary>
       <returns>The  <see cref="T:System.Web.Http.Routing.IHttpRoute" /> at the specified index.</returns>
-<<<<<<< HEAD
       <param name="index">The index.</param>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     </member>
     <member name="P:System.Web.Http.HttpRouteCollection.Item(System.String)">
       <summary>Gets or sets the element with the specified route name.</summary>
       <returns>The  <see cref="T:System.Web.Http.Routing.IHttpRoute" /> at the specified index.</returns>
-<<<<<<< HEAD
       <param name="name">The route name.</param>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     </member>
     <member name="M:System.Web.Http.HttpRouteCollection.OnGetEnumerator">
       <summary>Called internally to get the enumerator for the collection.</summary>
@@ -1023,15 +932,12 @@
       <param name="name">The route name.</param>
       <param name="route">When this method returns, contains the <see cref="T:System.Web.Http.Routing.IHttpRoute" /> instance, if the route name is found; otherwise, null. This parameter is passed uninitialized.</param>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.HttpRouteCollection.ValidateConstraint(System.String,System.String,System.Object)">
       <summary>Validates that a constraint is valid for an <see cref="T:System.Web.Http.Routing.IHttpRoute" /> created by a call to the <see cref="M:System.Web.Http.HttpRouteCollection.CreateRoute(System.String,System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{System.String,System.Object},System.Collections.Generic.IDictionary{System.String,System.Object},System.Net.Http.HttpMessageHandler)" /> method.</summary>
       <param name="routeTemplate">The route template.</param>
       <param name="name">The constraint name.</param>
       <param name="constraint">The constraint object.</param>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="P:System.Web.Http.HttpRouteCollection.VirtualPathRoot">
       <summary>Gets the virtual path root.</summary>
       <returns>The virtual path root.</returns>
@@ -1039,7 +945,6 @@
     <member name="T:System.Web.Http.HttpRouteCollectionExtensions">
       <summary> Extension methods for <see cref="T:System.Web.Http.HttpRouteCollection" /></summary>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.HttpRouteCollectionExtensions.IgnoreRoute(System.Web.Http.HttpRouteCollection,System.String,System.String)">
       <summary>Ignores the specified route.</summary>
       <returns>Returns <see cref="T:System.Web.Http.Routing.IHttpRoute" />.</returns>
@@ -1055,8 +960,6 @@
       <param name="routeTemplate">The route template for the route.</param>
       <param name="constraints">A set of expressions that specify values for the route template.</param>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.HttpRouteCollectionExtensions.MapHttpBatchRoute(System.Web.Http.HttpRouteCollection,System.String,System.String,System.Web.Http.Batch.HttpBatchHandler)">
       <summary> Maps the specified route for handling HTTP batch requests. </summary>
       <param name="routes">A collection of routes for the application.</param>
@@ -1234,10 +1137,7 @@
     <member name="P:System.Web.Http.RouteAttribute.Order">
       <returns>Returns <see cref="T:System.Int32" />.</returns>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.RouteAttribute.System#Web#Http#Routing#IDirectRouteFactory#CreateRoute(System.Web.Http.Routing.DirectRouteFactoryContext)"></member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="P:System.Web.Http.RouteAttribute.Template">
       <returns>Returns <see cref="T:System.String" />.</returns>
     </member>
@@ -1254,12 +1154,9 @@
     <member name="T:System.Web.Http.RoutePrefixAttribute">
       <summary> Annotates a controller with a route prefix that applies to all actions within the controller. </summary>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.RoutePrefixAttribute.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.RoutePrefixAttribute" /> class.</summary>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.RoutePrefixAttribute.#ctor(System.String)">
       <summary> Initializes a new instance of the <see cref="T:System.Web.Http.RoutePrefixAttribute" /> class. </summary>
       <param name="prefix">The route prefix for the controller.</param>
@@ -1310,7 +1207,6 @@
       <returns>Returns an <see cref="T:System.Web.Http.Description.IDocumentationProvider" /> instance.</returns>
       <param name="services">The services container.</param>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.ServicesExtensions.GetExceptionHandler(System.Web.Http.Controllers.ServicesContainer)">
       <summary>Returns the registered unhandled exception handler, if any.</summary>
       <returns>The registered unhandled exception hander, if present; otherwise, null.</returns>
@@ -1321,8 +1217,6 @@
       <returns>The collection of registered unhandled exception loggers.</returns>
       <param name="services">The services container.</param>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.ServicesExtensions.GetFilterProviders(System.Web.Http.Controllers.ServicesContainer)">
       <summary>Gets the <see cref="T:System.Web.Http.Filters.IFilterProvider" /> collection.</summary>
       <returns>Returns a collection of<see cref="T:System.Web.Http.Filters.IFilterProvider" /> objects.</returns>
@@ -1333,14 +1227,6 @@
       <returns>Returns an <see cref="T:System.Web.Http.Hosting.IHostBufferPolicySelector" />instance.</returns>
       <param name="services">The services container.</param>
     </member>
-<<<<<<< HEAD
-=======
-    <member name="M:System.Web.Http.ServicesExtensions.GetHostPrincipalService(System.Web.Http.Controllers.ServicesContainer)">
-      <summary>Gets the <see cref="T:System.Web.Http.Controllers.IHostPrincipalService" /> service.</summary>
-      <returns>Returns an <see cref="T:System.Web.Http.Controllers.IHostPrincipalService" /> instance.</returns>
-      <param name="services">The services container.</param>
-    </member>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.ServicesExtensions.GetHttpControllerActivator(System.Web.Http.Controllers.ServicesContainer)">
       <summary>Gets the <see cref="T:System.Web.Http.Dispatcher.IHttpControllerActivator" /> service.</summary>
       <returns>Returns an <see cref="T:System.Web.Http.Dispatcher.IHttpControllerActivator" /> instance, or null if no instance was registered.</returns>
@@ -1590,13 +1476,10 @@
       <summary>Gets the request message for the action context.</summary>
       <returns>The request message for the action context.</returns>
     </member>
-<<<<<<< HEAD
     <member name="P:System.Web.Http.Controllers.HttpActionContext.RequestContext">
       <summary>Gets the current request context.</summary>
       <returns>The current request context.</returns>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="P:System.Web.Http.Controllers.HttpActionContext.Response">
       <summary>Gets or sets the response message for the action context.</summary>
       <returns>The response message for the action context.</returns>
@@ -2610,7 +2493,6 @@
       <returns>An &lt;see cref="T:System.Collections.Generic.ICollection`1" /&gt; of controllers.</returns>
       <param name="assembliesResolver">The resolver for failed assemblies.</param>
     </member>
-<<<<<<< HEAD
     <member name="T:System.Web.Http.ExceptionHandling.ExceptionCatchBlocks">
       <summary>Provides the catch blocks used within this assembly.</summary>
     </member>
@@ -2880,8 +2762,6 @@
       <param name="context">The exception logger context.</param>
       <param name="cancellationToken">The token to monitor for cancellation requests.</param>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.Filters.ActionDescriptorFilterProvider">
       <summary>Provides information about an action method, such as its name, controller, parameters, attributes, and filters.</summary>
     </member>
@@ -2904,18 +2784,12 @@
       <summary>Occurs after the action method is invoked.</summary>
       <param name="actionExecutedContext">The action executed context.</param>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.Filters.ActionFilterAttribute.OnActionExecutedAsync(System.Web.Http.Filters.HttpActionExecutedContext,System.Threading.CancellationToken)"></member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.Filters.ActionFilterAttribute.OnActionExecuting(System.Web.Http.Controllers.HttpActionContext)">
       <summary>Occurs before the action method is invoked.</summary>
       <param name="actionContext">The action context.</param>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.Filters.ActionFilterAttribute.OnActionExecutingAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken)"></member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.Filters.ActionFilterAttribute.System#Web#Http#Filters#IActionFilter#ExecuteActionFilterAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken,System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
       <summary>Executes the filter action asynchronously.</summary>
       <returns>The newly created task for this operation.</returns>
@@ -2933,10 +2807,7 @@
       <summary>Calls when a process requests authorization.</summary>
       <param name="actionContext">The action context, which encapsulates information for using <see cref="T:System.Web.Http.Filters.AuthorizationFilterAttribute" />.</param>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.Filters.AuthorizationFilterAttribute.OnAuthorizationAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken)"></member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.Filters.AuthorizationFilterAttribute.System#Web#Http#Filters#IAuthorizationFilter#ExecuteAuthorizationFilterAsync(System.Web.Http.Controllers.HttpActionContext,System.Threading.CancellationToken,System.Func{System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}})">
       <summary>Executes the authorization filter during synchronization.</summary>
       <returns>The authorization filter during synchronization.</returns>
@@ -2966,10 +2837,7 @@
       <summary>Raises the exception event.</summary>
       <param name="actionExecutedContext">The context for the action.</param>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.Filters.ExceptionFilterAttribute.OnExceptionAsync(System.Web.Http.Filters.HttpActionExecutedContext,System.Threading.CancellationToken)"></member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.Filters.ExceptionFilterAttribute.System#Web#Http#Filters#IExceptionFilter#ExecuteExceptionFilterAsync(System.Web.Http.Filters.HttpActionExecutedContext,System.Threading.CancellationToken)">
       <summary>Asynchronously executes the exception filter.</summary>
       <returns>The result of the execution.</returns>
@@ -3126,7 +2994,6 @@
       <param name="cancellationToken">The cancellation token assigned for this task.</param>
       <param name="continuation">The delegate function to continue after the action method is invoked.</param>
     </member>
-<<<<<<< HEAD
     <member name="T:System.Web.Http.Filters.IAuthenticationFilter">
       <summary>Defines a filter that performs authentication.</summary>
     </member>
@@ -3136,10 +3003,6 @@
       <param name="context">The authentication context.</param>
       <param name="cancellationToken">The token to monitor for cancellation requests.</param>
     </member>
-=======
-    <member name="T:System.Web.Http.Filters.IAuthenticationFilter"></member>
-    <member name="M:System.Web.Http.Filters.IAuthenticationFilter.AuthenticateAsync(System.Web.Http.Filters.HttpAuthenticationContext,System.Threading.CancellationToken)"></member>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.Filters.IAuthenticationFilter.ChallengeAsync(System.Web.Http.Filters.HttpAuthenticationChallengeContext,System.Threading.CancellationToken)"></member>
     <member name="T:System.Web.Http.Filters.IAuthorizationFilter">
       <summary>Defines the methods that are required for an authorization filter.</summary>
@@ -3239,41 +3102,11 @@
       <returns>true if buffering should be used; otherwise a streamed response should be used.</returns>
       <param name="response">The HTTP response message.</param>
     </member>
-<<<<<<< HEAD
     <member name="T:System.Web.Http.Hosting.SuppressHostPrincipalMessageHandler">
       <summary>Represents a message handler that suppresses host authentication results.</summary>
     </member>
     <member name="M:System.Web.Http.Hosting.SuppressHostPrincipalMessageHandler.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Hosting.SuppressHostPrincipalMessageHandler" /> class.</summary>
-=======
-    <member name="T:System.Web.Http.Hosting.IHostPrincipalService">
-      <summary>Defines a service for accessing the principal at the host layer.</summary>
-    </member>
-    <member name="M:System.Web.Http.Hosting.IHostPrincipalService.GetCurrentPrincipal(System.Net.Http.HttpRequestMessage)">
-      <summary>Get the principal at the host layer.</summary>
-      <returns>The principal at the host layer.</returns>
-      <param name="request">The request associated with the host context.</param>
-    </member>
-    <member name="M:System.Web.Http.Hosting.IHostPrincipalService.SetCurrentPrincipal(System.Security.Principal.IPrincipal,System.Net.Http.HttpRequestMessage)">
-      <summary>Sets the principal at the host layer.</summary>
-      <param name="principal">The principal.</param>
-      <param name="request">The request associated with the host context.</param>
-    </member>
-    <member name="T:System.Web.Http.Hosting.SuppressHostPrincipalMessageHandler">
-      <summary>Represents a message handler that suppresses host authentication results.</summary>
-    </member>
-    <member name="M:System.Web.Http.Hosting.SuppressHostPrincipalMessageHandler.#ctor(System.Web.Http.Hosting.IHostPrincipalService)">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Hosting.SuppressHostPrincipalMessageHandler" /> class.</summary>
-      <param name="principalService">The host principal service to use to access the current principal.</param>
-    </member>
-    <member name="M:System.Web.Http.Hosting.SuppressHostPrincipalMessageHandler.#ctor(System.Web.Http.HttpConfiguration)">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Hosting.SuppressHostPrincipalMessageHandler" /> class.</summary>
-      <param name="configuration">The configuration from which to use services.</param>
-    </member>
-    <member name="P:System.Web.Http.Hosting.SuppressHostPrincipalMessageHandler.HostPrincipalService">
-      <summary>Gets the host principal service to use to access the current principal.</summary>
-      <returns>The host principal service to use to access the current principal.</returns>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     </member>
     <member name="M:System.Web.Http.Hosting.SuppressHostPrincipalMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
       <summary>Asynchronously sends a request message.</summary>
@@ -3281,15 +3114,6 @@
       <param name="request">The request message to send.</param>
       <param name="cancellationToken">The cancellation token.</param>
     </member>
-<<<<<<< HEAD
-=======
-    <member name="T:System.Web.Http.Hosting.ThreadPrincipalService">
-      <summary>Represents a host principal of <see cref="P:System.Threading.Thread.CurrentPrincipal" />.</summary>
-    </member>
-    <member name="M:System.Web.Http.Hosting.ThreadPrincipalService.#ctor"></member>
-    <member name="M:System.Web.Http.Hosting.ThreadPrincipalService.GetCurrentPrincipal(System.Net.Http.HttpRequestMessage)"></member>
-    <member name="M:System.Web.Http.Hosting.ThreadPrincipalService.SetCurrentPrincipal(System.Security.Principal.IPrincipal,System.Net.Http.HttpRequestMessage)"></member>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.Metadata.ModelMetadata">
       <summary>Represents the metadata class of the ModelMetadata.</summary>
     </member>
@@ -3438,10 +3262,7 @@
       <summary>Gets or sets the metadata display format attribute.</summary>
       <returns>The metadata display format attribute.</returns>
     </member>
-<<<<<<< HEAD
     <member name="P:System.Web.Http.Metadata.Providers.CachedDataAnnotationsMetadataAttributes.DisplayName"></member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="P:System.Web.Http.Metadata.Providers.CachedDataAnnotationsMetadataAttributes.Editable">
       <summary>Gets or sets the metadata editable attribute.</summary>
       <returns>The metadata editable attribute.</returns>
@@ -3478,10 +3299,7 @@
       <summary>Retrieves a value that indicates whether the model is read-only.</summary>
       <returns>true if the model is read-only; otherwise, false.</returns>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.Metadata.Providers.CachedDataAnnotationsModelMetadata.GetDisplayName"></member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.Metadata.Providers.CachedModelMetadata`1">
       <summary>Provides prototype cache data for the <see cref="T:System.Web.Http.Metadata.Providers.CachedModelMetadata`1" />.</summary>
       <typeparam name="TPrototypeCache">The type of prototype cache.</typeparam>
@@ -3669,10 +3487,7 @@
       <param name="formatters">The formatter.</param>
       <param name="formatterLogger">The format logger.</param>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.ModelBinding.FormatterParameterBinding.ReadContentAsync(System.Net.Http.HttpRequestMessage,System.Type,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter},System.Net.Http.Formatting.IFormatterLogger,System.Threading.CancellationToken)"></member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="P:System.Web.Http.ModelBinding.FormatterParameterBinding.WillReadBody">
       <summary>Gets whether the <see cref="T:System.Web.Http.ModelBinding.FormatterParameterBinding" />will read body.</summary>
       <returns>True if the <see cref="T:System.Web.Http.ModelBinding.FormatterParameterBinding" />will read body; otherwise, false.</returns>
@@ -4519,19 +4334,11 @@
       <returns>The request message which led to this result.</returns>
     </member>
     <member name="T:System.Web.Http.Results.ConflictResult">
-<<<<<<< HEAD
       <summary>Represents an action result that returns an empty HttpStatusCode.Conflict response.</summary>
     </member>
     <member name="M:System.Web.Http.Results.ConflictResult.#ctor(System.Net.Http.HttpRequestMessage)">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Results.ConflictResult" /> class.</summary>
       <param name="request">The request message which led to this result.</param>
-=======
-      <summary>Represents an action result that performs conflict result and returns a specified value.</summary>
-    </member>
-    <member name="M:System.Web.Http.Results.ConflictResult.#ctor(System.Net.Http.HttpRequestMessage)">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Results.ConflictResult" /> class.</summary>
-      <param name="request">The HTTP request.</param>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     </member>
     <member name="M:System.Web.Http.Results.ConflictResult.#ctor(System.Web.Http.ApiController)">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Results.ConflictResult" /> class.</summary>
@@ -4864,11 +4671,7 @@
       <summary>Gets the request message which led to this result.</summary>
     </member>
     <member name="T:System.Web.Http.Results.OkNegotiatedContentResult`1">
-<<<<<<< HEAD
       <summary>Represents an action result that performs content negotiation and returns an HttpStatusCode.OK response when it succeeds.</summary>
-=======
-      <summary>Represents an action result that performs content negotiation.</summary>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
       <typeparam name="T">The type of content in the entity body.</typeparam>
     </member>
     <member name="M:System.Web.Http.Results.OkNegotiatedContentResult`1.#ctor(`0,System.Net.Http.Formatting.IContentNegotiator,System.Net.Http.HttpRequestMessage,System.Collections.Generic.IEnumerable{System.Net.Http.Formatting.MediaTypeFormatter})">
@@ -4897,30 +4700,18 @@
       <summary>Gets the request message which led to this result.</summary>
     </member>
     <member name="T:System.Web.Http.Results.OkResult">
-<<<<<<< HEAD
       <summary>Represents an action result that returns an empty HttpStatusCode.OK response.</summary>
     </member>
     <member name="M:System.Web.Http.Results.OkResult.#ctor(System.Net.Http.HttpRequestMessage)">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Results.NotFoundResult" /> class.</summary>
       <param name="request">The request message which led to this result.</param>
-=======
-      <summary>Provides the web an HTTP request message ok results.</summary>
-    </member>
-    <member name="M:System.Web.Http.Results.OkResult.#ctor(System.Net.Http.HttpRequestMessage)">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Results.OkResult" /> class.</summary>
-      <param name="request">The HTTP request.</param>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     </member>
     <member name="M:System.Web.Http.Results.OkResult.#ctor(System.Web.Http.ApiController)">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Results.NotFoundResult" /> class.</summary>
       <param name="controller">The controller from which to obtain the dependencies needed for execution.</param>
     </member>
     <member name="M:System.Web.Http.Results.OkResult.ExecuteAsync(System.Threading.CancellationToken)">
-<<<<<<< HEAD
       <summary>Executes asynchronously.</summary>
-=======
-      <summary>Executes asynchronously the HTTP results.</summary>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
       <returns>Returns the task.</returns>
       <param name="cancellationToken">The cancellation token.</param>
     </member>
@@ -4928,7 +4719,6 @@
       <summary>Gets a HTTP request message for the results.</summary>
       <returns>A HTTP request message for the results.</returns>
     </member>
-<<<<<<< HEAD
     <member name="T:System.Web.Http.Results.RedirectResult">
       <summary>Represents an action result for a &lt;see cref="F:System.Net.HttpStatusCode.Redirect"/&gt;.</summary>
     </member>
@@ -4988,8 +4778,6 @@
       <summary>Gets the factory to use to generate the route URL.</summary>
       <returns>Returns <see cref="T:System.Web.Http.Routing.UrlHelper" />.</returns>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.Results.ResponseMessageResult">
       <summary>Represents an action result that returns a specified response message.</summary>
     </member>
@@ -5066,7 +4854,6 @@
       <returns>The <see cref="T:System.Web.Http.Routing.IHttpRouteConstraint" /> the inline constraint was resolved to.</returns>
       <param name="inlineConstraint">The inline constraint to resolve.</param>
     </member>
-<<<<<<< HEAD
     <member name="T:System.Web.Http.Routing.DirectRouteFactoryContext">
       <summary>Represents a context that supports creating a direct route.</summary>
     </member>
@@ -5103,29 +4890,6 @@
     <member name="P:System.Web.Http.Routing.DirectRouteFactoryContext.TargetIsAction">
       <summary>Gets a value indicating whether the route is configured at the action or controller level.</summary>
       <returns>true when the route is configured at the action level; otherwise false (if the route is configured at the controller level).</returns>
-=======
-    <member name="T:System.Web.Http.Routing.HttpDirectRoute">
-      <summary>Represents a route that is able to directly select the actions that can be reached.</summary>
-    </member>
-    <member name="M:System.Web.Http.Routing.HttpDirectRoute.#ctor(System.String,System.Collections.Generic.IEnumerable{System.Web.Http.Controllers.ReflectedHttpActionDescriptor})">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Routing.HttpDirectRoute" /> class. </summary>
-      <param name="routeTemplate">The route template.</param>
-      <param name="actions">The actions that are reachable via this route.</param>
-    </member>
-    <member name="M:System.Web.Http.Routing.HttpDirectRoute.#ctor(System.String,System.Web.Http.Routing.HttpRouteValueDictionary,System.Web.Http.Routing.HttpRouteValueDictionary,System.Collections.Generic.IEnumerable{System.Web.Http.Controllers.ReflectedHttpActionDescriptor})">
-      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Routing.HttpDirectRoute" /> class. </summary>
-      <param name="routeTemplate">The route template.</param>
-      <param name="defaults">The default values.</param>
-      <param name="constraints">The route constraints.</param>
-      <param name="actions">The actions that are reachable via this route.</param>
-    </member>
-    <member name="P:System.Web.Http.Routing.HttpDirectRoute.Actions">
-      <summary>Gets the actions that are reachable via this route.</summary>
-      <returns>Returns <see cref="T:System.Collections.Generic.IReadOnlyList`1" />.</returns>
-    </member>
-    <member name="M:System.Web.Http.Routing.HttpDirectRoute.GetRouteData(System.String,System.Net.Http.HttpRequestMessage)">
-      <returns>Returns <see cref="T:System.Web.Http.Routing.IHttpRouteData" />.</returns>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     </member>
     <member name="T:System.Web.Http.Routing.HttpMethodConstraint">
       <summary>Enables you to define which HTTP verbs are allowed when ASP.NET routing determines whether a URL matches a route.</summary>
@@ -5236,22 +5000,6 @@
       <summary>Gets the route template describing the URI pattern to match against.</summary>
       <returns>The route template describing the URI pattern to match against.</returns>
     </member>
-<<<<<<< HEAD
-=======
-    <member name="T:System.Web.Http.Routing.HttpRouteBuilder">
-      <summary> Builds <see cref="T:System.Web.Http.Routing.IHttpRoute" /> instances based on route information. </summary>
-    </member>
-    <member name="M:System.Web.Http.Routing.HttpRouteBuilder.#ctor">
-      <summary> Initializes a new instance of the <see cref="T:System.Web.Http.Routing.HttpRouteBuilder" /> class using the default inline constraint resolver. </summary>
-    </member>
-    <member name="M:System.Web.Http.Routing.HttpRouteBuilder.#ctor(System.Web.Http.Routing.IInlineConstraintResolver)">
-      <summary> Initializes a new instance of the <see cref="T:System.Web.Http.Routing.HttpRouteBuilder" /> class. </summary>
-      <param name="constraintResolver">The <see cref="T:System.Web.Http.Routing.IInlineConstraintResolver" /> to use for resolving inline constraints.</param>
-    </member>
-    <member name="M:System.Web.Http.Routing.HttpRouteBuilder.BuildHttpRoute(System.String,System.Collections.Generic.IEnumerable{System.Web.Http.Controllers.ReflectedHttpActionDescriptor})"></member>
-    <member name="M:System.Web.Http.Routing.HttpRouteBuilder.BuildHttpRoute(System.String,System.Web.Http.Routing.HttpRouteValueDictionary,System.Web.Http.Routing.HttpRouteValueDictionary,System.Collections.Generic.IEnumerable{System.Web.Http.Controllers.ReflectedHttpActionDescriptor})"></member>
-    <member name="P:System.Web.Http.Routing.HttpRouteBuilder.ConstraintResolver"></member>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.Routing.HttpRouteData">
       <summary>Encapsulates information regarding the HTTP route.</summary>
     </member>
@@ -5272,7 +5020,6 @@
       <summary>Gets a collection of URL parameter values and default values for the route.</summary>
       <returns>An object that contains values that are parsed from the URL and from default values.</returns>
     </member>
-<<<<<<< HEAD
     <member name="T:System.Web.Http.Routing.HttpRouteDataExtensions">
       <summary>Removes all optional parameters that do not have a value from the route data.</summary>
     </member>
@@ -5285,8 +5032,6 @@
       <summary>Removes all optional parameters that do not have a value from the route data.</summary>
       <param name="routeData">The route data, to be mutated in-place.</param>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.Routing.HttpRouteDirection">
       <summary>Specifies an enumeration of route direction.</summary>
     </member>
@@ -5326,7 +5071,6 @@
       <summary>Gets or sets the URL that was created from the route definition.</summary>
       <returns>The URL that was created from the route definition.</returns>
     </member>
-<<<<<<< HEAD
     <member name="T:System.Web.Http.Routing.IDirectRouteBuilder">
       <summary>Defines a builder that creates direct routes to actions (attribute routes).</summary>
     </member>
@@ -5378,8 +5122,6 @@
       <returns>The direct route entry.</returns>
       <param name="context">The context to use to create the route.</param>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.Routing.IHttpRoute">
       <summary>
         <see cref="T:System.Web.Http.Routing.IHttpRoute" /> defines the interface for a route expressing how to map an incoming <see cref="T:System.Net.Http.HttpRequestMessage" /> to a particular controller and action. </summary>
@@ -5442,7 +5184,6 @@
     <member name="T:System.Web.Http.Routing.IHttpRouteInfoProvider">
       <summary> Provides information for defining a route. </summary>
     </member>
-<<<<<<< HEAD
     <member name="P:System.Web.Http.Routing.IHttpRouteInfoProvider.Name">
       <summary> Gets the name of the route to generate. </summary>
     </member>
@@ -5452,11 +5193,6 @@
     <member name="P:System.Web.Http.Routing.IHttpRouteInfoProvider.Template">
       <summary> Gets the route template describing the URI pattern to match against. </summary>
     </member>
-=======
-    <member name="P:System.Web.Http.Routing.IHttpRouteInfoProvider.Name"></member>
-    <member name="P:System.Web.Http.Routing.IHttpRouteInfoProvider.Order"></member>
-    <member name="P:System.Web.Http.Routing.IHttpRouteInfoProvider.Template"></member>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.Routing.IHttpVirtualPathData">
       <summary>Defines the properties for HTTP route.</summary>
     </member>
@@ -5476,7 +5212,6 @@
       <returns>The <see cref="T:System.Web.Http.Routing.IHttpRouteConstraint" /> the inline constraint was resolved to.</returns>
       <param name="inlineConstraint">The inline constraint to resolve.</param>
     </member>
-<<<<<<< HEAD
     <member name="T:System.Web.Http.Routing.IRoutePrefix">
       <summary>Defines a route prefix.</summary>
     </member>
@@ -5542,8 +5277,6 @@
     <member name="M:System.Web.Http.Routing.StopRoutingHandler.#ctor">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.Routing.StopRoutingHandler" /> class.</summary>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.Routing.UrlHelper">
       <summary>Represents a factory for creating URLs. </summary>
     </member>
@@ -6631,12 +6364,9 @@
       <returns>The keys from the specified <paramref name="prefix" />.</returns>
       <param name="prefix">The prefix.</param>
     </member>
-<<<<<<< HEAD
     <member name="T:System.Web.Http.ValueProviders.IUriValueProviderFactory">
       <summary>Represents an interface that is implemented by any <see cref="T:System.Web.Http.ValueProviders.ValueProviderFactory" /> that supports the creation of a <see cref="T:System.Web.Http.ValueProviders.IValueProvider" /> to access the <see cref="T:System.Uri" /> of an incoming <see cref="T:System.Net.Http.HttpRequestMessage" />.</summary>
     </member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="T:System.Web.Http.ValueProviders.IValueProvider">
       <summary>Defines the methods that are required for a value provider in ASP.NET MVC.</summary>
     </member>
@@ -6766,10 +6496,7 @@
     <member name="T:System.Web.Http.ValueProviders.Providers.NameValuePairsValueProvider">
       <summary>A value provider for name/value pairs.</summary>
     </member>
-<<<<<<< HEAD
     <member name="M:System.Web.Http.ValueProviders.Providers.NameValuePairsValueProvider.#ctor(System.Collections.Generic.IDictionary{System.String,System.Object},System.Globalization.CultureInfo)"></member>
-=======
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <member name="M:System.Web.Http.ValueProviders.Providers.NameValuePairsValueProvider.#ctor(System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.String}},System.Globalization.CultureInfo)">
       <summary>Initializes a new instance of the <see cref="T:System.Web.Http.ValueProviders.Providers.NameValuePairsValueProvider" /> class.</summary>
       <param name="values">The name/value pairs for the provider.</param>

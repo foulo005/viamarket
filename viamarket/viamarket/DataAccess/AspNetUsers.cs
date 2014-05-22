@@ -28,7 +28,7 @@ namespace ViaMarket.DataAccess
         public string SecurityStamp { get; set; }
         public string Discriminator { get; set; }
         public string FirstName { get; set; }
-        public string Surname { get; set; }
+        public string LastName { get; set; }
     
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }

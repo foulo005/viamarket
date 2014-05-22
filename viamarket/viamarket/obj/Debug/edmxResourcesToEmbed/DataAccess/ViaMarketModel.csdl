@@ -52,6 +52,8 @@
     <NavigationProperty Name="AspNetUserLogins" Relationship="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
     <NavigationProperty Name="Item" Relationship="Self.FK_Item_ToUser" FromRole="AspNetUsers" ToRole="Item" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+    <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -67,6 +69,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Item" Relationship="Self.FK_Item_ToCurrency" FromRole="Currency" ToRole="Item" />
+    <Property Name="code" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Item">
     <Key>
@@ -83,18 +86,6 @@
     <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Item_ToUser" FromRole="Item" ToRole="AspNetUsers" />
     <NavigationProperty Name="Category" Relationship="Self.FK_Item_ToCategory" FromRole="Item" ToRole="Category" />
     <NavigationProperty Name="Currency" Relationship="Self.FK_Item_ToCurrency" FromRole="Item" ToRole="Currency" />
-  </EntityType>
-  <EntityType Name="Table">
-    <Key>
-      <PropertyRef Name="idItem" />
-    </Key>
-    <Property Name="idItem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="title" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="folderPicturesUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="idUser" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
-    <Property Name="price" Type="Double" />
-    <Property Name="idCurrency" Type="Int32" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -173,7 +164,6 @@
     <EntitySet Name="Category" EntityType="Self.Category" />
     <EntitySet Name="Currency" EntityType="Self.Currency" />
     <EntitySet Name="Item" EntityType="Self.Item" />
-    <EntitySet Name="Table" EntityType="Self.Table" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />

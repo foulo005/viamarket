@@ -41,6 +41,8 @@
     <EntitySetMapping Name="AspNetUsers">
       <EntityTypeMapping TypeName="Model.AspNetUsers">
         <MappingFragment StoreEntitySet="AspNetUsers">
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
           <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
@@ -60,6 +62,7 @@
     <EntitySetMapping Name="Currency">
       <EntityTypeMapping TypeName="Model.Currency">
         <MappingFragment StoreEntitySet="Currency">
+          <ScalarProperty Name="code" ColumnName="code" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="name" ColumnName="name" />
         </MappingFragment>
@@ -76,19 +79,6 @@
           <ScalarProperty Name="price" ColumnName="price" />
           <ScalarProperty Name="idCurrency" ColumnName="idCurrency" />
           <ScalarProperty Name="idCategory" ColumnName="idCategory" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Table">
-      <EntityTypeMapping TypeName="Model.Table">
-        <MappingFragment StoreEntitySet="Table">
-          <ScalarProperty Name="idItem" ColumnName="idItem" />
-          <ScalarProperty Name="title" ColumnName="title" />
-          <ScalarProperty Name="folderPicturesUrl" ColumnName="folderPicturesUrl" />
-          <ScalarProperty Name="description" ColumnName="description" />
-          <ScalarProperty Name="idUser" ColumnName="idUser" />
-          <ScalarProperty Name="price" ColumnName="price" />
-          <ScalarProperty Name="idCurrency" ColumnName="idCurrency" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
