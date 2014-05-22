@@ -16,7 +16,7 @@ namespace viamarket
         {
             //Do all the configuration for the application on startup
 
-            AreaRegistration.RegisterAllAreas()
+            AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
