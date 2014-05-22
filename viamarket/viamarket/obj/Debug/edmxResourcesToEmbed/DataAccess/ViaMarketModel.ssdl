@@ -53,8 +53,6 @@
     <Property Name="PasswordHash" Type="nvarchar(max)" />
     <Property Name="SecurityStamp" Type="nvarchar(max)" />
     <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
-    <Property Name="FirstName" Type="text" />
-    <Property Name="Surname" Type="text" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
@@ -69,7 +67,6 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="name" Type="text" />
-    <Property Name="code" Type="text" />
   </EntityType>
   <EntityType Name="Item">
     <Key>
@@ -83,6 +80,18 @@
     <Property Name="price" Type="float" />
     <Property Name="idCurrency" Type="int" />
     <Property Name="idCategory" Type="int" />
+  </EntityType>
+  <EntityType Name="Table">
+    <Key>
+      <PropertyRef Name="idItem" />
+    </Key>
+    <Property Name="idItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="title" Type="text" />
+    <Property Name="folderPicturesUrl" Type="text" />
+    <Property Name="description" Type="text" />
+    <Property Name="idUser" Type="nvarchar" MaxLength="128" />
+    <Property Name="price" Type="float" />
+    <Property Name="idCurrency" Type="int" />
   </EntityType>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
@@ -186,6 +195,7 @@
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Table" EntityType="Self.Table" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />

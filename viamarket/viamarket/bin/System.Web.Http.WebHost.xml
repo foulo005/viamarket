@@ -108,6 +108,7 @@
       <returns>A buffered output stream.</returns>
       <param name="response">The response.</param>
     </member>
+<<<<<<< HEAD
     <member name="T:System.Web.Http.WebHost.WebHostExceptionCatchBlocks">
       <summary>Provides the catch blocks used within this assembly.</summary>
     </member>
@@ -130,6 +131,23 @@
     <member name="P:System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpWebRoute">
       <summary>Gets the label for the catch block in System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpWebRoute.GetRouteData.</summary>
       <returns>The catch block in System.Web.Http.WebHost.WebHostExceptionCatchBlocks.HttpWebRoute.GetRouteData.</returns>
+=======
+    <member name="T:System.Web.Http.WebHost.WebHostPrincipalService">
+      <summary>Represents the webhost principal service.</summary>
+    </member>
+    <member name="M:System.Web.Http.WebHost.WebHostPrincipalService.#ctor">
+      <summary>Initializes a new instance of the <see cref="T:System.Web.Http.WebHost.WebHostPrincipalService" /> class.</summary>
+    </member>
+    <member name="M:System.Web.Http.WebHost.WebHostPrincipalService.GetCurrentPrincipal(System.Net.Http.HttpRequestMessage)">
+      <summary>Returns the current principal associated with the webhost.</summary>
+      <returns>The current principal associated with the webhost.</returns>
+      <param name="request">the request message.</param>
+    </member>
+    <member name="M:System.Web.Http.WebHost.WebHostPrincipalService.SetCurrentPrincipal(System.Security.Principal.IPrincipal,System.Net.Http.HttpRequestMessage)">
+      <summary>Sets the current principal associated with the webhost.</summary>
+      <param name="principal">The principal.</param>
+      <param name="request">The request message.</param>
+>>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     </member>
   </members>
 </doc>
