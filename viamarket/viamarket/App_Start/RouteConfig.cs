@@ -11,6 +11,8 @@ namespace viamarket
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
+            // configure the routing for the web mvc urls
+            
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
