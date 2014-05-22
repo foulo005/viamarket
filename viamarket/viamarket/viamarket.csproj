@@ -204,12 +204,6 @@
     <Compile Include="DataAccess\Item.cs">
       <DependentUpon>ViaMarketModel.tt</DependentUpon>
     </Compile>
-<<<<<<< HEAD
-=======
-    <Compile Include="DataAccess\Table.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
->>>>>>> 8664c720290c18fb367e10cf1f5b38e6ef9369e2
     <Compile Include="DataAccess\ViaMarketModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
