@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using viamarket.Models;
+using ViaMarket.Models;
 
 namespace ViaMarket.Controllers
 {

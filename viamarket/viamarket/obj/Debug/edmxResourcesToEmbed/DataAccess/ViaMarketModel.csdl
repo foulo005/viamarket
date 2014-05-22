@@ -53,7 +53,7 @@
     <NavigationProperty Name="Item" Relationship="Self.FK_Item_ToUser" FromRole="AspNetUsers" ToRole="Item" />
     <NavigationProperty Name="AspNetRoles" Relationship="Self.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
     <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Category">
     <Key>

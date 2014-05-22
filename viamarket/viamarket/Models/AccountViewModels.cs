@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace viamarket.Models
+namespace ViaMarket.Models
 {
     public class ExternalLoginConfirmationViewModel
     {
