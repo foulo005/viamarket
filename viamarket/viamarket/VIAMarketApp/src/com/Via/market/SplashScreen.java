@@ -6,8 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 public class SplashScreen extends Activity {
-
-
+// TODO : Fit the splash to multiple size
 	// Splash screen timer
     private static int SPLASH_TIME_OUT = 3000;
 	@Override
