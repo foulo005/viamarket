@@ -5,7 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Http;
 
-namespace ProductsApp.Controllers
+namespace ViaMarket.Controllers
 {
     public class ProductsController : ApiController
     {

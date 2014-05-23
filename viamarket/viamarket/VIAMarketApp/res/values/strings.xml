@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
@@ -12,3 +13,13 @@
     <string name="searchCenter">Research Center </string>
 
 </resources>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ViaMarketApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+
+</resources>
+>>>>>>> 4a6dccd3c3eeb4f06124a02beb116bbc20dccb90

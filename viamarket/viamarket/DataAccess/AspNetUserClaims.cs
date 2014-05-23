@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace viamarket.DataAccess
+namespace ViaMarket.DataAccess
 {
     using System;
     using System.Collections.Generic;

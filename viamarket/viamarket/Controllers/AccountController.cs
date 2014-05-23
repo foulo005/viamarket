@@ -8,9 +8,9 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
-using viamarket.Models;
+using ViaMarket.Models;
 
-namespace viamarket.Controllers
+namespace ViaMarket.Controllers
 {
     [Authorize]
     public class AccountController : Controller
@@ -78,7 +78,12 @@ namespace viamarket.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser() { UserName = model.UserName };
+                var user = new ApplicationUser() 
+                { 
+                    UserName = model.UserName,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

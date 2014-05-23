@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace viamarket.DataAccess
+namespace ViaMarket.DataAccess
 {
     using System;
     using System.Collections.Generic;
@@ -27,6 +27,8 @@ namespace viamarket.DataAccess
         public string PasswordHash { get; set; }
         public string SecurityStamp { get; set; }
         public string Discriminator { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }

@@ -1,8 +1,8 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(viamarket.Startup))]
-namespace viamarket
+[assembly: OwinStartupAttribute(typeof(ViaMarket.Startup))]
+namespace ViaMarket
 {
     public partial class Startup
     {

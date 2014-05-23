@@ -54,7 +54,7 @@
     <Property Name="SecurityStamp" Type="nvarchar(max)" />
     <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="FirstName" Type="text" />
-    <Property Name="Surname" Type="text" />
+    <Property Name="LastName" Type="text" />
   </EntityType>
   <EntityType Name="Category">
     <Key>

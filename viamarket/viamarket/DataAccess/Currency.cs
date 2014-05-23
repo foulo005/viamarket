@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace viamarket.DataAccess
+namespace ViaMarket.DataAccess
 {
     using System;
     using System.Collections.Generic;
@@ -21,6 +21,7 @@ namespace viamarket.DataAccess
     
         public int Id { get; set; }
         public string name { get; set; }
+        public string code { get; set; }
     
         public virtual ICollection<Item> Item { get; set; }
     }

@@ -5,56 +5,65 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using viamarket.DataAccess;
+using ViaMarket.DataAccess;
 
-namespace viamarket.Controllers
+namespace ViaMarket.Controllers
 {
     public class CategoryController : ApiController
     {
         MarketEntities db = new MarketEntities();
 
+        // returns a list with all categories available
         public IEnumerable<Category> GetAll()
         {
             return db.Category.AsEnumerable();
         }
 
-
+        // Returns a category by id, throws exception when not found
         public Category GetById(int id)
         {
-            return db.Category.Find(id);
-        }
-
-
-        public bool Delete(int id)
-        {
             Category category = db.Category.Find(id);
-            if (category != null)
+            if (category == null)
             {
-                db.Entry(category).State = EntityState.Deleted;
-                db.SaveChanges();
-                return true;
-            }
-            return false;
-        }
-
-
-        public Category Edit(Category category)
-        {
-            if (db.Category.Find(category.Id) != null)
-            {
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
+                throw new HttpResponseException(HttpStatusCode.NotFound);
             }
             return category;
         }
 
+        // deletes the category with id (or returns a 404 response when invalid)
+        public void DeleteCategory(int id)
+        {
+            Category category = db.Category.Find(id);
+            if (category == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            db.Entry(category).State = EntityState.Deleted;
+            db.SaveChanges();
+        }
 
-        public Category Create(Category category)
+        // creates a new category and returns it (with http status code created 201)
+        public HttpResponseMessage PostCategory(Category category)
         {
             db.Entry(category).State = EntityState.Added;
             db.SaveChanges();
-            return category;
+
+            var response = Request.CreateResponse<Category>(HttpStatusCode.Created, category);
+
+            string uri = Url.Link("DefaultApi", new { id = category.Id });
+            response.Headers.Location = new Uri(uri);
+            return response;
         }
 
+        // updates a category. if not found, return http response 404
+        public void PutCategory(Category category)
+        {
+            if (db.Category.Find(category.Id) == null)
+            {
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            }
+            db.Entry(category).State = EntityState.Modified;
+            db.SaveChanges();
+        }
     }
 }
