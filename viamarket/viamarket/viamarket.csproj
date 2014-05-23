@@ -171,6 +171,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\ItemController.cs" />
     <Compile Include="ApiControllers\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -180,7 +181,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="ApiControllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="DataAccess\AspNetRoles.cs">
       <DependentUpon>ViaMarketModel.tt</DependentUpon>
     </Compile>
