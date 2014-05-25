@@ -175,3 +175,6 @@ C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.MicrosoftAccoun
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
+C:\Dev\viamarket\viamarket\viamarket\bin\AutoMapper.Net4.dll
+C:\Dev\viamarket\viamarket\viamarket\bin\AutoMapper.dll
+C:\Dev\viamarket\viamarket\viamarket\bin\AutoMapper.xml
