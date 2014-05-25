@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
@@ -21,22 +22,27 @@ namespace ViaMarket.ApiControllers
 
 
         // finds a user with the username and password
-        public ApplicationUser Get(string username, string password)
+        public Account Get([FromUri] string username, [FromUri] string password)
         {
             var user = UserManager.Find(username, password);
-            return user;
+            if (user != null)
+            {
+                Mapper.CreateMap<ApplicationUser, Account>();
+                return Mapper.Map<Account>(user);
+            }
+            return null;
         }
 
         // registers a user and returns status 201 (created) if ok, otherwise 404 (not found)
-        public HttpResponseMessage Post(string username, string password, string firstname, string lastname)
+        public HttpResponseMessage PostUser([FromBody]Register register)
         {
             var user = new ApplicationUser()
             {
-                UserName = username,
-                FirstName = firstname,
-                LastName = lastname
+                UserName = register.UserName,
+                FirstName = register.FirstName,
+                LastName = register.LastName
             };
-            var result = UserManager.Create(user, password);
+            var result = UserManager.Create(user, register.Password);
             HttpResponseMessage response;
             if (result.Succeeded)
             {
