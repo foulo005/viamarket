@@ -52,7 +52,7 @@ public class LoginActivity extends Activity {
 	private TextView mLoginStatusMessageView;
 
 	// HTTP REQUEST
-	private String loginURL = "http://viamarket-001-site1.myasp.net/api/user";
+	private String loginURL = "http://viamarket-001-site1.myasp.net/api/user/";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -210,14 +210,20 @@ public class LoginActivity extends Activity {
 			// Building Parameters ( you can pass as many parameters as you
 			// want)
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-
-			params.add(new BasicNameValuePair("username", credentials[0]));
+			System.out.println(credentials[0]+" "+credentials[1]);
+			params.add(new BasicNameValuePair("UserName", credentials[0]));
 			params.add(new BasicNameValuePair("password", credentials[1]));
 
 			// Getting JSON Object
 			try {
-				JSONObject json = jsonParser.makeHttpRequest(loginURL, "GET",
+				JSONObject json = jsonParser.makeHttpRequest(loginURL, "POST",
 						params);
+				if(json != null ){
+					Intent i = new Intent(getApplicationContext(),MarketTimeLine.class);
+					startActivity(i);
+					System.out.println(json);
+					finish();
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
