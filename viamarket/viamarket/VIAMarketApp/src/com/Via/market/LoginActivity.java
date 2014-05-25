@@ -1,9 +1,18 @@
 package com.Via.market;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONObject;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,18 +24,11 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
 
-
 /**
  * Activity which displays a login screen to the user, offering registration as
  * well.
  */
 public class LoginActivity extends Activity {
-	/**
-	 * A dummy authentication store containing known user names and passwords.
-	 * TODO: remove after connecting to a real authentication system.
-	 */
-	private static final String[] DUMMY_CREDENTIALS = new String[] {
-			"foo@example.com:hello", "bar@example.com:world" };
 
 	/**
 	 * The default email to populate the email field with.
@@ -48,6 +50,9 @@ public class LoginActivity extends Activity {
 	private View mLoginFormView;
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
+
+	// HTTP REQUEST
+	private String loginURL = "http://viamarket-001-site1.myasp.net/api/user";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -132,7 +137,7 @@ public class LoginActivity extends Activity {
 			mUsernameView.setError(getString(R.string.error_field_required));
 			focusView = mUsernameView;
 			cancel = true;
-		} else if (mUsername.length() != 6) {
+		} else if (mUsername.length() > 6) {
 			mUsernameView.setError(getString(R.string.error_invalid_email));
 			focusView = mUsernameView;
 			cancel = true;
@@ -148,7 +153,7 @@ public class LoginActivity extends Activity {
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
 			mAuthTask = new UserLoginTask();
-			mAuthTask.execute((Void) null);
+			mAuthTask.execute(mUsername, mPassword);
 		}
 	}
 
@@ -197,26 +202,32 @@ public class LoginActivity extends Activity {
 	 * Represents an asynchronous login/registration task used to authenticate
 	 * the user.
 	 */
-	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
+	public class UserLoginTask extends AsyncTask<String, Void, Boolean> {
 		@Override
-		protected Boolean doInBackground(Void... params) {
-			// TODO: attempt authentication against a network service.
+		protected Boolean doInBackground(String... credentials) {
+			JSONParser jsonParser = new JSONParser();
 
+			// Building Parameters ( you can pass as many parameters as you
+			// want)
+			List<NameValuePair> params = new ArrayList<NameValuePair>();
+
+			params.add(new BasicNameValuePair("username", credentials[0]));
+			params.add(new BasicNameValuePair("password", credentials[1]));
+
+			// Getting JSON Object
 			try {
-				// Simulate network access.
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				return false;
-			}
-
-			for (String credential : DUMMY_CREDENTIALS) {
-				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mUsername)) {
-					// Account exists, return true if the password matches.
-					return pieces[1].equals(mPassword);
-				}
+				JSONObject json = jsonParser.makeHttpRequest(loginURL, "GET",
+						params);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 			return true;
+		}
+
+		@Override
+		protected void onPreExecute() {
+
 		}
 
 		@Override
@@ -225,6 +236,8 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 
 			if (success) {
+				Intent i = new Intent(getApplicationContext(),MarketTimeLine.class);
+				startActivity(i);
 				finish();
 			} else {
 				mPasswordView
@@ -238,6 +251,51 @@ public class LoginActivity extends Activity {
 			mAuthTask = null;
 			showProgress(false);
 		}
-	}
-}
+		/*
+		 * public String request(String username, String password) throws
+		 * IOException { HttpClient httpclient = new DefaultHttpClient();
+		 * HttpResponse httpget = httpclient.execute(new HttpGet(loginURL));
+		 * 
+		 * // Add your data List<NameValuePair> nameValuePairs = new
+		 * ArrayList<NameValuePair>(2); nameValuePairs.add(new
+		 * BasicNameValuePair("username", username)); nameValuePairs.add(new
+		 * BasicNameValuePair("password", password)); httpget.setEntity(new
+		 * UrlEncodedFormEntity(nameValuePairs)); // checking the statusLine &
+		 * code StatusLine statusLine = httpget.getStatusLine(); String
+		 * responseString = null; if (statusLine.getStatusCode() ==
+		 * HttpStatus.SC_OK) { ByteArrayOutputStream out = new
+		 * ByteArrayOutputStream(); httpget.getEntity().writeTo(out);
+		 * responseString = out.toString(); out.close(); } else { // Closes the
+		 * connection. httpget.getEntity().getContent().close(); throw new
+		 * IOException(statusLine.getReasonPhrase()); } return responseString; }
+		 */
 
+	}
+
+	public void login(View v) throws IOException {
+		mUsername = mUsernameView.getText().toString();
+		mPassword = mPasswordView.getText().toString();
+		UserLoginTask login = new UserLoginTask();
+		login.execute(mUsername, mPassword);
+
+	}
+
+	/*
+	 * public void postData(String username, String password) { // Create a new
+	 * HttpClient and Post Header HttpClient httpclient = new
+	 * DefaultHttpClient(); HttpPost httppost = new HttpPost(loginURL);
+	 * 
+	 * try { // Add your data List<NameValuePair> nameValuePairs = new
+	 * ArrayList<NameValuePair>(2); nameValuePairs.add(new
+	 * BasicNameValuePair("username", username)); nameValuePairs.add(new
+	 * BasicNameValuePair("password", password)); httppost.setEntity(new
+	 * UrlEncodedFormEntity(nameValuePairs));
+	 * 
+	 * // Execute HTTP Post Request HttpResponse response =
+	 * httpclient.execute(httppost);
+	 * 
+	 * } catch (ClientProtocolException e) { // TODO Auto-generated catch block
+	 * } catch (IOException e) { // TODO Auto-generated catch block } }
+	 */
+
+}
