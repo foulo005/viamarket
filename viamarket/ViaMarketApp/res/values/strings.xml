@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ViaMarketApp</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_market_time_line">MarketTimeLine</string>
+    <string name="title_activity_search">SearchActivity</string>
+    <string name="title_activity_item_display_list">ItemDisplayList</string>
+    <string name="search">your research</string>
+    <string name="searchButton">Look for my item !</string>
+    <string name="searchCenter">Research Center </string>
+    <string name="title_activity_sign_up">SignUp</string>
+    <string name="signup">Sign Up</string>
+    <string name="UserNameHint">Username</string>
+    <string name="LastNameHint">Last name</string>
+    <string name="firstNameHint">First name</string>
+    <string name="pwdHint">Password</string>
+    <string name="rPwdHint">Retype password</string>
+    <string name="signMeUp">Sign me up </string>
+    <string name="gotoSignup">Sign Up</string>
+
+</resources>
