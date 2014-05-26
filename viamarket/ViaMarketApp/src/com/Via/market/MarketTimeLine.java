@@ -7,7 +7,9 @@ import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
@@ -25,13 +27,21 @@ public class MarketTimeLine extends FragmentActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		super.setContentView(R.layout.activity_market_time_line);
-		Intent i = getIntent();
-		Bundle b = i.getExtras();
-		idUser = b.getString("idUser");
-		System.out.println(idUser);
-		personName = b.getString("personName");
+		SharedPreferences settings = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		if(!(settings.getString("username", null) == null))
+		{
+			Toast.makeText(getApplicationContext(), "welcome "+settings.getString("firstname", " "), Toast.LENGTH_LONG).show();
+		}
+		else{
+			Intent i = getIntent();
+			Bundle b = i.getExtras();
+			personName = b.getString("personName");
+			Toast.makeText(getApplicationContext(), "welcome "+personName, Toast.LENGTH_LONG).show();
+		}
 		
-		Toast.makeText(getApplicationContext(), "welcome "+personName, Toast.LENGTH_LONG).show();
+		
+		
 		// getting the action bar
 		final ActionBar actionBar = getActionBar();
 

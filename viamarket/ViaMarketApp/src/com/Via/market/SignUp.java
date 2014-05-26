@@ -6,6 +6,8 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
@@ -79,7 +81,7 @@ public class SignUp extends Activity {
 			passwordView.setError("6 characters minimum");
 			focusView = passwordView;
 			cancel = true;
-		} else if (password != rpwd) {
+		} else if (!password.equals(rpwd)) {
 			rPwdView.setError("password do not match");
 			focusView = rPwdView;
 			cancel = true;
@@ -95,10 +97,11 @@ public class SignUp extends Activity {
 
 	}
 
-	public boolean signMeUp(View v) {
+	public boolean signup(View v) {
 
 		if (checkField()) {
-
+			 UserSignUpTask signMeUp = new UserSignUpTask();
+			 signMeUp.execute(username,firstName,lastName,password);
 		}
 		return true;
 	}
@@ -120,13 +123,41 @@ public class SignUp extends Activity {
 			try {
 				JSONObject json = jsonParser.makeHttpRequest(loginURL , "POST",
 						params);
-			} catch (IOException e) {e.printStackTrace();}
+				// Checking for the errors array returned by the request 
+				// if null, then the User'sign up was successful 
+				//if != null then, display the errors.
+				JSONArray errors = json.getJSONArray("ErrorList");
+				if(errors.isNull(0))
+					return true;
+				else{
+					System.out.println(errors);
+					return false;
+				}
+					
+					
+				
+			} catch (IOException e) {e.printStackTrace();} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
 			return true;
 		}
 		@Override
 		protected void onPostExecute(final Boolean success) {
-			
+			if(success)
+			{
+				Intent i = new Intent(getApplicationContext(),Confirmation.class);
+				startActivity(i);
+				finish();
+			}
+			else{
+				View focusView = userNameView;
+				userNameView.setError("username already taken");
+				userNameView.setText("");
+				focusView.requestFocus();
+			}
+				
 		}
 	}
 }

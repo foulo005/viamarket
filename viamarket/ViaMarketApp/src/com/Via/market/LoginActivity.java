@@ -14,9 +14,13 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.net.Credentials;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -46,9 +50,10 @@ public class LoginActivity extends Activity {
 	private String mUsername;
 	private String mPassword;
 	
-	//
+	//Used for the sharedPreferences
 	private String idUser;
 	private String personName;
+	private String personLastName;
 
 	// UI references.
 	private EditText mUsernameView;
@@ -226,6 +231,8 @@ public class LoginActivity extends Activity {
 				if (json !=null){
 					idUser = json.getString("Id").toString();
 					personName = json.getString("FirstName").toString();
+					personLastName = json.getString("LastName").toString();
+					savePreferences(credentials[0],personName,personLastName);
 					return true;
 				}	
 				 else
@@ -283,7 +290,15 @@ public class LoginActivity extends Activity {
 		login.execute(mUsername, mPassword);
 
 	}
-
+	public void savePreferences(String ... credentials)
+	{
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this); 
+		Editor edit = sp.edit(); 
+		edit.putString("username", credentials[0]);
+		edit.putString("firstname", credentials[1] );
+		edit.putString("lastname", credentials[2]);
+		edit.apply(); 
+	}
 	public void gotoSignUp(View v) {
 		Intent i = new Intent(getApplicationContext(), SignUp.class);
 		startActivity(i);

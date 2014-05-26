@@ -19,5 +19,8 @@
     <string name="rPwdHint">Retype password</string>
     <string name="signMeUp">Sign me up </string>
     <string name="gotoSignup">Sign Up</string>
+    <string name="title_activity_confirmation">Confirmation</string>
+    <string name="confirmationText">Welcome to VIA Market</string>
+    <string name="emailSentText">An email has been sent to the address you provided, please make sure to validate your account before attempting the login. VIA Market Team</string>
 
 </resources>
