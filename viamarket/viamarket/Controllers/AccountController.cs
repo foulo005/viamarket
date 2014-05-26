@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
+using ViaMarket.DataAccess;
 using ViaMarket.Models;
 
 namespace ViaMarket.Controllers

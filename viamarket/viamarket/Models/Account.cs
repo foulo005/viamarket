@@ -11,5 +11,6 @@ namespace ViaMarket.Models
         public string LastName { get; set; }
         public string Id { get; set; }
         public string UserName { get; set; }
+        public List<string> ErrorList { get; set; }
     }
 }

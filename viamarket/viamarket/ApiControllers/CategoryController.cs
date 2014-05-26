@@ -11,18 +11,18 @@ namespace ViaMarket.Controllers
 {
     public class CategoryController : ApiController
     {
-        MarketEntities db = new MarketEntities();
+        ApplicationDbContext db = new ApplicationDbContext();
 
         // returns a list with all categories available
         public IEnumerable<Category> GetAll()
         {
-            return db.Category.AsEnumerable();
+            return db.Categories.AsEnumerable();
         }
 
         // Returns a category by id, throws exception when not found
         public Category GetById(int id)
         {
-            Category category = db.Category.Find(id);
+            Category category = db.Categories.Find(id);
             if (category == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -33,7 +33,7 @@ namespace ViaMarket.Controllers
         // deletes the category with id (or returns a 404 response when invalid)
         public void DeleteCategory(int id)
         {
-            Category category = db.Category.Find(id);
+            Category category = db.Categories.Find(id);
             if (category == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -58,7 +58,7 @@ namespace ViaMarket.Controllers
         // updates a category. if not found, return http response 404
         public void PutCategory(Category category)
         {
-            if (db.Category.Find(category.Id) == null)
+            if (db.Categories.Find(category.Id) == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }

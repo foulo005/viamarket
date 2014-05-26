@@ -11,18 +11,18 @@ namespace ViaMarket.ApiControllers
 {
     public class ItemController : ApiController
     {
-        MarketEntities db = new MarketEntities();
+        ApplicationDbContext db = new ApplicationDbContext();
 
         // returns a list with all items
         public IEnumerable<Item> GetAll()
         {
-            return db.Item.AsEnumerable();
+            return db.Items.AsEnumerable();
         }
 
         // gets an item by id
         public Item GetById(int id)
         {
-            Item item = db.Item.Find(id);
+            Item item = db.Items.Find(id);
             if (item == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -33,7 +33,7 @@ namespace ViaMarket.ApiControllers
         // deletes the item with id (or returns a 404 response when invalid)
         public void DeleteItem(int id)
         {
-            Item item = db.Item.Find(id);
+            Item item = db.Items.Find(id);
             if (item == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
@@ -50,7 +50,7 @@ namespace ViaMarket.ApiControllers
 
             var response = Request.CreateResponse<Item>(HttpStatusCode.Created, item);
 
-            string uri = Url.Link("DefaultApi", new { id = item.idItem });
+            string uri = Url.Link("DefaultApi", new { id = item.Id });
             response.Headers.Location = new Uri(uri);
             return response;
         }
@@ -58,7 +58,7 @@ namespace ViaMarket.ApiControllers
         // updates a item. if not found, return http response 404
         public void PutItem(Item item)
         {
-            if (db.Item.Find(item.idItem) == null)
+            if (db.Items.Find(item.Id) == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
