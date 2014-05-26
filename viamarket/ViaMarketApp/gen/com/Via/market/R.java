@@ -33,22 +33,22 @@ public final class R {
         public static final int action_settings=0x7f080014;
         public static final int button1=0x7f080007;
         public static final int categoriesSpinner=0x7f080009;
-        public static final int editText1=0x7f08000e;
-        public static final int editText2=0x7f08000d;
-        public static final int editText3=0x7f08000f;
-        public static final int editText4=0x7f080010;
-        public static final int editText5=0x7f080011;
+        public static final int firstNameView=0x7f08000e;
         public static final int imageView1=0x7f080012;
+        public static final int lastNameView=0x7f08000d;
         public static final int login=0x7f080005;
         public static final int login_form=0x7f080002;
         public static final int login_status=0x7f080000;
         public static final int login_status_message=0x7f080001;
         public static final int password=0x7f080004;
+        public static final int passwordView=0x7f080010;
+        public static final int retypePwdView=0x7f080011;
         public static final int searchButton=0x7f08000b;
         public static final int searchEditText=0x7f08000a;
         public static final int sign_in_button=0x7f080006;
         public static final int text=0x7f080013;
         public static final int textView1=0x7f08000c;
+        public static final int userNameView=0x7f08000f;
         public static final int username=0x7f080003;
         public static final int viewpager=0x7f080008;
     }
