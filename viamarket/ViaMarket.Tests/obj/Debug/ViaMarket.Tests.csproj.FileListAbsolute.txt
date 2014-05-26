@@ -1,3 +1,4 @@
+C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.Net4.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\ViaMarket.Tests.dll.config
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\ViaMarket.Tests.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\ViaMarket.Tests.pdb
@@ -9,10 +10,11 @@ C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\System.Web.Mvc.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\EntityFramework.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\System.Web.Optimization.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Owin.dll
-C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.Owin.dll
+C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.Owin.Security.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
@@ -30,9 +32,10 @@ C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\System.Web.Http.WebHost.xml
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\System.Web.Mvc.xml
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\EntityFramework.xml
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
-C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\System.Web.Optimization.xml
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\System.Web.Optimization.xml
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.Owin.xml
+C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.xml
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.Owin.Security.Cookies.xml
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.Owin.Security.xml
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
@@ -45,6 +48,8 @@ C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\System.Web.WebPages.Deploym
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.csprojResolveAssemblyReference.cache
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.pdb
+<<<<<<< HEAD
+=======
 <<<<<<< HEAD
 D:\GitHub\viamarket\viamarket\ViaMarket.Tests\bin\Debug\ViaMarket.Tests.dll.config
 D:\GitHub\viamarket\viamarket\ViaMarket.Tests\bin\Debug\ViaMarket.Tests.dll
@@ -98,3 +103,4 @@ C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.Net4.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.xml
 >>>>>>> 569a11b3e62f7a6348c1d14f851cc3d144574cd9
+>>>>>>> 9357f3ba00ed269df60b2901202d68da57997513

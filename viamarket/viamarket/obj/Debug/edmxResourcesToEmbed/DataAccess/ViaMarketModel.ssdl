@@ -55,35 +55,86 @@
     <Property Name="Discriminator" Type="nvarchar" MaxLength="128" Nullable="false" />
     <Property Name="FirstName" Type="text" />
     <Property Name="LastName" Type="text" />
+    <Property Name="IdUniversity" Type="int" />
+    <Property Name="Activated" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="Category">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="text" />
+    <Property Name="name" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="Contact">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdAspNetUsers" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="ContactType" Type="int" Nullable="false" />
+    <Property Name="Value" Type="nvarchar" MaxLength="200" Nullable="false" />
   </EntityType>
   <EntityType Name="Currency">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="name" Type="text" />
-    <Property Name="code" Type="text" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="3" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdItem" Type="int" />
+    <Property Name="PathOriginal" Type="nvarchar(max)" />
+    <Property Name="PathPreview" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="Item">
     <Key>
-      <PropertyRef Name="idItem" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="idItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="title" Type="text" />
-    <Property Name="folderPicturesUrl" Type="text" />
-    <Property Name="description" Type="text" />
-    <Property Name="idUser" Type="nvarchar" MaxLength="128" />
-    <Property Name="price" Type="float" />
-    <Property Name="idCurrency" Type="int" />
-    <Property Name="idCategory" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="IdAspNetUsers" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="Price" Type="float" />
+    <Property Name="IdCurrency" Type="int" />
+    <Property Name="IdCategory" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="University">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Domain" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <Association Name="FK_AspNetUsers_ToTable">
+    <End Role="University" Type="Self.University" Multiplicity="0..1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="University">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AspNetUsers">
+        <PropertyRef Name="IdUniversity" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Contact_ToTable">
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
+    <End Role="Contact" Type="Self.Contact" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AspNetUsers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Contact">
+        <PropertyRef Name="IdAspNetUsers" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
     <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
       <OnDelete Action="Cascade" />
@@ -140,15 +191,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_Image_ToTable">
+    <End Role="Item" Type="Self.Item" Multiplicity="0..1" />
+    <End Role="Image" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Item">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="IdItem" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Item_ToCategory">
-    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
     <End Role="Item" Type="Self.Item" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Category">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Item">
-        <PropertyRef Name="idCategory" />
+        <PropertyRef Name="IdCategory" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -160,19 +223,19 @@
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Item">
-        <PropertyRef Name="idCurrency" />
+        <PropertyRef Name="IdCurrency" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Item_ToUser">
-    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+    <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
     <End Role="Item" Type="Self.Item" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="AspNetUsers">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="Item">
-        <PropertyRef Name="idUser" />
+        <PropertyRef Name="IdAspNetUsers" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -184,8 +247,19 @@
     <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Contact" EntityType="Self.Contact" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Currency" EntityType="Self.Currency" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Item" EntityType="Self.Item" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="University" EntityType="Self.University" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_AspNetUsers_ToTable" Association="Self.FK_AspNetUsers_ToTable">
+      <End Role="University" EntitySet="University" />
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Contact_ToTable" Association="Self.FK_Contact_ToTable">
+      <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+      <End Role="Contact" EntitySet="Contact" />
+    </AssociationSet>
     <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_User_Id">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
@@ -201,6 +275,10 @@
     <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
       <End Role="AspNetUsers" EntitySet="AspNetUsers" />
       <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image_ToTable" Association="Self.FK_Image_ToTable">
+      <End Role="Item" EntitySet="Item" />
+      <End Role="Image" EntitySet="Image" />
     </AssociationSet>
     <AssociationSet Name="FK_Item_ToCategory" Association="Self.FK_Item_ToCategory">
       <End Role="Category" EntitySet="Category" />
