@@ -46,11 +46,16 @@ namespace ViaMarket.ApiControllers
             HttpResponseMessage response;
             if (result.Succeeded)
             {
-                response = Request.CreateResponse<ApplicationUser>(HttpStatusCode.Created, user);
+                Mapper.CreateMap<ApplicationUser, Account>();
+
+                response = Request.CreateResponse<Account>(HttpStatusCode.Created, Mapper.Map<Account>(user));
             }
             else
             {
-                response = Request.CreateResponse<ApplicationUser>(HttpStatusCode.NotFound, user);
+                Mapper.CreateMap<ApplicationUser, Account>();
+                Account accountFailed = Mapper.Map<Account>(user);
+                accountFailed.ErrorList = result.Errors.ToArray().ToList<string>();
+                response = Request.CreateResponse<Account>(HttpStatusCode.NotFound, accountFailed);
             }
             string uri = Url.Link("DefaultApi", new { id = user.Id });
             response.Headers.Location = new Uri(uri);

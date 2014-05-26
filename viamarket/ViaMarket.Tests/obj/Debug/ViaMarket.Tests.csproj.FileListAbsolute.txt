@@ -45,3 +45,6 @@ C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\System.Web.WebPages.Deploym
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.csprojResolveAssemblyReference.cache
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.pdb
+C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.Net4.dll
+C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.dll
+C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.xml
