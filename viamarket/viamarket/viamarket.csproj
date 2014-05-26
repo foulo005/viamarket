@@ -187,61 +187,28 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="ApiControllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="DataAccess\AspNetRoles.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AspNetUserClaims.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AspNetUserLogins.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\AspNetUsers.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Category.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Contact.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Currency.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\C__MigrationHistory.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Image.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\Item.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\University.cs">
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\ViaMarketModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ViaMarketModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\ViaMarketModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ViaMarketModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="DataAccess\ViaMarketModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ViaMarketModel.edmx</DependentUpon>
-    </Compile>
+    <Compile Include="DataAccess\ApplicationDbContext.cs" />
+    <Compile Include="DataAccess\ApplicationUser.cs" />
+    <Compile Include="DataAccess\Category.cs" />
+    <Compile Include="DataAccess\Contact.cs" />
+    <Compile Include="DataAccess\Currency.cs" />
+    <Compile Include="DataAccess\Image.cs" />
+    <Compile Include="DataAccess\Item.cs" />
+    <Compile Include="DataAccess\University.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405261912405_AddUrl.cs" />
+    <Compile Include="Migrations\201405261912405_AddUrl.Designer.cs">
+      <DependentUpon>201405261912405_AddUrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405261918209_PrimKey.cs" />
+    <Compile Include="Migrations\201405261918209_PrimKey.Designer.cs">
+      <DependentUpon>201405261918209_PrimKey.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -261,23 +228,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="DataAccess\ViaMarketModel.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>ViaMarketModel.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="DataAccess\ViaMarketModel.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ViaMarketModel.edmx</DependentUpon>
-      <LastGenOutput>ViaMarketModel.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataAccess\ViaMarketModel.edmx.diagram">
-      <DependentUpon>ViaMarketModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="DataAccess\ViaMarketModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>ViaMarketModel.edmx</DependentUpon>
-      <LastGenOutput>ViaMarketModel.cs</LastGenOutput>
-    </Content>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -342,6 +292,14 @@
   </ItemGroup>
   <ItemGroup>
     <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201405261912405_AddUrl.resx">
+      <DependentUpon>201405261912405_AddUrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405261918209_PrimKey.resx">
+      <DependentUpon>201405261918209_PrimKey.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

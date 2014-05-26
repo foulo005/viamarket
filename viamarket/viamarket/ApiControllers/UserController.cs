@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using ViaMarket.Models;
+using ViaMarket.DataAccess;
 
 namespace ViaMarket.ApiControllers
 {
