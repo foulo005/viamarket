@@ -12,4 +12,17 @@ namespace ViaMarket.DataAccess
         public string FirstName { get; set; }
         public string LastName { get; set; }
     }
+<<<<<<< HEAD:viamarket/viamarket/DataAccess/ApplicationUser.cs
+=======
+
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    {
+        public ApplicationDbContext()
+            : base("DefaultConnection")
+        {
+        }
+
+        public System.Data.Entity.DbSet<ViaMarket.DataAccess.Category> Categories { get; set; }
+    }
+>>>>>>> 1472dfb7ba33736029f64118d2a9ebb57429d71d:viamarket/viamarket/Models/IdentityModels.cs
 }
