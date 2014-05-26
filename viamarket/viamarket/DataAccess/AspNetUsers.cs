@@ -18,6 +18,7 @@ namespace ViaMarket.DataAccess
         {
             this.AspNetUserClaims = new HashSet<AspNetUserClaims>();
             this.AspNetUserLogins = new HashSet<AspNetUserLogins>();
+            this.Contact = new HashSet<Contact>();
             this.Item = new HashSet<Item>();
             this.AspNetRoles = new HashSet<AspNetRoles>();
         }
@@ -29,9 +30,13 @@ namespace ViaMarket.DataAccess
         public string Discriminator { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public Nullable<int> IdUniversity { get; set; }
+        public bool Activated { get; set; }
     
         public virtual ICollection<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual ICollection<AspNetUserLogins> AspNetUserLogins { get; set; }
+        public virtual University University { get; set; }
+        public virtual ICollection<Contact> Contact { get; set; }
         public virtual ICollection<Item> Item { get; set; }
         public virtual ICollection<AspNetRoles> AspNetRoles { get; set; }
     }

@@ -202,13 +202,22 @@
     <Compile Include="DataAccess\Category.cs">
       <DependentUpon>ViaMarketModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\Contact.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\Currency.cs">
       <DependentUpon>ViaMarketModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\C__MigrationHistory.cs">
       <DependentUpon>ViaMarketModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DataAccess\Image.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="DataAccess\Item.cs">
+      <DependentUpon>ViaMarketModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataAccess\University.cs">
       <DependentUpon>ViaMarketModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DataAccess\ViaMarketModel.Context.cs">

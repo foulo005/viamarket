@@ -50,7 +50,7 @@ namespace ViaMarket.ApiControllers
 
             var response = Request.CreateResponse<Item>(HttpStatusCode.Created, item);
 
-            string uri = Url.Link("DefaultApi", new { id = item.idItem });
+            string uri = Url.Link("DefaultApi", new { id = item.Id });
             response.Headers.Location = new Uri(uri);
             return response;
         }
@@ -58,7 +58,7 @@ namespace ViaMarket.ApiControllers
         // updates a item. if not found, return http response 404
         public void PutItem(Item item)
         {
-            if (db.Item.Find(item.idItem) == null)
+            if (db.Item.Find(item.Id) == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }

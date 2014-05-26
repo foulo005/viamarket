@@ -14,7 +14,14 @@ namespace ViaMarket.DataAccess
     
     public partial class Category
     {
+        public Category()
+        {
+            this.Item = new HashSet<Item>();
+        }
+    
         public int Id { get; set; }
         public string name { get; set; }
+    
+        public virtual ICollection<Item> Item { get; set; }
     }
 }

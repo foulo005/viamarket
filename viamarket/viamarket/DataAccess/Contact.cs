@@ -12,17 +12,13 @@ namespace ViaMarket.DataAccess
     using System;
     using System.Collections.Generic;
     
-    public partial class Currency
+    public partial class Contact
     {
-        public Currency()
-        {
-            this.Item = new HashSet<Item>();
-        }
-    
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string Code { get; set; }
+        public string IdAspNetUsers { get; set; }
+        public string ContactType { get; set; }
+        public string Value { get; set; }
     
-        public virtual ICollection<Item> Item { get; set; }
+        public virtual AspNetUsers AspNetUsers { get; set; }
     }
 }

@@ -25,13 +25,16 @@ namespace ViaMarket.DataAccess
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
         public virtual DbSet<AspNetUserLogins> AspNetUserLogins { get; set; }
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Category> Category { get; set; }
+        public virtual DbSet<Contact> Contact { get; set; }
         public virtual DbSet<Currency> Currency { get; set; }
+        public virtual DbSet<Image> Image { get; set; }
         public virtual DbSet<Item> Item { get; set; }
+        public virtual DbSet<University> University { get; set; }
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
     }
 }
