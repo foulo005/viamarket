@@ -209,11 +209,6 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-<<<<<<< HEAD
-=======
-    <Compile Include="Models\Category.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
->>>>>>> 1472dfb7ba33736029f64118d2a9ebb57429d71d
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
