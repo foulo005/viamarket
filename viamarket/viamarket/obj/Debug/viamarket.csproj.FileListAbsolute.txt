@@ -178,3 +178,6 @@ C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
 C:\Dev\viamarket\viamarket\viamarket\bin\AutoMapper.Net4.dll
 C:\Dev\viamarket\viamarket\viamarket\bin\AutoMapper.dll
 C:\Dev\viamarket\viamarket\viamarket\bin\AutoMapper.xml
+D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.Net4.dll
+D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.dll
+D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.xml

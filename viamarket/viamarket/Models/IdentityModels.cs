@@ -16,5 +16,7 @@ namespace ViaMarket.Models
             : base("DefaultConnection")
         {
         }
+
+        public System.Data.Entity.DbSet<ViaMarket.DataAccess.Category> Categories { get; set; }
     }
 }
