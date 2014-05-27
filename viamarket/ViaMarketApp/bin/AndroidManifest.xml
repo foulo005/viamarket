@@ -47,6 +47,10 @@
             android:name="com.Via.market.SignUp"
             android:label="@string/title_activity_sign_up" >
         </activity>
+        <activity
+            android:name="com.Via.market.Confirmation"
+            android:label="@string/title_activity_confirmation" >
+        </activity>
     </application>
 
 </manifest>

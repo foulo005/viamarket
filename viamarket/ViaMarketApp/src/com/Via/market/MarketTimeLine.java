@@ -6,22 +6,42 @@ import java.util.Vector;
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.FragmentTransaction;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.widget.Toast;
 
 public class MarketTimeLine extends FragmentActivity {
 	static final int NUM_ITEMS = 3;
 
 	private PagerAdapter mPagerAdapter;
+	private String idUser;
+	private String personName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		super.setContentView(R.layout.activity_market_time_line);
-
+		SharedPreferences settings = PreferenceManager
+				.getDefaultSharedPreferences(this);
+		if(!(settings.getString("username", null) == null))
+		{
+			Toast.makeText(getApplicationContext(), "welcome "+settings.getString("firstname", " "), Toast.LENGTH_LONG).show();
+		}
+		else{
+			Intent i = getIntent();
+			Bundle b = i.getExtras();
+			personName = b.getString("personName");
+			Toast.makeText(getApplicationContext(), "welcome "+personName, Toast.LENGTH_LONG).show();
+		}
+		
+		
+		
 		// getting the action bar
 		final ActionBar actionBar = getActionBar();
 
@@ -33,9 +53,9 @@ public class MarketTimeLine extends FragmentActivity {
 
 		// Ajout des Fragments dans la liste
 		fragments
-				.add(Fragment.instantiate(this, SearchActivity.class.getName()));
+				.add(Fragment.instantiate(this, ItemDisplayList.class.getName()));
 		fragments.add(Fragment.instantiate(this,
-				ItemDisplayList.class.getName()));
+				SearchActivity.class.getName()));
 		// fragments.add(Fragment.instantiate(this,PageDroiteFragment.class.getName()));
 
 		// Création de l'adapter qui s'occupera de l'affichage de la liste de
@@ -77,11 +97,11 @@ public class MarketTimeLine extends FragmentActivity {
 
 		// Add 3 tabs, specifying the tab's text and TabListener
 
+		actionBar.addTab(actionBar.newTab().setText("Newest")
+				.setTabListener(tabListener));
 		actionBar.addTab(actionBar.newTab().setText("Search")
 				.setTabListener(tabListener));
-		actionBar.addTab(actionBar.newTab().setText("Timeline")
-				.setTabListener(tabListener));
-		pager.setCurrentItem(2);
+		pager.setCurrentItem(0);
 
 	}
 }
