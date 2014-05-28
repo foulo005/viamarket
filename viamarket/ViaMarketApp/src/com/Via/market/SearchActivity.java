@@ -15,6 +15,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -24,7 +25,7 @@ public class SearchActivity extends Fragment {
 	private EditText searchField;
 	private Button searchButton;
 	private Spinner categoriesSpinner;
-	private List<String> categoriesList;
+	private List<String> categoriesList = new ArrayList<String>();
 	private JSONArray json;
 	// HttpRequest
 	private String loginURL = "http://viamarket-001-site1.myasp.net/api/category";
@@ -39,22 +40,27 @@ public class SearchActivity extends Fragment {
 	@Override
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
-		// searchField = (EditText) getView().findViewById(R.id.searchEditText);
-		// searchButton = (Button) getView().findViewById(R.id.searchButton);
-		// categoriesSpinner = (Spinner) getView().findViewById(
-		// R.id.categoriesSpinner);
 		categoryHttpRequest catReq = new categoryHttpRequest();
 		catReq.execute();
-		// setCategoryList();
+		setComponent();
 	}
 
-	/*
-	 * public void setCategoryList() { for(int i =0;i<json.length();i++) { try {
-	 * JSONObject c = json.toJSONObject(json); System.out.print(c);
-	 * //categoriesList.add(json.); } catch (JSONException e) { // TODO
-	 * Auto-generated catch block e.printStackTrace(); }
-	 * //System.out.println(categoriesList); } }
-	 */
+	
+	  /*public void setCategoryList() {
+		  ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, resource)
+				categoriesSpinner.setAdapter(dataAdapter);
+	  }*/
+	 
+	 
+	 
+	 
+	 
+	public void setComponent() {
+		searchField = (EditText) getView().findViewById(R.id.searchEditText);
+		searchButton = (Button) getView().findViewById(R.id.searchButton);
+		categoriesSpinner = (Spinner) getView().findViewById(
+				R.id.categoriesSpinner);
+	}
 
 	public class categoryHttpRequest extends AsyncTask<Void, Void, Boolean> {
 		@Override
@@ -76,5 +82,21 @@ public class SearchActivity extends Fragment {
 			return false;
 		}
 
+		@Override
+		protected void onPostExecute(final Boolean success) {
+			if (success) {
+				for (int i = 0; i < json.length(); i++) {
+					try {
+						JSONObject jObj = json.getJSONObject(i);
+						categoriesList.add(jObj.getString("name"));
+						System.out.println(jObj);
+					} catch (JSONException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+		}
 	}
+
 }
