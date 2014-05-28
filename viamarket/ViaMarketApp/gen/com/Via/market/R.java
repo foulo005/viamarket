@@ -31,42 +31,47 @@ public final class R {
         public static final int arrow_144=0x7f020001;
         public static final int arrow_192=0x7f020002;
         public static final int artwork=0x7f020003;
-        public static final int ic_action_accounts=0x7f020004;
-        public static final int ic_action_edit=0x7f020005;
-        public static final int ic_action_person=0x7f020006;
-        public static final int icon_144=0x7f020007;
-        public static final int icon_36=0x7f020008;
-        public static final int icon_48=0x7f020009;
-        public static final int icon_72=0x7f02000a;
-        public static final int icon_96=0x7f02000b;
+        public static final int circle=0x7f020004;
+        public static final int circle_192=0x7f020005;
+        public static final int circleartwork=0x7f020006;
+        public static final int ic_action_accounts=0x7f020007;
+        public static final int ic_action_edit=0x7f020008;
+        public static final int ic_action_person=0x7f020009;
+        public static final int icon_144=0x7f02000a;
+        public static final int icon_36=0x7f02000b;
+        public static final int icon_48=0x7f02000c;
+        public static final int icon_72=0x7f02000d;
+        public static final int icon_96=0x7f02000e;
     }
     public static final class id {
-        public static final int action_forgot_password=0x7f0a0019;
-        public static final int action_settings=0x7f0a0018;
-        public static final int artist=0x7f0a000e;
-        public static final int categoriesSpinner=0x7f0a000f;
-        public static final int firstNameView=0x7f0a0013;
+        public static final int LinearLayout1=0x7f0a000c;
+        public static final int action_forgot_password=0x7f0a001b;
+        public static final int action_settings=0x7f0a001a;
+        public static final int categoriesSpinner=0x7f0a0010;
+        public static final int firstNameView=0x7f0a0014;
         public static final int gotoLoginButton=0x7f0a0003;
         public static final int imageView1=0x7f0a0002;
-        public static final int lastNameView=0x7f0a0012;
+        public static final int lastNameView=0x7f0a0013;
+        public static final int listView1=0x7f0a000f;
         public static final int list_image=0x7f0a000d;
         public static final int login=0x7f0a0009;
         public static final int login_form=0x7f0a0006;
         public static final int login_status=0x7f0a0004;
         public static final int login_status_message=0x7f0a0005;
-        public static final int logout=0x7f0a001a;
+        public static final int logout=0x7f0a001c;
         public static final int password=0x7f0a0008;
-        public static final int passwordView=0x7f0a0015;
-        public static final int retypePwdView=0x7f0a0016;
-        public static final int searchButton=0x7f0a0011;
-        public static final int searchEditText=0x7f0a0010;
+        public static final int passwordView=0x7f0a0016;
+        public static final int retypePwdView=0x7f0a0017;
+        public static final int rowlayout=0x7f0a0019;
+        public static final int searchButton=0x7f0a0012;
+        public static final int searchEditText=0x7f0a0011;
         public static final int sign_in_button=0x7f0a000a;
-        public static final int text=0x7f0a0017;
+        public static final int text=0x7f0a0018;
         public static final int textView2=0x7f0a0000;
-        public static final int thumbnail=0x7f0a000c;
         public static final int userNameTextView=0x7f0a0001;
-        public static final int userNameView=0x7f0a0014;
+        public static final int userNameView=0x7f0a0015;
         public static final int username=0x7f0a0007;
+        public static final int usernameText=0x7f0a000e;
         public static final int viewpager=0x7f0a000b;
     }
     public static final class layout {
@@ -100,10 +105,11 @@ public final class R {
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     
          */
-        public static final int fragment_item=0x7f03000b;
+        public static final int fragment_item=0x7f03000c;
         public static final int fragment_item_grid=0x7f030008;
         public static final int fragment_item_list=0x7f030009;
         public static final int fragment_pager_list=0x7f03000a;
+        public static final int rowlayout=0x7f03000b;
     }
     public static final class menu {
         public static final int confirmation=0x7f090000;
