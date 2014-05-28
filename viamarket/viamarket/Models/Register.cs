@@ -5,7 +5,7 @@ using System.Web;
 
 namespace ViaMarket.Models
 {
-    public class Register
+    public class Register : ViewModelBase
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -14,7 +14,8 @@ namespace ViaMarket.DataAccess
         public string IdAspNetUsers { get; set; }
         public string ContactType { get; set; }
         public string Value { get; set; }
-    
+
+        [ForeignKey("IdAspNetUsers")] 
         public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }

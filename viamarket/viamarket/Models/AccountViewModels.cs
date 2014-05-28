@@ -2,14 +2,14 @@
 
 namespace ViaMarket.Models
 {
-    public class ExternalLoginConfirmationViewModel
+    public class ExternalLoginConfirmationViewModel : ViewModelBase
     {
         [Required]
         [Display(Name = "User name")]
         public string UserName { get; set; }
     }
 
-    public class ManageUserViewModel
+    public class ManageUserViewModel : ViewModelBase
     {
         [Required]
         [DataType(DataType.Password)]
@@ -28,7 +28,7 @@ namespace ViaMarket.Models
         public string ConfirmPassword { get; set; }
     }
 
-    public class LoginViewModel
+    public class LoginViewModel : ViewModelBase
     {
         [Required]
         [Display(Name = "User name")]
@@ -43,7 +43,7 @@ namespace ViaMarket.Models
         public bool RememberMe { get; set; }
     }
 
-    public class RegisterViewModel
+    public class RegisterViewModel : ViewModelBase
     {
         [Required]
         [Display(Name = "User name")]

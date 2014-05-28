@@ -53,8 +53,8 @@ namespace ViaMarket.Controllers
         {
             if (ModelState.IsValid)
             {
-                item.IdAspNetUsers = User.Identity.GetUserId();
-                item.date = DateTime.Now;
+               // item.ApplicationUser = User.Identity;
+                item.Created = DateTime.Now;
                 db.Items.Add(item);
                 db.SaveChanges();
                 return RedirectToAction("Index");
