@@ -16,6 +16,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -25,6 +26,7 @@ public class JSONParser {
 
 	static InputStream is = null;
 	static JSONObject jObj = null;
+	static JSONArray jArr = null;
 	static String json = "";
 
 	// constructor
@@ -35,7 +37,7 @@ public class JSONParser {
 	// function get json from url
 	// by making HTTP POST or GET method
 	public JSONObject makeHttpRequest(String url, String method,
-			List<NameValuePair> params) throws IOException {
+			List<NameValuePair> params) throws IOException, JSONException {
 
 		// Making HTTP request
 		try {
@@ -92,11 +94,49 @@ public class JSONParser {
 		try {
 			jObj = new JSONObject(json);
 		} catch (JSONException e) {
-			Log.e("JSON Parser", "Error parsing data " + e.toString());
+			Log.e("JSON Parser", "Error parsing data " + e.toString());						
 		}
 
 		// return JSON String
 		return jObj;
+
+	}
+	
+	// function for the categories 
+	public JSONArray categoryRequest(String url) throws IOException, JSONException {
+
+				// request method is GET
+				DefaultHttpClient httpClient = new DefaultHttpClient();
+				HttpGet httpGet = new HttpGet(url);
+
+				HttpResponse httpResponse = httpClient.execute(httpGet);
+				HttpEntity httpEntity = httpResponse.getEntity();
+				is = httpEntity.getContent();
+			
+
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					is, "iso-8859-1"), 8);
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			is.close();
+			json = sb.toString();
+		} catch (Exception e) {
+			Log.e("Buffer Error", "Error converting result " + e.toString());
+		}
+
+		 try {
+	            jArr = new JSONArray(json);
+	        } catch (JSONException e) {
+	            Log.e("JSON Parser", "Error parsing data " + e.toString());
+	        }
+		
+
+		// return JSON String
+		return jArr;
 
 	}
 }
