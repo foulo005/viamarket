@@ -14,6 +14,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 public class MarketTimeLine extends FragmentActivity {
@@ -104,4 +106,32 @@ public class MarketTimeLine extends FragmentActivity {
 		pager.setCurrentItem(0);
 
 	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.market_time_line, menu);
+		return true;
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_settings:
+			Intent i = new Intent(getApplicationContext(), Profile.class);
+			startActivity(i);
+			break;
+			
+		case R.id.logout:
+			SharedPreferences session = PreferenceManager
+					.getDefaultSharedPreferences(this);
+			session.edit().clear().commit();
+			Intent in = new Intent(getApplicationContext(),LoginActivity.class);
+			startActivity(in);
+			finish();
+			
+		}
+		return true;
+	}
+
+	
 }

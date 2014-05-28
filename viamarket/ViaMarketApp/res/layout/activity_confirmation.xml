@@ -12,7 +12,7 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView1"
+        android:layout_alignTop="@+id/userNameTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="38dp"
         android:text="@string/emailSentText" />
@@ -22,17 +22,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
+        android:contentDescription="@string/VIAlogo"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="17dp"
         android:src="@drawable/artwork" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/userNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:text="@string/confirmationText"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/gotoLoginButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="37dp"
+        android:onClick="gotoLogin"
+        android:text="@string/gotologin" />
 
 </RelativeLayout>
