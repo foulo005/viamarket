@@ -1,0 +1,8 @@
+﻿@model IEnumerable<ViaMarket.DataAccess.Category>
+
+
+@foreach (var item in Model) {
+    <li>
+            @Html.DisplayFor(modelItem => item.name)
+    </li>
+}

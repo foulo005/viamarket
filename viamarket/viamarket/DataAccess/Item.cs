@@ -22,6 +22,7 @@ namespace ViaMarket.DataAccess
         public Nullable<double> Price { get; set; }
         public Nullable<int> IdCurrency { get; set; }
         public int IdCategory { get; set; }
+        public DateTime date { get; set; }
     
         public virtual ApplicationUser ApplicationUser { get; set; }
         public virtual Category Category { get; set; }
