@@ -48,8 +48,6 @@ C:\Dev\viamarket\viamarket\ViaMarket.Tests\bin\Debug\System.Web.WebPages.Deploym
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.csprojResolveAssemblyReference.cache
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.dll
 C:\Dev\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.pdb
-<<<<<<< HEAD
-=======
 D:\GitHub\viamarket\viamarket\ViaMarket.Tests\bin\Debug\ViaMarket.Tests.dll.config
 D:\GitHub\viamarket\viamarket\ViaMarket.Tests\bin\Debug\ViaMarket.Tests.dll
 D:\GitHub\viamarket\viamarket\ViaMarket.Tests\bin\Debug\ViaMarket.Tests.pdb
@@ -97,5 +95,6 @@ D:\GitHub\viamarket\viamarket\ViaMarket.Tests\bin\Debug\System.Web.WebPages.Depl
 D:\GitHub\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.csprojResolveAssemblyReference.cache
 D:\GitHub\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.dll
 D:\GitHub\viamarket\viamarket\ViaMarket.Tests\obj\Debug\ViaMarket.Tests.pdb
->>>>>>> 569a11b3e62f7a6348c1d14f851cc3d144574cd9
->>>>>>> 9357f3ba00ed269df60b2901202d68da57997513
+D:\GitHub\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.Net4.dll
+D:\GitHub\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.dll
+D:\GitHub\viamarket\viamarket\ViaMarket.Tests\bin\Debug\AutoMapper.xml

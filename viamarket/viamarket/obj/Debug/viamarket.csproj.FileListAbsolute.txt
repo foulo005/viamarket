@@ -177,19 +177,13 @@ C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
-<<<<<<< HEAD
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.AddUrl.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.PrimKey.resources
-=======
-<<<<<<< HEAD
-C:\Dev\viamarket\viamarket\viamarket\bin\AutoMapper.Net4.dll
-C:\Dev\viamarket\viamarket\viamarket\bin\AutoMapper.dll
-C:\Dev\viamarket\viamarket\viamarket\bin\AutoMapper.xml
 D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.Net4.dll
 D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.dll
 D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.xml
-=======
->>>>>>> 475605a2f2be0e1931d0da388dd2ac029fb14a94
->>>>>>> 1472dfb7ba33736029f64118d2a9ebb57429d71d
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.AddUrl.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.PrimKey.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
