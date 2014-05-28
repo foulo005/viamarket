@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using ViaMarket.DataAccess;
 using System.Linq.Expressions;
 using Microsoft.AspNet.Identity;
+using System.IO;
+using ViaMarket.Models;
 
 namespace ViaMarket.Controllers
 {
@@ -41,6 +43,20 @@ namespace ViaMarket.Controllers
         // GET: /Item/Create
         public ActionResult Create()
         {
+            //CategoryList
+            List<SelectListItem> ctgs = new List<SelectListItem>();
+            foreach (Category c in db.Categories.ToList<Category>())
+            {
+                ctgs.Add(new SelectListItem { Text = c.Name, Value = c.Id.ToString() });
+            }
+            ViewBag.CategoriesType = ctgs;
+
+            List<SelectListItem> curr = new List<SelectListItem>();
+            foreach (Currency c in db.Currencies.ToList<Currency>())
+            {
+                curr.Add(new SelectListItem { Text = c.Name+" ("+c.Code+")", Value = c.Id.ToString() });
+            }
+            ViewBag.CurrenciesType = curr;
             return View();
         }
 
@@ -49,14 +65,22 @@ namespace ViaMarket.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title,Description,Price,IdCurrency,IdCategory")] Item item)
+        public ActionResult Create([Bind(Include="Id,Title,Description,Price,IdCurrency,IdCategory")] Item item, Files files)
         {
             if (ModelState.IsValid)
             {
-               // item.ApplicationUser = User.Identity;
+                item.IdAspNetUsers = User.Identity.GetUserId();
                 item.Created = DateTime.Now;
                 db.Items.Add(item);
                 db.SaveChanges();
+                Directory.CreateDirectory(Server.MapPath("~/ItemsPictures/"+item.Id.ToString()));
+                /*  foreach(File f in files.List){
+                 *     file.SaveAs(Path.Combine(Server.MapPath("~/ItemsPictures/"+item.Id.ToString()), Path.GetFileName(f.FileName)));
+                 *  }
+                 *  We need to pass as a Parameter the pictures
+                 *  Checkout this : @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                 *  We use the Id of the Item as the name of the folder where the pictures we'll be stored
+                 */
                 return RedirectToAction("Index");
             }
 
