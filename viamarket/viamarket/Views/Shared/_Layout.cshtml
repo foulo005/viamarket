@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model ViaMarket.Models.ViewModelBase
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -22,9 +23,16 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li class="dropdown">
+
+                     <li class="dropdown">
+                       
+
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Categories</a>
                         <ul class="dropdown-menu">
+                            @foreach (var category in Model.CategoryList)
+                            {
+                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">@Html.DisplayFor(modelItem => category.name)</a></li>
+                            }
 
                         </ul>
                     </li>

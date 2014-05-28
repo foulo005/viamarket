@@ -1,8 +1,9 @@
 ﻿
 using System;
+using ViaMarket.Models;
 namespace ProductsApp.Models
 {
-    public class Item
+    public class Item : ViewModelBase
     {
         public int Id { get; set; }
         public string Title { get; set; }

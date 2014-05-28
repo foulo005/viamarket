@@ -5,7 +5,7 @@ namespace ViaMarket.DataAccess
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    
+
     public class Item
     {
         public Item()
@@ -22,10 +22,13 @@ namespace ViaMarket.DataAccess
         public Nullable<double> Price { get; set; }
         public Nullable<int> IdCurrency { get; set; }
         public int IdCategory { get; set; }
-        public DateTime date { get; set; }
-    
+        public DateTime Created { get; set; }
+
+        [ForeignKey("IdAspNetUsers")]
         public virtual ApplicationUser ApplicationUser { get; set; }
+        [ForeignKey("IdCategory")]
         public virtual Category Category { get; set; }
+        [ForeignKey("IdCurrency")]
         public virtual Currency Currency { get; set; }
         public virtual ICollection<Image> Image { get; set; }
     }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ViaMarket.DataAccess;
+using ViaMarket.Models;
 
 namespace ViaMarket.Controllers
 {
@@ -12,7 +13,14 @@ namespace ViaMarket.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
+<<<<<<< HEAD
             return View();
+=======
+            //var model = db.Items.ToList();
+            HomeViewModel model = new HomeViewModel();
+            model.CategoryList =  db.Categories.AsEnumerable();
+            return View(model);
+>>>>>>> 5ec2ba907e8b44e968e9598425f7124aca790c6b
         }
 
         public ActionResult About()
