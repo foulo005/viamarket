@@ -22,5 +22,9 @@
     <string name="title_activity_confirmation">Confirmation</string>
     <string name="confirmationText">Welcome to VIA Market</string>
     <string name="emailSentText">An email has been sent to the address you provided, please make sure to validate your account before attempting the login. VIA Market Team</string>
+    <string name="VIAlogo">via university logo</string>
+    <string name="gotologin">Go to the login page</string>
+    <string name="logout">Logout</string>
+    <string name="title_activity_profile">Profile</string>
 
 </resources>

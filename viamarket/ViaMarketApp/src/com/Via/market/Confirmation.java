@@ -1,8 +1,9 @@
 package com.Via.market;
 
-import android.os.Bundle;
 import android.app.Activity;
-import android.view.Menu;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
 
 public class Confirmation extends Activity {
 
@@ -11,6 +12,11 @@ public class Confirmation extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_confirmation);
 	}
-
+	public void gotoLogin(View v)
+	{
+		Intent i = new Intent (getApplicationContext(),LoginActivity.class);
+		startActivity(i);
+		finish();
+	}
 
 }
