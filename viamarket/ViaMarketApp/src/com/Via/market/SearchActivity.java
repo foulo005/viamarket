@@ -1,20 +1,33 @@
 package com.Via.market;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.apache.http.NameValuePair;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 public class SearchActivity extends Fragment {
-
+	// UI componennts
 	private EditText searchField;
 	private Button searchButton;
 	private Spinner categoriesSpinner;
+	private List<String> categoriesList;
+	private JSONArray json;
+	// HttpRequest
+	private String loginURL = "http://viamarket-001-site1.myasp.net/api/category";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -23,4 +36,45 @@ public class SearchActivity extends Fragment {
 
 	}
 
+	@Override
+	public void onCreate(Bundle b) {
+		super.onCreate(b);
+		// searchField = (EditText) getView().findViewById(R.id.searchEditText);
+		// searchButton = (Button) getView().findViewById(R.id.searchButton);
+		// categoriesSpinner = (Spinner) getView().findViewById(
+		// R.id.categoriesSpinner);
+		categoryHttpRequest catReq = new categoryHttpRequest();
+		catReq.execute();
+		// setCategoryList();
+	}
+
+	/*
+	 * public void setCategoryList() { for(int i =0;i<json.length();i++) { try {
+	 * JSONObject c = json.toJSONObject(json); System.out.print(c);
+	 * //categoriesList.add(json.); } catch (JSONException e) { // TODO
+	 * Auto-generated catch block e.printStackTrace(); }
+	 * //System.out.println(categoriesList); } }
+	 */
+
+	public class categoryHttpRequest extends AsyncTask<Void, Void, Boolean> {
+		@Override
+		protected Boolean doInBackground(Void... arg0) {
+			JSONParser jsonParser = new JSONParser();
+			try {
+				json = jsonParser.categoryRequest(loginURL);
+
+				if (json != null)
+					return true;
+
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			return false;
+		}
+
+	}
 }
