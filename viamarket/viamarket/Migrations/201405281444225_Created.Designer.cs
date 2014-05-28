@@ -7,13 +7,13 @@ namespace viamarket.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class PrimKey : IMigrationMetadata
+    public sealed partial class Created : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PrimKey));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Created));
         
         string IMigrationMetadata.Id
         {
-            get { return "201405261918209_PrimKey"; }
+            get { return "201405281444225_Created"; }
         }
         
         string IMigrationMetadata.Source

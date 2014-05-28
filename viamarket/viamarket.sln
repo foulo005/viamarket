@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViaMarket", "viamarket\ViaMarket.csproj", "{C15DB25D-1E0C-492A-BD06-F334F4D7F7B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViaMarket.Tests", "ViaMarket.Tests\ViaMarket.Tests.csproj", "{F2E51264-CF3C-4790-87BC-2072F8A49343}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{C15DB25D-1E0C-492A-BD06-F334F4D7F7B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C15DB25D-1E0C-492A-BD06-F334F4D7F7B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C15DB25D-1E0C-492A-BD06-F334F4D7F7B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F2E51264-CF3C-4790-87BC-2072F8A49343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F2E51264-CF3C-4790-87BC-2072F8A49343}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F2E51264-CF3C-4790-87BC-2072F8A49343}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F2E51264-CF3C-4790-87BC-2072F8A49343}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

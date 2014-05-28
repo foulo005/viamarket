@@ -10,7 +10,7 @@ namespace ViaMarket.DataAccess
     {
         public Currency()
         {
-            this.Item = new HashSet<Item>();
+       
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -18,7 +18,5 @@ namespace ViaMarket.DataAccess
         public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
-    
-        public virtual ICollection<Item> Item { get; set; }
     }
 }
