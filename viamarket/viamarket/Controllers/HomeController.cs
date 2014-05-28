@@ -12,7 +12,6 @@ namespace ViaMarket.Controllers
         ApplicationDbContext db = new ApplicationDbContext();
         public ActionResult Index()
         {
-            var model = db.Items.ToList();
             return View();
         }
 

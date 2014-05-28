@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using ViaMarket.DataAccess;
 using System.Linq.Expressions;
 using Microsoft.AspNet.Identity;
+using System.IO;
 
 namespace ViaMarket.Controllers
 {
@@ -41,6 +42,20 @@ namespace ViaMarket.Controllers
         // GET: /Item/Create
         public ActionResult Create()
         {
+            //CategoryList
+            List<SelectListItem> ctgs = new List<SelectListItem>();
+            foreach (Category c in db.Categories.ToList<Category>())
+            {
+                ctgs.Add(new SelectListItem { Text = c.Name, Value = c.Id.ToString() });
+            }
+            ViewBag.CategoriesType = ctgs;
+
+            List<SelectListItem> curr = new List<SelectListItem>();
+            foreach (Currency c in db.Currencies.ToList<Currency>())
+            {
+                curr.Add(new SelectListItem { Text = c.Name+" ("+c.Code+")", Value = c.Id.ToString() });
+            }
+            ViewBag.CurrenciesType = curr;
             return View();
         }
 
@@ -57,6 +72,7 @@ namespace ViaMarket.Controllers
                 item.date = DateTime.Now;
                 db.Items.Add(item);
                 db.SaveChanges();
+                Directory.CreateDirectory(Server.MapPath("~/ItemsPictures/"+item.Id.ToString()));
                 return RedirectToAction("Index");
             }
 
