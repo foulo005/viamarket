@@ -18,12 +18,11 @@ public class Profile extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_profile);
-		SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(this);
-
-		userNameTv =(TextView) findViewById(R.id.userNameTextView);
-		userNameTv.setText(session.getString("username", " "));
-		adapter = new ArrayAdapter<String>(getBaseContext(),android.R.layout.simple_list_item_1, options);		        
-		setListAdapter(adapter);
+		//SharedPreferences session = PreferenceManager.getDefaultSharedPreferences(this);
+		//userNameTv =(TextView) findViewById(R.id.userNameTextView);
+		//userNameTv.setText(session.getString("username", " "));
+		//adapter = new ArrayAdapter<String>(getBaseContext(),android.R.layout.simple_list_item_1, options);		        
+		//setListAdapter(adapter);
 	}
 
 	@Override
