@@ -1,0 +1,67 @@
+﻿@model ViaMarket.DataAccess.Item
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Item</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdAspNetUsers)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdAspNetUsers)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCurrency)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCurrency)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IdCategory)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IdCategory)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

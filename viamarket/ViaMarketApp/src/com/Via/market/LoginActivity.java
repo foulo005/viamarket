@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.animation.Animator;
@@ -13,9 +14,13 @@ import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
+import android.net.Credentials;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.Menu;
@@ -23,6 +28,7 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -43,6 +49,11 @@ public class LoginActivity extends Activity {
 	// Values for email and password at the time of the login attempt.
 	private String mUsername;
 	private String mPassword;
+	
+	//Used for the sharedPreferences
+	private String idUser;
+	private String personName;
+	private String personLastName;
 
 	// UI references.
 	private EditText mUsernameView;
@@ -210,21 +221,27 @@ public class LoginActivity extends Activity {
 			// Building Parameters ( you can pass as many parameters as you
 			// want)
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
-			System.out.println(credentials[0]+" "+credentials[1]);
-			params.add(new BasicNameValuePair("UserName", credentials[0]));
+			params.add(new BasicNameValuePair("username", credentials[0]));
 			params.add(new BasicNameValuePair("password", credentials[1]));
 
 			// Getting JSON Object
 			try {
-				JSONObject json = jsonParser.makeHttpRequest(loginURL, "POST",
+				JSONObject json = jsonParser.makeHttpRequest(loginURL, "GET",
 						params);
-				if(json != null ){
-					Intent i = new Intent(getApplicationContext(),MarketTimeLine.class);
-					startActivity(i);
-					System.out.println(json);
-					finish();
-				}
+				if (json !=null){
+					idUser = json.getString("Id").toString();
+					personName = json.getString("FirstName").toString();
+					personLastName = json.getString("LastName").toString();
+					savePreferences(credentials[0],personName,personLastName);
+					return true;
+				}	
+				 else
+					return false;
+
 			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -242,13 +259,19 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 
 			if (success) {
-				Intent i = new Intent(getApplicationContext(),MarketTimeLine.class);
+				Intent i = new Intent(getApplicationContext(),
+						MarketTimeLine.class);
+				i.putExtra("idUser", idUser);
+				i.putExtra("personName",personName);
 				startActivity(i);
 				finish();
 			} else {
-				mPasswordView
+				/*mPasswordView
 						.setError(getString(R.string.error_incorrect_password));
-				mPasswordView.requestFocus();
+				mPasswordView.requestFocus();*/
+				mPasswordView.setText("");
+				mUsernameView.setText("");
+				Toast.makeText(getApplicationContext(), "invalid username or password", Toast.LENGTH_LONG).show();
 			}
 		}
 
@@ -267,11 +290,19 @@ public class LoginActivity extends Activity {
 		login.execute(mUsername, mPassword);
 
 	}
-	public void gotoSignUp(View v)
+	public void savePreferences(String ... credentials)
 	{
-		Intent i = new Intent(getApplicationContext(),SignUp.class);
+		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this); 
+		Editor edit = sp.edit(); 
+		edit.putString("username", credentials[0]);
+		edit.putString("firstname", credentials[1] );
+		edit.putString("lastname", credentials[2]);
+		edit.apply(); 
+	}
+	public void gotoSignUp(View v) {
+		Intent i = new Intent(getApplicationContext(), SignUp.class);
 		startActivity(i);
-		
+
 	}
 
 }

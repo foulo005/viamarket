@@ -9,7 +9,7 @@
     tools:context=".SignUp" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/userNameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
@@ -17,21 +17,21 @@
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/lastNameView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText1"
+        android:layout_below="@+id/firstNameView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
         android:ems="10"
         android:hint="@string/LastNameHint" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/userNameView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/firstNameView"
+        android:layout_below="@+id/userNameTextView"
         android:layout_marginTop="50dp"
         android:ems="10"
         android:hint="@string/UserNameHint" >
@@ -40,20 +40,20 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/firstNameView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText2"
-        android:layout_below="@+id/editText3"
+        android:layout_alignLeft="@+id/lastNameView"
+        android:layout_below="@+id/userNameView"
         android:layout_marginTop="17dp"
         android:ems="10"
         android:hint="@string/firstNameHint" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/passwordView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/lastNameView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="29dp"
         android:ems="10"
@@ -61,10 +61,10 @@
         android:inputType="textPassword" />
 
     <EditText
-        android:id="@+id/editText5"
+        android:id="@+id/retypePwdView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText4"
+        android:layout_below="@+id/passwordView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="19dp"
         android:ems="10"
@@ -72,10 +72,10 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/button1"
+        android:id="@+id/gotoLoginButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/editText5"
+        android:layout_below="@+id/retypePwdView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="47dp"
         android:onClick="signup"

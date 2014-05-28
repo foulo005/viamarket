@@ -8,23 +8,13 @@ using ViaMarket.DataAccess;
 
 namespace ViaMarket.Controllers
 {
-    public class CategoryController : ApiController
+    public class CategoryController : Controller
     {
-        MarketEntities data = new MarketEntities();
-        public IEnumerable<Category> Get()
+        ApplicationDbContext db = new ApplicationDbContext();
+
+        public IEnumerable<Category> getAll()
         {
-            return data.Category;
-        }
-        public IEnumerable<Item> Get(int id)
-        {
-            return data.Item;
-        }
-        public List<string> getListCategory(){
-            List<string> list = new List<string>();
-            foreach(Category c in this.Get()){
-                list.Add(c.name);
-            }
-            return list;
+            return PartialView(db.Categories.AsEnumerable());
         }
     }
 }
