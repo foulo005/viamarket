@@ -68,4 +68,9 @@ namespace ViaMarket.Models
         [Display(Name = "Last name")]
         public string LastName { get; set; }
     }
+
+    public class ActivateViewModel : HomeViewModel
+    {
+        public bool Successful { get; set; }
+    }
 }

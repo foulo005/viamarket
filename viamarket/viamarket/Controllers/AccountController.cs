@@ -37,6 +37,12 @@ namespace ViaMarket.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult Activate(string returnUrl)
+        {
+            return View();
+        }
+
         //
         // POST: /Account/Login
         [HttpPost]
