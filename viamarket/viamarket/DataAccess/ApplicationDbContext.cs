@@ -21,5 +21,7 @@ namespace ViaMarket.DataAccess
         public DbSet<Image> Images { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<University> Universities { get; set; }
+
+        public System.Data.Entity.DbSet<ViaMarket.Models.HomeViewModel> HomeViewModels { get; set; }
     }
 }
