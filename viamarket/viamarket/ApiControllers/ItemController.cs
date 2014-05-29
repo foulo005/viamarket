@@ -9,17 +9,22 @@ using ViaMarket.DataAccess;
 
 namespace ViaMarket.ApiControllers
 {
+    [RoutePrefix("api/item")]
     public class ItemController : ApiController
     {
         ApplicationDbContext db = new ApplicationDbContext();
 
         // returns a list with all items
+        [HttpGet]
+        [Route("")]
         public IEnumerable<Item> GetAll()
         {
             return db.Items.AsEnumerable();
         }
 
         // gets an item by id
+        [HttpGet]
+        [Route("{id:int}")]
         public Item GetById(int id)
         {
             Item item = db.Items.Find(id);
@@ -31,6 +36,8 @@ namespace ViaMarket.ApiControllers
         }
 
         // deletes the item with id (or returns a 404 response when invalid)
+        [HttpDelete]
+        [Route("{id:int}")]
         public void DeleteItem(int id)
         {
             Item item = db.Items.Find(id);
@@ -43,27 +50,56 @@ namespace ViaMarket.ApiControllers
         }
 
         // creates a new item and returns it (with http status code created 201)
-        public HttpResponseMessage PostItem(Item item)
+        [HttpPost]
+        [Route("")]
+        public HttpResponseMessage UpdateItem(Item item)
         {
-            db.Entry(item).State = EntityState.Added;
-            db.SaveChanges();
+            if (item.Id > 0)
+            {
+                if (db.Items.Any(i => i.Id == item.Id))
+                {
+                    item.Created = DateTime.Now;
+                    db.Items.Attach(item);
+                    db.Entry(item).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return Request.CreateResponse<Item>(HttpStatusCode.OK, item);
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
+            }
+            else
+            {
+                item.Created = DateTime.Now;
+                db.Entry(item).State = EntityState.Added;
+                db.SaveChanges();
 
-            var response = Request.CreateResponse<Item>(HttpStatusCode.Created, item);
-
-            string uri = Url.Link("DefaultApi", new { id = item.Id });
-            response.Headers.Location = new Uri(uri);
-            return response;
+                return Request.CreateResponse<Item>(HttpStatusCode.Created, item);
+            }
         }
 
-        // updates a item. if not found, return http response 404
-        public void PutItem(Item item)
+
+
+        [HttpGet]
+        [Route("{userId}/{ongoing:bool}")]
+        public IEnumerable<Item> GetItemsForUser(string userId, bool ongoing)
         {
-            if (db.Items.Find(item.Id) == null)
-            {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            }
-            db.Entry(item).State = EntityState.Modified;
-            db.SaveChanges();
+            var items = from i in db.Items
+                        where i.IdAspNetUsers == userId
+                        && i.Ongoing == ongoing
+                        select i;
+            return items;
+        }
+
+        [HttpGet]
+        [Route("category/{id:int}")]
+        public IEnumerable<Item> GetItemsForCategory(int id)
+        {
+            var items = from i in db.Items
+                        where i.IdCategory == id
+                        select i;
+            return items;
         }
     }
 }

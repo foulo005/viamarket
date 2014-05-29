@@ -22,9 +22,14 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li class="dropdown">
+
+                     <li class="dropdown">
+                       
+
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Categories</a>
                         <ul class="dropdown-menu">
+                            @Html.Partial("_CategoriesPartial", new ViaMarket.Models.HomeViewModel().CategoryList)
+                            
 
                         </ul>
                     </li>

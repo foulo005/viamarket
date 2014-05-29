@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -33,20 +34,34 @@ public class SearchActivity extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		return inflater.inflate(R.layout.activity_search, container, false);
-
+		View view = inflater
+				.inflate(R.layout.activity_search, container, false);
+		searchField = (EditText) view.findViewById(R.id.searchEditText);
+		searchButton = (Button) view.findViewById(R.id.searchButton);
+		categoriesSpinner = (Spinner) view.findViewById(R.id.categoriesSpinner);
+		ArrayAdapter<String> cat = new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_list_item_1, categoriesList);
+		categoriesSpinner.setAdapter(cat);
+		return view;
 	}
 
 	@Override
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
-		categoryHttpRequest catReq = new categoryHttpRequest();
+		categoryHttpRequest catReq = new categoryHttpRequest();	
+		categoriesList.add(0,"Choose Category");
 		catReq.execute();
+<<<<<<< HEAD
 
 	}
 
 	
 
+=======
+		// setComponent();
+	}
+
+>>>>>>> 646f5be7097952cf877cb15605627280a04c7f9f
 
 	public class categoryHttpRequest extends AsyncTask<Void, Void, Boolean> {
 		@Override
@@ -74,7 +89,12 @@ public class SearchActivity extends Fragment {
 				for (int i = 0; i < json.length(); i++) {
 					try {
 						JSONObject jObj = json.getJSONObject(i);
+<<<<<<< HEAD
 						categoriesList.add(jObj.getString("name").toString());
+=======
+						categoriesList.add(jObj.getString("Name").toString());
+						System.out.println(categoriesList);
+>>>>>>> 646f5be7097952cf877cb15605627280a04c7f9f
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

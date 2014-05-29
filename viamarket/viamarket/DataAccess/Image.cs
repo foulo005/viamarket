@@ -5,7 +5,7 @@ namespace ViaMarket.DataAccess
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
-    
+
     public class Image
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -14,7 +14,7 @@ namespace ViaMarket.DataAccess
         public Nullable<int> IdItem { get; set; }
         public string PathOriginal { get; set; }
         public string PathPreview { get; set; }
-    
+        [ForeignKey("IdItem")]
         public virtual Item Item { get; set; }
     }
 }

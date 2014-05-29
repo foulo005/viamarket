@@ -10,13 +10,17 @@ namespace ViaMarket.App_Start
     {
         public static void Register(HttpConfiguration config)
         {
+            // Attribute routing.
+            config.MapHttpAttributeRoutes();
+
+
             // Do the routing for the web api (webservice)
 
-            config.Routes.MapHttpRoute(
+           /* config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
-            );
+            );*/
 
         }
     }

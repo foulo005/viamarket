@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.Via.market"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="14"
+        android:targetSdkVersion="19" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/icon_36"
+        android:label="@string/app_name"
+        android:screenOrientation="portrait"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name="com.Via.market.SplashScreen"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.Via.market.LoginActivity"
+            android:label="@string/title_activity_login"
+            android:windowSoftInputMode="adjustResize|stateVisible" >
+        </activity>
+        <activity
+            android:name="com.Via.market.MarketTimeLine"
+            android:label="@string/title_activity_market_time_line" >
+        </activity>
+        <activity
+            android:name="com.Via.market.SearchActivity"
+            android:label="@string/title_activity_search" >
+        </activity>
+        <activity
+            android:name="com.Via.market.ItemDisplayList"
+            android:label="@string/title_activity_item_display_list" >
+        </activity>
+        <activity
+            android:name="com.Via.market.SignUp"
+            android:label="@string/title_activity_sign_up" >
+        </activity>
+        <activity
+            android:name="com.Via.market.Confirmation"
+            android:label="@string/title_activity_confirmation" >
+        </activity>
+        <activity
+            android:name="com.Via.market.SettingsActivity"
+            android:label="@string/title_activity_settings" >
+        </activity>
+        <activity
+            android:name="com.Via.market.Profile"
+            android:label="@string/title_activity_profile" >
+        </activity>
+          <activity
+            android:name="com.Via.market.MainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.Via.market.ChoosePictures"
+            android:label="@string/title_activity_choose_pictures" >
+        </activity>
+        <activity
+            android:name="com.Via.market.SumUpItem"
+            android:label="@string/title_activity_sum_up_item" >
+        </activity>
+        <activity
+            android:name="com.examcom.Via.market.ShowItemToSell"
+            android:label="@string/title_activity_show_item_to_sell" >
+        </activity>
+    </application>
+
+</manifest>
