@@ -3,16 +3,16 @@ namespace viamarket.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Created : DbMigration
+    public partial class UserActive : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Items", "Created", c => c.DateTime(nullable: false));
+            AddColumn("dbo.AspNetUsers", "Active", c => c.Boolean());
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Items", "Created");
+            DropColumn("dbo.AspNetUsers", "Active");
         }
     }
 }

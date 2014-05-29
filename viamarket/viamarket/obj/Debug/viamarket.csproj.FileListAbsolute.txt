@@ -180,6 +180,9 @@ C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.Created.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.Created.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.startup.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.OngoingAttribute.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.UserActive.resources
