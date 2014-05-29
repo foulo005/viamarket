@@ -81,7 +81,7 @@ public class SearchActivity extends Fragment {
 					try {
 						JSONObject jObj = json.getJSONObject(i);
 
-						categoriesList.add(jObj.getString("name").toString());
+						categoriesList.add(jObj.getString("Name").toString());
 
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block

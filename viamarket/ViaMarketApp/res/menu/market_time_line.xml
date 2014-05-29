@@ -8,7 +8,7 @@
         android:title="@string/action_settings"/>
     <item
         android:id="@+id/logout"
-        android:icon="@drawable/ic_action_accounts"
+        android:icon="@drawable/ic_action_accountsw"
         android:showAsAction="always"
         android:title="@string/logout">
     </item>

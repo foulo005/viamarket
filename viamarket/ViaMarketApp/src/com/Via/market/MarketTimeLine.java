@@ -16,33 +16,17 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class MarketTimeLine extends FragmentActivity {
 	static final int NUM_ITEMS = 3;
 
 	private PagerAdapter mPagerAdapter;
-	private String idUser;
-	private String personName;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		super.setContentView(R.layout.activity_market_time_line);
-		SharedPreferences settings = PreferenceManager
-				.getDefaultSharedPreferences(this);
-		if(!(settings.getString("username", null) == null))
-		{
-			Toast.makeText(getApplicationContext(), "welcome "+settings.getString("firstname", " "), Toast.LENGTH_LONG).show();
-		}
-		else{
-			Intent i = getIntent();
-			Bundle b = i.getExtras();
-			personName = b.getString("personName");
-			Toast.makeText(getApplicationContext(), "welcome "+personName, Toast.LENGTH_LONG).show();
-		}
-		
-		
+		super.setContentView(R.layout.activity_market_time_line);		
 		
 		// getting the action bar
 		final ActionBar actionBar = getActionBar();
@@ -53,21 +37,23 @@ public class MarketTimeLine extends FragmentActivity {
 		// Creating the fragmentList
 		List<Fragment> fragments = new Vector<Fragment>();
 
+
 		// Ajout des Fragments dans la liste
 		fragments.add(Fragment.instantiate(this, uploadNewItem.class.getName()));
+
+		// Adding fragments to the liste
+
 		fragments
 				.add(Fragment.instantiate(this, ItemDisplayList.class.getName()));
 		fragments.add(Fragment.instantiate(this,
 				SearchActivity.class.getName()));
-		// fragments.add(Fragment.instantiate(this,PageDroiteFragment.class.getName()));
 
-		// Création de l'adapter qui s'occupera de l'affichage de la liste de
-		// Fragments
+		// adapter of fragment list
 		this.mPagerAdapter = new PageAdapter(super.getSupportFragmentManager(),
 				fragments);
 
 		final ViewPager pager = (ViewPager) super.findViewById(R.id.viewpager);
-		// Affectation de l'adapter au ViewPager
+		// setting the adapter to the view pager
 		pager.setAdapter(this.mPagerAdapter);
 
 		pager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
@@ -117,11 +103,16 @@ public class MarketTimeLine extends FragmentActivity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
+		
+		//open the profile activity
 		case R.id.action_settings:
 			Intent i = new Intent(getApplicationContext(), Profile.class);
-			startActivity(i);
+			startActivityForResult(i, 99);
 			break;
 			
+		//Clear the session
+		//open the login activity
+		// close this activity
 		case R.id.logout:
 			SharedPreferences session = PreferenceManager
 					.getDefaultSharedPreferences(this);
@@ -134,5 +125,11 @@ public class MarketTimeLine extends FragmentActivity {
 		return true;
 	}
 
-	
+	@Override
+	protected void onActivityResult(int requestCode,int resultCode, Intent data)
+	{
+		// If the User Logs out in the profile page then we close this activity
+		if(requestCode == 99 && resultCode == RESULT_OK)
+			finish();
+	}
 }
