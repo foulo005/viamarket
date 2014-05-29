@@ -16,6 +16,7 @@ namespace ViaMarket.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        HomeViewModel model = new HomeViewModel();
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
