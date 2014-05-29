@@ -60,6 +60,10 @@
             android:name="com.Via.market.Profile"
             android:label="@string/title_activity_profile" >
         </activity>
+        <activity
+            android:name="com.Via.market.ProfileDetails"
+            android:label="@string/title_activity_profile_details" >
+        </activity>
     </application>
 
 </manifest>
