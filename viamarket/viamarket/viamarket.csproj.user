@@ -9,6 +9,7 @@
     <ProjectView>ShowAllFiles</ProjectView>
     <WebStackScaffolding_DbContextTypeFullName>ViaMarket.DataAccess.ApplicationDbContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+    <NameOfLastUsedPublishProfile>myasp.net</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>
     <VisualStudio>

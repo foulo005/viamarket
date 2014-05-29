@@ -16,6 +16,7 @@ namespace ViaMarket.Controllers
     [Authorize]
     public class AccountController : Controller
     {
+        HomeViewModel model = new HomeViewModel();
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
@@ -34,6 +35,12 @@ namespace ViaMarket.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult Activate(string returnUrl)
+        {
             return View();
         }
 
@@ -78,7 +85,7 @@ namespace ViaMarket.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {
+            {   
                 var user = new ApplicationUser() 
                 { 
                     UserName = model.UserName,

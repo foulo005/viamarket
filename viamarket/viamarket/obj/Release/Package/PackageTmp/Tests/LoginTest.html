@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>App</title>
+</head>
+<body>
+
+    <div>
+        <h2>Login</h2>
+        <ul id="result" />
+    </div>
+    <div>
+        <p>Username: <input type="text" id="username" /></p>
+        <p>Password: <input type="text" id="password" /></p>
+        <input type="button" value="Login" onclick="login();" />
+        <p id="success" />
+    </div>
+
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.min.js"></script>
+    <script>
+        var uri = '/api/user';
+
+    //    $(document).ready(function () {
+            // Send an AJAX request
+        //    $.getJSON(uri)
+         //       .done(function (data) {
+
+
+                    // On success, 'data' contains a list of products.
+                    //  $.each(data, function (key, item) {
+                    // Add a list item for the product.
+
+                    // });
+          //      });
+       // });
+
+        function login() {
+            var username = $('#username').val();
+            var password = $('#password').val();
+            $.getJSON(uri, )
+                .done(function (data) {
+                    if (data != null) {
+                        document.getElementById("success").innerHTML = "true";
+                        // $('<li>', { text: formatItem(item) }).appendTo($('#categories'));
+                    } else {
+                        document.getElementById("success").innerHTML = "false";
+                    }
+                })
+                .fail(function (jqXHR, textStatus, err) {
+                    document.getElementById("success").innerHTML = "fail";
+
+                });
+        }
+    </script>
+</body>
+</html>

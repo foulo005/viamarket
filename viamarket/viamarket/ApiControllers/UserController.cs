@@ -6,107 +6,134 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Web.Http;
-using ViaMarket.Models;
 using ViaMarket.DataAccess;
 using System.Net.Mail;
+using System.Web.Http;
 
 namespace ViaMarket.ApiControllers
 {
+    [RoutePrefix("api/user")]
     public class UserController : ApiController
     {
         public UserManager<ApplicationUser> UserManager { get; private set; }
+        private ApplicationDbContext db;
 
         public UserController()
         {
+            db = new ApplicationDbContext();
             UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+            Mapper.CreateMap<AccountDto, ApplicationUser>();
+            Mapper.CreateMap<ApplicationUser, AccountDto>();
         }
 
 
         // finds a user with the username and password
-        public Account Get([FromUri] string username, [FromUri] string password)
+        [HttpGet]
+        [Route("")]
+        public AccountDto CheckUser([FromUri] string username, [FromUri] string password)
         {
             var user = UserManager.Find(username, password);
             if (user != null)
             {
-                Mapper.CreateMap<ApplicationUser, Account>();
-                return Mapper.Map<Account>(user);
+                Mapper.CreateMap<ApplicationUser, AccountDto>();
+                return Mapper.Map<AccountDto>(user);
             }
             return null;
         }
 
         // registers a user and returns status 201 (created) if ok, otherwise 404 (not found)
-        public HttpResponseMessage PostUser([FromBody]Register register)
+        [HttpPost]
+        [Route("")]
+        public HttpResponseMessage UpdateUser(AccountDto account)
         {
-            var user = new ApplicationUser()
+            //create user
+            if (account.Id == null || account.Id.Length == 0)
             {
-                UserName = register.UserName,
-                FirstName = register.FirstName,
-                LastName = register.LastName
-            };
-            var result = UserManager.Create(user, register.Password);
-            HttpResponseMessage response;
-            if (result.Succeeded)
-            {
-                Mapper.CreateMap<ApplicationUser, Account>();
+                var user = new ApplicationUser()
+                {
+                    UserName = account.UserName,
+                    FirstName = account.FirstName,
+                    LastName = account.LastName
+                };
+                var result = UserManager.Create(user, account.Password);
+                if (result.Succeeded)
+                {
+                    Mapper.CreateMap<ApplicationUser, AccountDto>();
+                    sendVerificationEmail(user);
 
-                response = Request.CreateResponse<Account>(HttpStatusCode.Created, Mapper.Map<Account>(user));
+                    return Request.CreateResponse<AccountDto>(HttpStatusCode.Created, Mapper.Map<AccountDto>(user));
 
-                sendVerificationEmail(user);
+                }
+                else
+                {
+                    Mapper.CreateMap<ApplicationUser, AccountDto>();
+                    AccountDto accountFailed = Mapper.Map<AccountDto>(user);
+                    accountFailed.ErrorList = result.Errors.ToArray().ToList<string>();
+                    return Request.CreateResponse<AccountDto>(HttpStatusCode.NotFound, accountFailed);
+                }
             }
+            //update user
             else
             {
-                Mapper.CreateMap<ApplicationUser, Account>();
-                Account accountFailed = Mapper.Map<Account>(user);
-                accountFailed.ErrorList = result.Errors.ToArray().ToList<string>();
-                response = Request.CreateResponse<Account>(HttpStatusCode.NotFound, accountFailed);
+                ApplicationUser user = UserManager.FindById(account.Id);
+                if (user != null)
+                {
+                    user.FirstName = account.FirstName;
+                    user.LastName = account.LastName;
+                    UserManager.Update(user);
+                    return Request.CreateResponse<AccountDto>(HttpStatusCode.OK, Mapper.Map<AccountDto>(user));
+                }
+                else
+                {
+                    throw new HttpResponseException(HttpStatusCode.NotFound);
+                }
             }
-            string uri = Url.Link("DefaultApi", new { id = user.Id });
-            response.Headers.Location = new Uri(uri);
-            return response;
         }
-
 
         private void sendVerificationEmail(ApplicationUser user)
         {
-            MailMessage MyMailMessage = new MailMessage();
 
-            MyMailMessage.From = new MailAddress("viamarket001@gmail.com");
+            string smtpAddress = "smtp.mail.yahoo.com";
+            int portNumber = 587;
+            bool enableSSL = true;
 
-            MyMailMessage.To.Add("215535@via.dk");
+            string emailFrom = "viamarket001@yahoo.com";
+            string password = "";
+            string emailTo = user.UserName + "@via.dk";
+            string subject = "Welcome to viamarket";
+            string body = "Hello, <br />You registered recently for the viamarket. <br />To confirm your email please visit the following link:<a href=\"\"></a>";
 
-            MyMailMessage.Subject = "Welcome to viamarket!";
-
-            MyMailMessage.Body = "Activation link: yourSite/controller/action/" + user.Id;
-
-            MyMailMessage.IsBodyHtml = true;
-
-            SmtpClient SMTPServer = new SmtpClient("smtp.gmail.com");
-
-            SMTPServer.Port = 587;
-
-            SMTPServer.Credentials = new System.Net.NetworkCredential("viamarket001", "csWPMeWfJZj4");
-
-            SMTPServer.EnableSsl = true;
-
-            try
+            using (MailMessage mail = new MailMessage())
             {
+                mail.From = new MailAddress(emailFrom);
+                mail.To.Add(emailTo);
+                mail.Subject = subject;
+                mail.Body = body;
+                mail.IsBodyHtml = true;
+                // Can set to false, if you are sending pure text.
 
-                SMTPServer.Send(MyMailMessage);
+                //mail.Attachments.Add(new Attachment("C:\\SomeFile.txt"));
+                //mail.Attachments.Add(new Attachment("C:\\SomeZip.zip"));
 
-                //Response.Redirect("Thankyou.aspx");
-
-            }
-
-            catch (Exception ex)
-            {
-
-
-
+                using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
+                {
+                    smtp.Credentials = new NetworkCredential(emailFrom, password);
+                    smtp.EnableSsl = enableSSL;
+                    smtp.Send(mail);
+                }
             }
 
 
         }
+    }
 
+    public class AccountDto
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Id { get; set; }
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public List<string> ErrorList { get; set; }
     }
 }

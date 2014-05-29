@@ -10,14 +10,12 @@ namespace ViaMarket.DataAccess
     {
         public Category()
         {
-            this.Item = new HashSet<Item>();
+            
         }
 
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
         public string Name { get; set; }
-    
-        public virtual ICollection<Item> Item { get; set; }
     }
 }

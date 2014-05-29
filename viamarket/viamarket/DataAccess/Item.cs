@@ -23,6 +23,7 @@ namespace ViaMarket.DataAccess
         public Nullable<int> IdCurrency { get; set; }
         public int IdCategory { get; set; }
         public DateTime Created { get; set; }
+        public bool Ongoing { get; set; }
 
         [ForeignKey("IdAspNetUsers")]
         public virtual ApplicationUser ApplicationUser { get; set; }

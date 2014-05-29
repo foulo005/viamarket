@@ -200,17 +200,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201405281444225_Created.cs" />
-    <Compile Include="Migrations\201405281444225_Created.Designer.cs">
-      <DependentUpon>201405281444225_Created.cs</DependentUpon>
+    <Compile Include="Migrations\201405281640243_startup.cs" />
+    <Compile Include="Migrations\201405281640243_startup.Designer.cs">
+      <DependentUpon>201405281640243_startup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405282114185_OngoingAttribute.cs" />
+    <Compile Include="Migrations\201405282114185_OngoingAttribute.Designer.cs">
+      <DependentUpon>201405282114185_OngoingAttribute.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405290955323_UserActive.cs" />
+    <Compile Include="Migrations\201405290955323_UserActive.Designer.cs">
+      <DependentUpon>201405290955323_UserActive.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Files.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
-    <Compile Include="Models\Item.cs" />
-    <Compile Include="Models\Register.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -229,6 +234,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\myasp.net.pubxml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -284,6 +290,7 @@
     <Content Include="Views\Item\Details.cshtml" />
     <Content Include="Views\Item\Edit.cshtml" />
     <Content Include="Views\Item\Index.cshtml" />
+    <Content Include="Views\Account\Activate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -306,8 +313,14 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405281444225_Created.resx">
-      <DependentUpon>201405281444225_Created.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201405281640243_startup.resx">
+      <DependentUpon>201405281640243_startup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405282114185_OngoingAttribute.resx">
+      <DependentUpon>201405282114185_OngoingAttribute.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405290955323_UserActive.resx">
+      <DependentUpon>201405290955323_UserActive.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
