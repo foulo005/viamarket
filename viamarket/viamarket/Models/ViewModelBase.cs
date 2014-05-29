@@ -9,5 +9,11 @@ namespace ViaMarket.Models
     public class ViewModelBase
     {
         public IEnumerable<Category> CategoryList { get; set; }
+
+        public ViewModelBase()
+        {
+            ApplicationDbContext db = new ApplicationDbContext();
+            this.CategoryList = db.Categories.AsEnumerable();
+        }
     }
 }

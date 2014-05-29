@@ -10,26 +10,23 @@ namespace ViaMarket.Controllers
 {
     public class HomeController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+        //ApplicationDbContext db = new ApplicationDbContext();
+        HomeViewModel model = new HomeViewModel();
         public ActionResult Index()
         {
             //var model = db.Items.ToList();
-            HomeViewModel model = new HomeViewModel();
-            model.CategoryList =  db.Categories.AsEnumerable();
-            return View(model);
+            return View();
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
