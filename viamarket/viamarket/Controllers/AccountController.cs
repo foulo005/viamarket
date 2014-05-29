@@ -27,7 +27,6 @@ namespace ViaMarket.Controllers
         }
 
         public UserManager<ApplicationUser> UserManager { get; private set; }
-
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -38,9 +37,23 @@ namespace ViaMarket.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult Activate(string returnUrl)
+        public ActionResult Activate(string code)
         {
-            return View();
+            ActivateViewModel model = new ActivateViewModel();
+
+            var user = UserManager.FindById(code);
+            //code is invalid or user is already active
+            if (user == null || user.Active)
+            {
+                model.Successful = false;
+            }
+            else
+            {
+                user.Active = true;
+                model.Successful = true;
+            }
+
+            return View(model);
         }
 
         //
