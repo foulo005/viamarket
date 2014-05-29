@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.http.NameValuePair;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -27,9 +25,8 @@ public class SearchActivity extends Fragment {
 	private Button searchButton;
 	private Spinner categoriesSpinner;
 	private List<String> categoriesList = new ArrayList<String>();
-	private JSONArray json;
+
 	// HttpRequest
-	private String loginURL = "http://viamarket-001-site1.myasp.net/api/category";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -48,22 +45,16 @@ public class SearchActivity extends Fragment {
 	@Override
 	public void onCreate(Bundle b) {
 		super.onCreate(b);
-		categoryHttpRequest catReq = new categoryHttpRequest();	
-		categoriesList.add(0,"Choose Category");
+		categoryHttpRequest catReq = new categoryHttpRequest();
+		categoriesList.add(0, "Choose Category");
 		catReq.execute();
-<<<<<<< HEAD
 
 	}
-
-	
-
-=======
-		// setComponent();
-	}
-
->>>>>>> 646f5be7097952cf877cb15605627280a04c7f9f
 
 	public class categoryHttpRequest extends AsyncTask<Void, Void, Boolean> {
+		private String loginURL = "http://viamarket-001-site1.myasp.net/api/category";
+		private JSONArray json;
+
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
 			JSONParser jsonParser = new JSONParser();
@@ -89,12 +80,9 @@ public class SearchActivity extends Fragment {
 				for (int i = 0; i < json.length(); i++) {
 					try {
 						JSONObject jObj = json.getJSONObject(i);
-<<<<<<< HEAD
+
 						categoriesList.add(jObj.getString("name").toString());
-=======
-						categoriesList.add(jObj.getString("Name").toString());
-						System.out.println(categoriesList);
->>>>>>> 646f5be7097952cf877cb15605627280a04c7f9f
+
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
@@ -103,5 +91,4 @@ public class SearchActivity extends Fragment {
 			}
 		}
 	}
-
 }
