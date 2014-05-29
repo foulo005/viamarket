@@ -42,25 +42,11 @@ public class SearchActivity extends Fragment {
 		super.onCreate(b);
 		categoryHttpRequest catReq = new categoryHttpRequest();
 		catReq.execute();
-		setComponent();
+
 	}
 
 	
-	  /*public void setCategoryList() {
-		  ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(context, resource)
-				categoriesSpinner.setAdapter(dataAdapter);
-	  }*/
-	 
-	 
-	 
-	 
-	 
-	public void setComponent() {
-		searchField = (EditText) getView().findViewById(R.id.searchEditText);
-		searchButton = (Button) getView().findViewById(R.id.searchButton);
-		categoriesSpinner = (Spinner) getView().findViewById(
-				R.id.categoriesSpinner);
-	}
+
 
 	public class categoryHttpRequest extends AsyncTask<Void, Void, Boolean> {
 		@Override
@@ -88,8 +74,7 @@ public class SearchActivity extends Fragment {
 				for (int i = 0; i < json.length(); i++) {
 					try {
 						JSONObject jObj = json.getJSONObject(i);
-						categoriesList.add(jObj.getString("name"));
-						System.out.println(jObj);
+						categoriesList.add(jObj.getString("name").toString());
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

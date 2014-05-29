@@ -54,6 +54,7 @@ public class MarketTimeLine extends FragmentActivity {
 		List<Fragment> fragments = new Vector<Fragment>();
 
 		// Ajout des Fragments dans la liste
+		fragments.add(Fragment.instantiate(this, uploadNewItem.class.getName()));
 		fragments
 				.add(Fragment.instantiate(this, ItemDisplayList.class.getName()));
 		fragments.add(Fragment.instantiate(this,
@@ -98,12 +99,12 @@ public class MarketTimeLine extends FragmentActivity {
 		};
 
 		// Add 3 tabs, specifying the tab's text and TabListener
-
+		actionBar.addTab(actionBar.newTab().setText("Upload an item").setTabListener(tabListener));
 		actionBar.addTab(actionBar.newTab().setText("Newest")
 				.setTabListener(tabListener));
 		actionBar.addTab(actionBar.newTab().setText("Search")
 				.setTabListener(tabListener));
-		pager.setCurrentItem(0);
+		pager.setCurrentItem(1);
 
 	}
 	
