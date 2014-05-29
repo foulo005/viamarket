@@ -9,10 +9,11 @@ package com.Via.market;
 
 public final class R {
     public static final class array {
-        public static final int pref_example_list_titles=0x7f070000;
-        public static final int pref_example_list_values=0x7f070001;
-        public static final int pref_sync_frequency_titles=0x7f070002;
-        public static final int pref_sync_frequency_values=0x7f070003;
+        public static final int categories=0x7f070000;
+        public static final int pref_example_list_titles=0x7f070001;
+        public static final int pref_example_list_values=0x7f070002;
+        public static final int pref_sync_frequency_titles=0x7f070003;
+        public static final int pref_sync_frequency_values=0x7f070004;
     }
     public static final class attr {
     }
@@ -43,49 +44,78 @@ public final class R {
         public static final int icon_48=0x7f02000d;
         public static final int icon_72=0x7f02000e;
         public static final int icon_96=0x7f02000f;
+        public static final int plus=0x7f020010;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f0a000c;
-        public static final int action_forgot_password=0x7f0a001c;
-        public static final int action_settings=0x7f0a001b;
-        public static final int categoriesSpinner=0x7f0a0011;
-        public static final int credentials=0x7f0a0010;
-        public static final int firstNameView=0x7f0a0015;
-        public static final int gotoLoginButton=0x7f0a0003;
-        public static final int imageView1=0x7f0a0002;
-        public static final int lastNameView=0x7f0a0014;
-        public static final int listView1=0x7f0a000f;
-        public static final int list_image=0x7f0a000d;
-        public static final int login=0x7f0a0009;
-        public static final int login_form=0x7f0a0006;
-        public static final int login_status=0x7f0a0004;
-        public static final int login_status_message=0x7f0a0005;
-        public static final int logout=0x7f0a001d;
-        public static final int password=0x7f0a0008;
-        public static final int passwordView=0x7f0a0017;
-        public static final int retypePwdView=0x7f0a0018;
-        public static final int rowlayout=0x7f0a001a;
-        public static final int searchButton=0x7f0a0013;
-        public static final int searchEditText=0x7f0a0012;
-        public static final int sign_in_button=0x7f0a000a;
-        public static final int text=0x7f0a0019;
-        public static final int textView2=0x7f0a0000;
-        public static final int userNameTextView=0x7f0a0001;
-        public static final int userNameView=0x7f0a0016;
-        public static final int username=0x7f0a0007;
-        public static final int usernameText=0x7f0a000e;
-        public static final int viewpager=0x7f0a000b;
+        public static final int LinearLayout1=0x7f0a000d;
+        public static final int action_forgot_password=0x7f0a0033;
+        public static final int action_settings=0x7f0a0032;
+        public static final int button1=0x7f0a0021;
+        public static final int button2=0x7f0a0022;
+        public static final int categoriesSpinner=0x7f0a0012;
+        public static final int container=0x7f0a0000;
+        public static final int credentials=0x7f0a0011;
+        public static final int editText1=0x7f0a0023;
+        public static final int editText2=0x7f0a0026;
+        public static final int editText3=0x7f0a0028;
+        public static final int firstNameView=0x7f0a0016;
+        public static final int gotoLoginButton=0x7f0a0004;
+        public static final int imageButton1=0x7f0a001b;
+        public static final int imageButton10=0x7f0a001e;
+        public static final int imageButton2=0x7f0a001c;
+        public static final int imageButton20=0x7f0a001f;
+        public static final int imageButton3=0x7f0a001d;
+        public static final int imageButton30=0x7f0a0020;
+        public static final int imageView1=0x7f0a0003;
+        public static final int imageView2=0x7f0a002a;
+        public static final int imageView3=0x7f0a002b;
+        public static final int lastNameView=0x7f0a0015;
+        public static final int listView1=0x7f0a0010;
+        public static final int list_image=0x7f0a000e;
+        public static final int login=0x7f0a000a;
+        public static final int login_form=0x7f0a0007;
+        public static final int login_status=0x7f0a0005;
+        public static final int login_status_message=0x7f0a0006;
+        public static final int logout=0x7f0a0034;
+        public static final int password=0x7f0a0009;
+        public static final int passwordView=0x7f0a0018;
+        public static final int retypePwdView=0x7f0a0019;
+        public static final int rowlayout=0x7f0a0031;
+        public static final int searchButton=0x7f0a0014;
+        public static final int searchEditText=0x7f0a0013;
+        public static final int sign_in_button=0x7f0a000b;
+        public static final int spinner1=0x7f0a0024;
+        public static final int text=0x7f0a0029;
+        public static final int textView1=0x7f0a001a;
+        public static final int textView2=0x7f0a0001;
+        public static final int textView3=0x7f0a0025;
+        public static final int textView4=0x7f0a0027;
+        public static final int textView5=0x7f0a002c;
+        public static final int textView6=0x7f0a002f;
+        public static final int textView7=0x7f0a0030;
+        public static final int textView8=0x7f0a002d;
+        public static final int textView9=0x7f0a002e;
+        public static final int userNameTextView=0x7f0a0002;
+        public static final int userNameView=0x7f0a0017;
+        public static final int username=0x7f0a0008;
+        public static final int usernameText=0x7f0a000f;
+        public static final int viewpager=0x7f0a000c;
     }
     public static final class layout {
-        public static final int activity_confirmation=0x7f030000;
-        public static final int activity_item_display_list=0x7f030001;
-        public static final int activity_login=0x7f030002;
-        public static final int activity_market_time_line=0x7f030003;
-        public static final int activity_profile=0x7f030004;
-        public static final int activity_profile_details=0x7f030005;
-        public static final int activity_search=0x7f030006;
-        public static final int activity_sign_up=0x7f030007;
-        public static final int activity_splash_screen=0x7f030008;
+        public static final int activity_choose_pictures=0x7f030000;
+        public static final int activity_confirmation=0x7f030001;
+        public static final int activity_item_display_list=0x7f030002;
+        public static final int activity_login=0x7f030003;
+        public static final int activity_main=0x7f030004;
+        public static final int activity_market_time_line=0x7f030005;
+        public static final int activity_profile=0x7f030006;
+        public static final int activity_profile_details=0x7f030007;
+        public static final int activity_search=0x7f030008;
+        public static final int activity_show_item_to_sell=0x7f030009;
+        public static final int activity_sign_up=0x7f03000a;
+        public static final int activity_splash_screen=0x7f03000b;
+        public static final int activity_sum_up_item=0x7f03000c;
+        public static final int fragment_choose_pictures=0x7f03000d;
         /** 
     Layout alias to replace the single-pane version of the layout with a
     two-pane version on Large screens.
@@ -108,11 +138,14 @@ public final class R {
     http://developer.android.com/training/multiscreen/screensizes.html#TaskUseAliasFilters
     
          */
-        public static final int fragment_item=0x7f03000d;
-        public static final int fragment_item_grid=0x7f030009;
-        public static final int fragment_item_list=0x7f03000a;
-        public static final int fragment_pager_list=0x7f03000b;
-        public static final int rowlayout=0x7f03000c;
+        public static final int fragment_item=0x7f030015;
+        public static final int fragment_item_grid=0x7f03000e;
+        public static final int fragment_item_list=0x7f03000f;
+        public static final int fragment_main=0x7f030010;
+        public static final int fragment_pager_list=0x7f030011;
+        public static final int fragment_show_item_to_sell=0x7f030012;
+        public static final int fragment_sum_up_item=0x7f030013;
+        public static final int rowlayout=0x7f030014;
     }
     public static final class menu {
         public static final int confirmation=0x7f090000;
@@ -126,51 +159,70 @@ public final class R {
         public static final int splash_screen=0x7f090008;
     }
     public static final class string {
+        public static final int AddToMyFavoriteAnnounces=0x7f060036;
+        public static final int Date=0x7f060032;
+        public static final int ItemTitle=0x7f060031;
         public static final int LastNameHint=0x7f06000c;
+        public static final int PriceItemToSell=0x7f060033;
         public static final int UserNameHint=0x7f06000b;
         public static final int VIAlogo=0x7f060015;
-        public static final int action_forgot_password=0x7f06001f;
+        public static final int action_forgot_password=0x7f06003e;
         public static final int action_settings=0x7f060001;
-        public static final int action_sign_in_register=0x7f06001d;
-        public static final int action_sign_in_short=0x7f06001e;
+        public static final int action_sign_in_register=0x7f06003c;
+        public static final int action_sign_in_short=0x7f06003d;
         public static final int app_name=0x7f060000;
+        public static final int button=0x7f06001d;
+        public static final int cat=0x7f06002e;
+        public static final int catItem=0x7f06002f;
+        public static final int changeItem=0x7f06002b;
         public static final int confirmationText=0x7f060013;
+        public static final int contactSeller=0x7f060037;
+        public static final int description=0x7f06001b;
+        public static final int descriptionItemToSell=0x7f060035;
+        public static final int descriptionItemToUpload=0x7f060028;
+        public static final int descriptiontitle=0x7f060027;
         public static final int emailSentText=0x7f060014;
-        public static final int error_field_required=0x7f060024;
-        public static final int error_incorrect_password=0x7f060023;
-        public static final int error_invalid_email=0x7f060021;
-        public static final int error_invalid_password=0x7f060022;
+        public static final int error_field_required=0x7f060043;
+        public static final int error_incorrect_password=0x7f060042;
+        public static final int error_invalid_email=0x7f060040;
+        public static final int error_invalid_password=0x7f060041;
         public static final int firstNameHint=0x7f06000d;
         public static final int gotoSignup=0x7f060011;
         public static final int gotologin=0x7f060016;
+        public static final int gotouploadphoto=0x7f06001e;
         public static final int hello_world=0x7f060002;
-        public static final int login_progress_signing_in=0x7f060020;
+        public static final int login_progress_signing_in=0x7f06003f;
         public static final int logout=0x7f060017;
-        public static final int pref_default_display_name=0x7f06002a;
-        public static final int pref_description_social_recommendations=0x7f060028;
+        public static final int maxpic=0x7f060021;
+        public static final int next=0x7f06002d;
+        public static final int pref_default_display_name=0x7f060049;
+        public static final int pref_description_social_recommendations=0x7f060047;
         /**  Example settings for Data & Sync 
          */
-        public static final int pref_header_data_sync=0x7f06002c;
+        public static final int pref_header_data_sync=0x7f06004b;
         /**  Strings related to Settings 
  Example General settings 
          */
-        public static final int pref_header_general=0x7f060026;
+        public static final int pref_header_general=0x7f060045;
         /**  Example settings for Notifications 
          */
-        public static final int pref_header_notifications=0x7f06002f;
-        public static final int pref_ringtone_silent=0x7f060032;
-        public static final int pref_title_add_friends_to_messages=0x7f06002b;
-        public static final int pref_title_display_name=0x7f060029;
-        public static final int pref_title_new_message_notifications=0x7f060030;
-        public static final int pref_title_ringtone=0x7f060031;
-        public static final int pref_title_social_recommendations=0x7f060027;
-        public static final int pref_title_sync_frequency=0x7f06002d;
-        public static final int pref_title_system_sync_settings=0x7f06002e;
-        public static final int pref_title_vibrate=0x7f060033;
+        public static final int pref_header_notifications=0x7f06004e;
+        public static final int pref_ringtone_silent=0x7f060051;
+        public static final int pref_title_add_friends_to_messages=0x7f06004a;
+        public static final int pref_title_display_name=0x7f060048;
+        public static final int pref_title_new_message_notifications=0x7f06004f;
+        public static final int pref_title_ringtone=0x7f060050;
+        public static final int pref_title_social_recommendations=0x7f060046;
+        public static final int pref_title_sync_frequency=0x7f06004c;
+        public static final int pref_title_system_sync_settings=0x7f06004d;
+        public static final int pref_title_vibrate=0x7f060052;
+        public static final int price=0x7f06001f;
+        public static final int priceItemToUpload=0x7f06002c;
+        public static final int pricetitle=0x7f060029;
         /**  Strings related to login 
          */
-        public static final int prompt_email=0x7f06001b;
-        public static final int prompt_password=0x7f06001c;
+        public static final int prompt_email=0x7f06003a;
+        public static final int prompt_password=0x7f06003b;
         public static final int pwdHint=0x7f06000e;
         public static final int rPwdHint=0x7f06000f;
         public static final int search=0x7f060006;
@@ -178,15 +230,27 @@ public final class R {
         public static final int searchCenter=0x7f060008;
         public static final int signMeUp=0x7f060010;
         public static final int signup=0x7f06000a;
+        public static final int sumup=0x7f060024;
+        public static final int title=0x7f06001a;
+        public static final int title_activity_choose_pictures=0x7f060020;
         public static final int title_activity_confirmation=0x7f060012;
         public static final int title_activity_item_display_list=0x7f060005;
-        public static final int title_activity_login=0x7f06001a;
+        public static final int title_activity_login=0x7f060039;
         public static final int title_activity_market_time_line=0x7f060003;
         public static final int title_activity_profile=0x7f060018;
-        public static final int title_activity_profile_details=0x7f060019;
+        public static final int title_activity_profile_details=0x7f060038;
         public static final int title_activity_search=0x7f060004;
-        public static final int title_activity_settings=0x7f060025;
+        public static final int title_activity_settings=0x7f060044;
+        public static final int title_activity_show_item_to_sell=0x7f060030;
         public static final int title_activity_sign_up=0x7f060009;
+        public static final int title_activity_sum_up_item=0x7f060023;
+        public static final int titleofitem=0x7f060025;
+        public static final int titleofitemupload=0x7f060026;
+        public static final int titleuploadpic=0x7f060022;
+        public static final int upload=0x7f060019;
+        public static final int uploadBy=0x7f060034;
+        public static final int uploadPic=0x7f06001c;
+        public static final int uploaddef=0x7f06002a;
     }
     public static final class style {
         /** 
