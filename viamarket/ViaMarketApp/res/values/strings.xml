@@ -26,7 +26,6 @@
     <string name="gotologin">Go to the login page</string>
     <string name="logout">Logout</string>
     <string name="title_activity_profile">Profile</string>
-
     <string name="upload">Upload a new item</string>
     <string name="title">Name of your item</string>
     <string name="description">Description</string>
@@ -70,8 +69,12 @@
     <string name="descriptionItemToSell">Description :</string>
     <string name="AddToMyFavoriteAnnounces">Add to my item list</string>
     <string name="contactSeller">Contact the seller</string>
-
     <string name="title_activity_profile_details">ProfileDetails</string>
-
+    <string name="title_activity_display_bitmapped">DisplayBitmapped</string>
+    <string name="title_activity_image_detail">ImageDetailActivity</string>
+    <string name="title_activity_image_detail_fragment">ImageDetailFragment</string>
+    <string name="imageview_description"> desxription</string>
+    <string name="title_activity_my_dialog_fragment">MyDialogFragment</string>
+    <string name="frontPicture">Front picture</string>
 
 </resources>
