@@ -3,10 +3,12 @@ package com.Via.market;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Matrix.ScaleToFit;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView.ScaleType;
 import android.widget.TextView;
 
 public class ChoosePictures extends Activity {
@@ -21,6 +23,7 @@ public class ChoosePictures extends Activity {
 	ImageButton ib10;
 	ImageButton ib20;
 	ImageButton ib30;
+	ImageButton ibFront;
 	Button bt;
 	
 	
@@ -28,6 +31,7 @@ public class ChoosePictures extends Activity {
 	private String path1;
 	private String path2;
 	private String path3;
+	private String path0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +51,8 @@ public class ChoosePictures extends Activity {
         ib20 = (ImageButton) findViewById(R.id.imageButton20);  
         ib30 = (ImageButton) findViewById(R.id.imageButton30);
         
+        ibFront = (ImageButton)findViewById(R.id.imageButton4);
+        
         bt = (Button) findViewById(R.id.button1);
         
         bt.setOnClickListener(new View.OnClickListener() {
@@ -58,16 +64,19 @@ public class ChoosePictures extends Activity {
 		    	intent.putExtra("DESCRIPTION",ChoosePictures.this.getIntent().getStringExtra("DESCRIPTION"));
 		    	intent.putExtra("PRICE", ChoosePictures.this.getIntent().getStringExtra("PRICE"));
 		    	intent.putExtra("CAT", ChoosePictures.this.getIntent().getStringExtra("CAT"));
+		    	if(path1!=null)intent.putExtra("pict1",path0 );
 		    	if(path1!=null)intent.putExtra("pict1",path1 );
 		    	if(path2!=null)intent.putExtra("pict2",path2 );
 		    	if(path3!=null)intent.putExtra("pict3",path3 );
 		    	startActivityForResult(intent, 10);
 			}
 		});
-        
+        this.ib1.setScaleType(ScaleType.FIT_XY);;
+        this.initImageButton(ibFront);
         this.initImageButton(ib1);
         this.initImageButton(ib2);
         this.initImageButton(ib3);
+        this.addListener(ibFront);
         this.addListener(ib1);
         this.addListener(ib2);
         this.addListener(ib3);
@@ -102,6 +111,9 @@ public class ChoosePictures extends Activity {
 			
 			@Override
 			public void onClick(View v) {
+				if(ib.getId()==R.id.imageButton4){
+					thumbnail=0;
+				}
 				if ( ib.getId()==R.id.imageButton1){
 					thumbnail=1;
 				}
@@ -127,6 +139,7 @@ public class ChoosePictures extends Activity {
 @Override
 protected void onActivityResult (int requestCode, int resultCode, Intent data){
    super.onActivityResult(requestCode, resultCode, data);
+
    if(requestCode==10 && resultCode == RESULT_OK){
 	   this.finish();
    }
@@ -135,6 +148,11 @@ protected void onActivityResult (int requestCode, int resultCode, Intent data){
    try {
 	
 	   Bitmap bp = (Bitmap) data.getExtras().get("data"); 
+	   if(thumbnail==0){
+		   ibFront.setImageBitmap(bp);
+		   path0 = data.getDataString();
+	   }
+	   
 	   if(thumbnail==1) {
 		   ib1.setImageBitmap(bp);
 		   path1 = data.getDataString();

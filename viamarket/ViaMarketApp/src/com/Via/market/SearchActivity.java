@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -39,7 +40,16 @@ public class SearchActivity extends Fragment {
 		ArrayAdapter<String> cat = new ArrayAdapter<String>(getActivity(),
 				android.R.layout.simple_list_item_1, categoriesList);
 		categoriesSpinner.setAdapter(cat);
+		searchButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(getActivity(), ShowItemToSell.class);
+				startActivity(intent);
+			}
+		});
 		return view;
+		
 	}
 
 	@Override

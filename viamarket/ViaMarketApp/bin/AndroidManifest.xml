@@ -60,8 +60,7 @@
             android:name="com.Via.market.Profile"
             android:label="@string/title_activity_profile" >
         </activity>
-
-          <activity
+        <activity
             android:name="com.Via.market.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
@@ -79,13 +78,28 @@
             android:label="@string/title_activity_sum_up_item" >
         </activity>
         <activity
-            android:name="com.examcom.Via.market.ShowItemToSell"
+            android:name="com.Via.market.ShowItemToSell"
             android:label="@string/title_activity_show_item_to_sell" >
- </activity>
+        </activity>
         <activity
             android:name="com.Via.market.ProfileDetails"
             android:label="@string/title_activity_profile_details" >
-
+        </activity>
+        <activity
+            android:name="com.Via.market.DisplayBitmapped"
+            android:label="@string/title_activity_display_bitmapped" >
+        </activity>
+        <activity
+            android:name="com.Via.market.ImageDetailActivity"
+            android:label="@string/title_activity_image_detail" >
+        </activity>
+        <activity
+            android:name="com.Via.market.ImageDetailFragment"
+            android:label="@string/title_activity_image_detail_fragment" >
+        </activity>
+        <activity
+            android:name="dialog.MyDialogFragment"
+            android:label="@string/title_activity_my_dialog_fragment" >
         </activity>
     </application>
 

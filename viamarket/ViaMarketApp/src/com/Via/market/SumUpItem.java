@@ -12,6 +12,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -99,10 +104,33 @@ public class SumUpItem extends Activity {
         descriptionItem.setText(this.getIntent().getStringExtra("DESCRIPTION"));
         priceItem.setText(this.getIntent().getStringExtra("PRICE"));
         
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext()).build();
+        ImageSize targetSize = new ImageSize(100, 100);
+        ImageLoader.getInstance().init(config);
+        //ImageLoader.getInstance().displayImage(this.getIntent().getStringExtra("pict1").toString(),targetsize, im1);
+        Bitmap bmp = ImageLoader.getInstance().loadImageSync(this.getIntent().getStringExtra("pict1").toString(), targetSize, DisplayImageOptions.createSimple());
+       bmp = RotateBitmap(bmp, 90);
+        im1.setImageBitmap(bmp);
         
+        Bitmap bmp2 = ImageLoader.getInstance().loadImageSync(this.getIntent().getStringExtra("pict2").toString(), targetSize, DisplayImageOptions.createSimple());
+        bmp2 = RotateBitmap(bmp2, 90);
+         im2.setImageBitmap(bmp2);
+         
+         Bitmap bmp3 = ImageLoader.getInstance().loadImageSync(this.getIntent().getStringExtra("pict3").toString(), targetSize, DisplayImageOptions.createSimple());
+         bmp3 = RotateBitmap(bmp3, 90);
+          im3.setImageBitmap(bmp3);
         
+      
+	}
+	
+	public static Bitmap RotateBitmap(Bitmap source, float angle)
+	{
+	      Matrix matrix = new Matrix();
+	      matrix.postRotate(angle);
+	      return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+	}
        
-        if (this.getIntent().getStringExtra("pict1")!=null){
+     /*   if (this.getIntent().getStringExtra("pict1")!=null){
         	File f1 = new File(getRealPathFromURI(this,Uri.parse(this.getIntent().getStringExtra("pict1"))));
         	// create a matrix for the manipulation
     		Matrix matrix = new Matrix();
@@ -201,7 +229,7 @@ public class SumUpItem extends Activity {
         		      cursor.close();
         		    }
         		  }
-        		}
+        		}*/
         	
         	public void upload() {
         		UploadItemTask uploadItem = new UploadItemTask();
