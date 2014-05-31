@@ -26,5 +26,55 @@
     <string name="gotologin">Go to the login page</string>
     <string name="logout">Logout</string>
     <string name="title_activity_profile">Profile</string>
+    <string name="upload">Upload a new item</string>
+    <string name="title">Name of your item</string>
+    <string name="description">Description</string>
+    <string name="uploadPic"> Upload pictures</string>
+    <string name="button">Publish my item</string>
+    <string name="gotouploadphoto">Upload pictures</string>
+    <string name="price">Price</string>
+    <string name="title_activity_choose_pictures">ChoosePictures</string>
+    <string name="maxpic"> 3 pictures maximum</string>
+    <string name="titleuploadpic"> Upload your pictures</string>
+    <string name="title_activity_sum_up_item">SumUpItem</string>
+    <string name="sumup">Sum up</string>
+    <string name="titleofitem">Name</string>
+    <string name="titleofitemupload"></string>
+    <string name="descriptiontitle">Description</string>
+    <string name="descriptionItemToUpload"></string>
+    <string name="pricetitle">Price</string>
+    <string name="uploaddef">Upload</string>
+    <string name="changeItem">Change the pictures</string>
+    <string name="priceItemToUpload"></string>
+    <string name="next">Next</string>
+
+    <string-array name="categories">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+        <item>Mars</item>
+        <item>Jupiter</item>
+        <item>Saturn</item>
+        <item>Uranus</item>
+        <item>Neptune</item>
+    </string-array>
+
+    <string name="cat">Category</string>
+    <string name="catItem"></string>
+    <string name="title_activity_show_item_to_sell">ShowItemToSell</string>
+    <string name="ItemTitle"></string>
+    <string name="Date">Date of upload :</string>
+    <string name="PriceItemToSell">Price : </string>
+    <string name="uploadBy">Seller : </string>
+    <string name="descriptionItemToSell">Description :</string>
+    <string name="AddToMyFavoriteAnnounces">Add to my item list</string>
+    <string name="contactSeller">Contact the seller</string>
+    <string name="title_activity_profile_details">ProfileDetails</string>
+    <string name="title_activity_display_bitmapped">DisplayBitmapped</string>
+    <string name="title_activity_image_detail">ImageDetailActivity</string>
+    <string name="title_activity_image_detail_fragment">ImageDetailFragment</string>
+    <string name="imageview_description"> desxription</string>
+    <string name="title_activity_my_dialog_fragment">MyDialogFragment</string>
+    <string name="frontPicture">Front picture</string>
 
 </resources>
