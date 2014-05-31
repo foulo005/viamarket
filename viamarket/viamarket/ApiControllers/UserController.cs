@@ -9,6 +9,7 @@ using System.Net.Http;
 using ViaMarket.DataAccess;
 using System.Net.Mail;
 using System.Web.Http;
+using ViaMarket.App_Start;
 
 namespace ViaMarket.ApiControllers
 {
@@ -33,12 +34,25 @@ namespace ViaMarket.ApiControllers
         public AccountDto CheckUser([FromUri] string username, [FromUri] string password)
         {
             var user = UserManager.Find(username, password);
-            if (user != null)
+            AccountDto account;
+            if (user == null)
+            {
+                account = new AccountDto();
+                account.ErrorList = new List<string>();
+                account.ErrorList.Add("Your credentials provided are not valid!");
+            }
+            else if (user.Active == false)
+            {
+                account = new AccountDto();
+                account.ErrorList = new List<string>();
+                account.ErrorList.Add("Your account is not validated yet. Please activate your account with the activation link that was sent to you.");
+            }
+            else
             {
                 Mapper.CreateMap<ApplicationUser, AccountDto>();
-                return Mapper.Map<AccountDto>(user);
+                account = Mapper.Map<AccountDto>(user);
             }
-            return null;
+            return account;
         }
 
         // registers a user and returns status 201 (created) if ok, otherwise 404 (not found)
@@ -92,38 +106,21 @@ namespace ViaMarket.ApiControllers
 
         private void sendVerificationEmail(ApplicationUser user)
         {
-
-            string smtpAddress = "smtp.mail.yahoo.com";
-            int portNumber = 587;
-            bool enableSSL = true;
-
-            string emailFrom = "viamarket001@yahoo.com";
-            string password = "";
-            string emailTo = user.UserName + "@via.dk";
-            string subject = "Welcome to viamarket";
-            string body = "Hello, <br />You registered recently for the viamarket. <br />To confirm your email please visit the following link:<a href=\"\"></a>";
-
             using (MailMessage mail = new MailMessage())
             {
-                mail.From = new MailAddress(emailFrom);
-                mail.To.Add(emailTo);
-                mail.Subject = subject;
-                mail.Body = body;
+                mail.From = new MailAddress(ApplicationConfig.ActivationFromAddress);
+                mail.To.Add(string.Format(ApplicationConfig.ActivationToAddress, user.UserName));
+                mail.Subject = ApplicationConfig.ActivationSubject;
+                mail.Body = string.Format(ApplicationConfig.ActivationMessage, user.Id);
                 mail.IsBodyHtml = true;
-                // Can set to false, if you are sending pure text.
 
-                //mail.Attachments.Add(new Attachment("C:\\SomeFile.txt"));
-                //mail.Attachments.Add(new Attachment("C:\\SomeZip.zip"));
-
-                using (SmtpClient smtp = new SmtpClient(smtpAddress, portNumber))
+                using (SmtpClient smtp = new SmtpClient(ApplicationConfig.ActivationSmtp, ApplicationConfig.ActivationSmtpPort))
                 {
-                    smtp.Credentials = new NetworkCredential(emailFrom, password);
-                    smtp.EnableSsl = enableSSL;
+                    smtp.Credentials = new NetworkCredential(ApplicationConfig.ActivationFromAddress, ApplicationConfig.ActivationSmtpPassword);
+                    smtp.EnableSsl = ApplicationConfig.ActivationSmtpEnableSsl;
                     smtp.Send(mail);
                 }
             }
-
-
         }
     }
 

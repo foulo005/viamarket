@@ -64,3 +64,7 @@ C:\Dev\viamarket\viamarket\viamarket\obj\Release\ViaMarket.csproj.GenerateResour
 C:\Dev\viamarket\viamarket\viamarket\obj\Release\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Release\ViaMarket.pdb
 C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.OngoingAttribute.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Release\ViaMarket.csprojResolveAssemblyReference.cache
+C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.UserActive.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.ActiveUSer.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.RemoveUni.resources

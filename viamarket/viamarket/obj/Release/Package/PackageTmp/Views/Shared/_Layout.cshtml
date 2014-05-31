@@ -1,5 +1,4 @@
-﻿@model ViaMarket.Models.ViewModelBase
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -29,10 +28,8 @@
 
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle">Categories</a>
                         <ul class="dropdown-menu">
-                            @foreach (var category in Model.CategoryList)
-                            {
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">@Html.DisplayFor(modelItem => category.Name)</a></li>
-                            }
+                            @Html.Partial("_CategoriesPartial", new ViaMarket.Models.HomeViewModel().CategoryList)
+                            
 
                         </ul>
                     </li>
@@ -40,7 +37,7 @@
                     <li>@Html.ActionLink("About", "About", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                 </ul>
-                @Html.Partial("_LoginPartial")
+           
             </div>
         </div>
     </div>

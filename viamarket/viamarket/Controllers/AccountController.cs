@@ -52,6 +52,7 @@ namespace ViaMarket.Controllers
             {
                 user.Active = true;
                 model.Successful = true;
+                UserManager.Update(user);
             }
 
             return View(model);

@@ -101,7 +101,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/19/2014 23:46:31</publishTime>
     </File>
     <File Include="bin/ViaMarket.dll">
-      <publishTime>05/28/2014 23:58:41</publishTime>
+      <publishTime>05/31/2014 16:56:33</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
       <publishTime>05/19/2014 23:46:31</publishTime>
@@ -181,6 +181,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     <File Include="Tests/WebApiTest.html">
       <publishTime>05/21/2014 14:40:40</publishTime>
     </File>
+    <File Include="Views/Account/Activate.cshtml">
+      <publishTime>05/29/2014 16:49:29</publishTime>
+    </File>
     <File Include="Views/Account/ExternalLoginConfirmation.cshtml">
       <publishTime>05/26/2014 15:29:02</publishTime>
     </File>
@@ -201,6 +204,9 @@ by editing this MSBuild file. In order to learn more about this please visit htt
     </File>
     <File Include="Views/Account/_ExternalLoginsListPartial.cshtml">
       <publishTime>05/19/2014 23:46:32</publishTime>
+    </File>
+    <File Include="Views/Account/_LoginPartial.cshtml">
+      <publishTime>05/29/2014 13:21:38</publishTime>
     </File>
     <File Include="Views/Account/_RemoveAccountPartial.cshtml">
       <publishTime>05/19/2014 23:46:33</publishTime>
@@ -254,10 +260,10 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/19/2014 23:46:33</publishTime>
     </File>
     <File Include="Views/Shared/_CategoriesPartial.cshtml">
-      <publishTime>05/28/2014 15:26:22</publishTime>
+      <publishTime>05/29/2014 13:14:24</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>05/28/2014 18:28:09</publishTime>
+      <publishTime>05/29/2014 13:34:16</publishTime>
     </File>
     <File Include="Views/Shared/_LoginPartial.cshtml">
       <publishTime>05/28/2014 15:26:22</publishTime>
@@ -269,7 +275,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/19/2014 23:46:32</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/28/2014 18:47:31</publishTime>
+      <publishTime>05/29/2014 13:41:11</publishTime>
     </File>
   </ItemGroup>
 </Project>
