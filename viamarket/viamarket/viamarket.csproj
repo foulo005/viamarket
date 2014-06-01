@@ -196,7 +196,6 @@
     <Compile Include="DataAccess\Currency.cs" />
     <Compile Include="DataAccess\Image.cs" />
     <Compile Include="DataAccess\Item.cs" />
-    <Compile Include="DataAccess\University.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -1,4 +1,4 @@
-﻿@model ViaMarket.DataAccess.Item
+﻿@model ViaMarket.Models.ItemViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -27,13 +27,6 @@
             @Html.DisplayFor(model => model.Description)
         </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.IdAspNetUsers)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdAspNetUsers)
-        </dd>
 
         <dt>
             @Html.DisplayNameFor(model => model.Price)
@@ -44,19 +37,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IdCurrency)
+            @Html.DisplayNameFor(model => model.Currency)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IdCurrency)
+            @Html.DisplayFor(model => model.Currency)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.IdCategory)
+            @Html.DisplayNameFor(model => model.Category)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.IdCategory)
+            @Html.DisplayFor(model => model.Category)
         </dd>
 
     </dl>
