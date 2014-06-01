@@ -1,8 +1,6 @@
 ﻿@model IEnumerable<ViaMarket.DataAccess.Category>
 
 
-@foreach (var item in Model) {
-    <li>
-            @Html.DisplayFor(modelItem => item.name)
-    </li>
+@foreach (var category in Model) {
+        <li role="presentation"><a role="menuitem" tabindex="-1" href="#">@Html.DisplayFor(item => category.Name)</a></li>
 }
