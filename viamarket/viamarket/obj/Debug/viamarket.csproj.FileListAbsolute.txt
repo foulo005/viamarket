@@ -191,3 +191,5 @@ C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.ActiveUSer.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources

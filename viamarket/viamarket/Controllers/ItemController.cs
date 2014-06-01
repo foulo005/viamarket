@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 using Microsoft.AspNet.Identity;
 using System.IO;
 using ViaMarket.Models;
-using AutoMapper;
+
 
 namespace ViaMarket.Controllers
 {
