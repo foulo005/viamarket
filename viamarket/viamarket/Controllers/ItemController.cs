@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using ViaMarket.Models;
 
+
 namespace ViaMarket.Controllers
 {
     public class ItemController : Controller
@@ -37,27 +38,27 @@ namespace ViaMarket.Controllers
             {
                 return HttpNotFound();
             }
-            return View(item);
+            ItemViewModel model = new ItemViewModel();
+            model.Id = (int)id;
+            model.Title = item.Title;
+            model.Description = item.Description;
+            model.IdCategory = item.IdCategory;
+            model.IdCurrency = (int)item.IdCurrency;
+            model.Price = (double)item.Price;
+            model.Currency = db.Currencies.Find((int)item.IdCurrency).Name;
+            model.Category = db.Categories.Find((int)item.IdCategory).Name;
+            return View(model);
         }
 
         // GET: /Item/Create
         public ActionResult Create()
         {
+            ItemViewModel model = new ItemViewModel();
             //CategoryList
-            List<SelectListItem> ctgs = new List<SelectListItem>();
-            foreach (Category c in db.Categories.ToList<Category>())
-            {
-                ctgs.Add(new SelectListItem { Text = c.Name, Value = c.Id.ToString() });
-            }
-            ViewBag.CategoriesType = ctgs;
+            model.ListCategories = db.Categories.ToList<Category>();
+            model.ListCurrencies = db.Currencies.ToList<Currency>();
 
-            List<SelectListItem> curr = new List<SelectListItem>();
-            foreach (Currency c in db.Currencies.ToList<Currency>())
-            {
-                curr.Add(new SelectListItem { Text = c.Name+" ("+c.Code+")", Value = c.Id.ToString() });
-            }
-            ViewBag.CurrenciesType = curr;
-            return View();
+            return View(model);
         }
 
         // POST: /Item/Create
@@ -65,15 +66,22 @@ namespace ViaMarket.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,Title,Description,Price,IdCurrency,IdCategory")] Item item, Files files)
+        public ActionResult Create(ItemViewModel model)
         {
             if (ModelState.IsValid)
             {
+                Item item = new Item();
+                item.Title = model.Title;
+                item.Description = model.Description;
+                item.IdCategory = model.IdCategory;
+                item.IdCurrency = model.IdCurrency;
+                item.Price = model.Price;
                 item.IdAspNetUsers = User.Identity.GetUserId();
                 item.Created = DateTime.Now;
                 db.Items.Add(item);
                 db.SaveChanges();
-                Directory.CreateDirectory(Server.MapPath("~/ItemsPictures/"+item.Id.ToString()));
+
+                //Directory.CreateDirectory(Server.MapPath("~/ItemsPictures/"+item.Id.ToString()));
                 /*  foreach(File f in files.List){
                  *     file.SaveAs(Path.Combine(Server.MapPath("~/ItemsPictures/"+item.Id.ToString()), Path.GetFileName(f.FileName)));
                  *  }
@@ -81,10 +89,11 @@ namespace ViaMarket.Controllers
                  *  Checkout this : @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
                  *  We use the Id of the Item as the name of the folder where the pictures we'll be stored
                  */
+                
                 return RedirectToAction("Index");
             }
 
-            return View(item);
+            return View(model);
         }
 
         // GET: /Item/Edit/5
@@ -99,7 +108,18 @@ namespace ViaMarket.Controllers
             {
                 return HttpNotFound();
             }
-            return View(item);
+            ItemViewModel model = new ItemViewModel();
+            model.Id = (int)id;
+            model.Title = item.Title;
+            model.Description = item.Description;
+            model.IdCategory = item.IdCategory;
+            model.IdCurrency = (int)item.IdCurrency;
+            model.Price = (double)item.Price;
+            model.IdCurrency = (int)item.IdCurrency;
+            model.IdCategory = (int)item.IdCategory;
+            model.ListCategories = db.Categories.ToList<Category>();
+            model.ListCurrencies = db.Currencies.ToList<Currency>();
+            return View(model);
         }
 
         // POST: /Item/Edit/5
@@ -107,15 +127,24 @@ namespace ViaMarket.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Title,Description,IdAspNetUsers,Price,IdCurrency,IdCategory")] Item item)
+        public ActionResult Edit(ItemViewModel model)
         {
             if (ModelState.IsValid)
             {
+                Item item = db.Items.Find(model.Id);
+                item.Title = model.Title;
+                item.Description = model.Description;
+                item.IdCategory = model.IdCategory;
+                item.IdCurrency = model.IdCurrency;
+                item.Price = model.Price;
+                item.IdAspNetUsers = User.Identity.GetUserId();
+                item.Created = DateTime.Now;
+                db.Items.Attach(item);
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(item);
+            return View(model);
         }
 
         // GET: /Item/Delete/5

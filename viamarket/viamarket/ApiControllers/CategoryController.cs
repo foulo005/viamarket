@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Web.Http;
 using ViaMarket.DataAccess;
 
-namespace ViaMarket.Controllers
+namespace ViaMarket.ApiControllers
 {
     [RoutePrefix("api/category")]
     public class CategoryController : ApiController
