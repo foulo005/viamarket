@@ -4,23 +4,24 @@ import java.sql.Date;
 
 public class Item {
 	
-	int id;
-	int price;
-	int idCurrency;
-	int idCategory;
+	private int id;
+	private int price;
+	private int idCurrency;
+	private int idCategory;
 	
-	String title;
-	String description;
-	String iDAsoNetUsers;
-	String ApplicationUser_Id;
+	private String title;
+	private String description;
+	private String iDAsoNetUsers;
+	private String ApplicationUser_Id;
 	
-	Date date;
+	private Date date;
 	
-	Boolean sold;
+	private Boolean sold;
+	private String[] imagesURLs;
 
 	public Item(int id, int price, int idCurrency, int idCategory,
 			String title, String description, String iDAsoNetUsers,
-			String applicationUser_Id, Date date, Boolean sold) {
+			String applicationUser_Id, Date date, Boolean sold, String[] imagesURLs) {
 		super();
 		this.id = id;
 		this.price = price;
@@ -32,6 +33,7 @@ public class Item {
 		ApplicationUser_Id = applicationUser_Id;
 		this.date = date;
 		this.sold = sold;
+		this.imagesURLs = imagesURLs;
 	}
 
 	public int getId() {

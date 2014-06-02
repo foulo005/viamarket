@@ -69,7 +69,7 @@ public class SearchActivity extends Fragment {
 		protected Boolean doInBackground(Void... arg0) {
 			JSONParser jsonParser = new JSONParser();
 			try {
-				json = jsonParser.categoryRequest(loginURL);
+				json = jsonParser.request(loginURL);
 
 				if (json != null)
 					return true;

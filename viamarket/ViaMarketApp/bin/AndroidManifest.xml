@@ -101,6 +101,18 @@
             android:name="dialog.MyDialogFragment"
             android:label="@string/title_activity_my_dialog_fragment" >
         </activity>
+        <activity
+            android:name="com.Via.market.ItemListActivity"
+            android:label="@string/title_activity_image_list" >
+        </activity>
+        <activity
+            android:name="com.Via.market.BaseActivity"
+            android:label="@string/title_activity_base" >
+        </activity>
+        <activity
+            android:name="com.Via.market.AbsListViewActivity"
+            android:label="@string/title_activity_abs_list_view" >
+        </activity>
     </application>
 
 </manifest>
