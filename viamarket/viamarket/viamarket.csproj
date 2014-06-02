@@ -180,12 +180,14 @@
     <Compile Include="ApiControllers\ItemController.cs" />
     <Compile Include="ApiControllers\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\ApplicationConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="ApiControllers\CategoryController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\SharedController.cs" />
@@ -196,7 +198,6 @@
     <Compile Include="DataAccess\Currency.cs" />
     <Compile Include="DataAccess\Image.cs" />
     <Compile Include="DataAccess\Item.cs" />
-    <Compile Include="DataAccess\University.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,10 +213,20 @@
     <Compile Include="Migrations\201405290955323_UserActive.Designer.cs">
       <DependentUpon>201405290955323_UserActive.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201405291452102_ActiveUSer.cs" />
+    <Compile Include="Migrations\201405291452102_ActiveUSer.Designer.cs">
+      <DependentUpon>201405291452102_ActiveUSer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405311455382_RemoveUni.cs" />
+    <Compile Include="Migrations\201405311455382_RemoveUni.Designer.cs">
+      <DependentUpon>201405311455382_RemoveUni.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\Files.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\ItemViewModel.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -253,7 +264,6 @@
     <Content Include="Scripts\_references.js" />
     <Content Include="Tests\LoginTest.html" />
     <Content Include="Tests\WebApiTest.html" />
-    <Content Include="Views\Category\Category.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -293,7 +303,7 @@
     <Content Include="Views\Account\Activate.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\uploads\" />
     <Folder Include="ItemsPictures\" />
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +331,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405290955323_UserActive.resx">
       <DependentUpon>201405290955323_UserActive.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405291452102_ActiveUSer.resx">
+      <DependentUpon>201405291452102_ActiveUSer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405311455382_RemoveUni.resx">
+      <DependentUpon>201405311455382_RemoveUni.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

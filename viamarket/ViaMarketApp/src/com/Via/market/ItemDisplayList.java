@@ -48,7 +48,7 @@ public class ItemDisplayList extends ListFragment {
 			protected Boolean doInBackground(Integer... arg0) {
 				JSONParser jsonParser = new JSONParser();
 				try {
-					json = jsonParser.makeHttpRequest(loginURL,"GET",null);
+					json = jsonParser.request(loginURL);
 
 					if (json != null)
 						return true;

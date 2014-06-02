@@ -79,5 +79,8 @@
     <string name="title_activity_image_list">ImageListActivity</string>
     <string name="title_activity_base">BaseActivity</string>
     <string name="title_activity_abs_list_view">AbsListViewActivity</string>
+    <string name="title_activity_image_pager">ImagePagerActivity</string>
+    <string name="descr_image">ImagePagerActivity</string>
+
 
 </resources>

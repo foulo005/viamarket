@@ -1,3 +1,4 @@
+
 package com.Via.market;
 
 import java.io.IOException;
@@ -12,10 +13,15 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -36,7 +42,7 @@ public class SumUpItem extends Activity {
 	
 	Button change;
 	Button upload;
-	
+	ImageView im0; // mainPicture
 	ImageView im1;
 	ImageView im2;
 	ImageView im3;
@@ -49,6 +55,8 @@ public class SumUpItem extends Activity {
 	private String idCategory;
 	private String date;
 	private String idCurrency;
+	
+  ArrayList<String> listUri = new ArrayList<String>();
 	
 	String urlRequest = "http://viamarket-001-site1.myasp.net/api/user";
 
@@ -67,10 +75,21 @@ public class SumUpItem extends Activity {
 		
 		cat = (TextView) findViewById(R.id.textView8);
 		catItem =(TextView) findViewById(R.id.textView9);
+		im0 = (ImageView) findViewById(R.id.imageView4);
 		im1 = (ImageView) findViewById(R.id.imageView1);
-		im1.setImageResource(R.drawable.plus);
+		
         im2 = (ImageView) findViewById(R.id.imageView2);  
         im3 = (ImageView) findViewById(R.id.imageView3);
+        im0.setImageResource(R.drawable.plus);
+        im1.setImageResource(R.drawable.plus);
+        im2.setImageResource(R.drawable.plus);
+        im3.setImageResource(R.drawable.plus);
+        this.addListener(im0);
+        this.addListener(im1);
+        this.addListener(im2);
+        this.addListener(im3);
+        
+        
        
         change = (Button) findViewById(R.id.button2);
         upload = (Button) findViewById(R.id.button1);
@@ -97,23 +116,62 @@ public class SumUpItem extends Activity {
         descriptionItem.setText(this.getIntent().getStringExtra("DESCRIPTION"));
         priceItem.setText(this.getIntent().getStringExtra("PRICE"));
         
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext()).build();
-        ImageSize targetSize = new ImageSize(100, 100);
-        ImageLoader.getInstance().init(config);
-        //ImageLoader.getInstance().displayImage(this.getIntent().getStringExtra("pict1").toString(),targetsize, im1);
-        Bitmap bmp = ImageLoader.getInstance().loadImageSync(this.getIntent().getStringExtra("pict1").toString(), targetSize, DisplayImageOptions.createSimple());
-       bmp = RotateBitmap(bmp, 90);
-        im1.setImageBitmap(bmp);
         
-        Bitmap bmp2 = ImageLoader.getInstance().loadImageSync(this.getIntent().getStringExtra("pict2").toString(), targetSize, DisplayImageOptions.createSimple());
-        bmp2 = RotateBitmap(bmp2, 90);
-         im2.setImageBitmap(bmp2);
-         
-         Bitmap bmp3 = ImageLoader.getInstance().loadImageSync(this.getIntent().getStringExtra("pict3").toString(), targetSize, DisplayImageOptions.createSimple());
-         bmp3 = RotateBitmap(bmp3, 90);
-          im3.setImageBitmap(bmp3);
+        
+       
+        try{
+        	
+        	 String url = this.getIntent().getStringExtra("pict0").toString(); 
+        	 this.getBitmap(url, im0);
+             listUri.add(this.getRealPathFromURI(this, Uri.parse(this.getIntent().getStringExtra("pict0"))));
+             
+             String url1 = this.getIntent().getStringExtra("pict1").toString(); 
+        	 this.getBitmap(url1, im1);
+             listUri.add(this.getRealPathFromURI(this, Uri.parse(this.getIntent().getStringExtra("pict1"))));
+             
+             String url2 = this.getIntent().getStringExtra("pict2").toString(); 
+        	 this.getBitmap(url2, im2);
+             listUri.add(this.getRealPathFromURI(this, Uri.parse(this.getIntent().getStringExtra("pict2"))));
+             
+             String url3 = this.getIntent().getStringExtra("pict3").toString(); 
+        	 this.getBitmap(url3, im3);
+             listUri.add(this.getRealPathFromURI(this, Uri.parse(this.getIntent().getStringExtra("pict3"))));
+          
+        }
+        catch(Exception e){
+        	
+        }
         
       
+	}
+	
+	public void getBitmap(String str, ImageView iv) {
+		ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext()).build();
+	    ImageSize targetSize = new ImageSize(100, 100);
+	    ImageLoader.getInstance().init(config);
+		Bitmap bmp = ImageLoader.getInstance().loadImageSync(str, targetSize, DisplayImageOptions.createSimple());
+		bmp = RotateBitmap(bmp, GetRotateAngle( Uri.parse(str)));
+		iv.setImageBitmap(bmp);
+	}
+	
+	public void addListener(ImageView iv) {
+		iv.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				try{
+				Intent intent = new Intent(SumUpItem.this, ImagePagerActivity.class);
+				
+				String[]urls= SumUpItem.this.listUri.toArray(new String[SumUpItem.this.listUri.size()]);
+				for (int i = 0; i < urls.length; i++) {
+					System.out.println(urls[i]);
+				}
+				intent.putExtra("stringArray", urls);
+				startActivity(intent);
+				}
+				catch(Exception e){System.out.println("No pictures to display");}
+			}
+		});
 	}
 	
 	public static Bitmap RotateBitmap(Bitmap source, float angle)
@@ -122,107 +180,35 @@ public class SumUpItem extends Activity {
 	      matrix.postRotate(angle);
 	      return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
 	}
-       
-     /*   if (this.getIntent().getStringExtra("pict1")!=null){
-        	File f1 = new File(getRealPathFromURI(this,Uri.parse(this.getIntent().getStringExtra("pict1"))));
-        	// create a matrix for the manipulation
-    		Matrix matrix = new Matrix();
-    		 //rotate the Bitmap
-    		matrix.postRotate(90);
-    		
-    		Bitmap rotate = Bitmap.createBitmap(decodeSampledBitmapFromFile(f1, 150,150), 0, 0, 150, 150,
-    				matrix, true);
-    		
-        	im1.setImageBitmap(rotate);
-        	
-        }
-        if (this.getIntent().getStringExtra("pict2")!=null){
-        	File f2 = new File(getRealPathFromURI(this,Uri.parse(this.getIntent().getStringExtra("pict2"))));
-        	Matrix matrix = new Matrix();
-   		 //rotate the Bitmap
-   		matrix.postRotate(90);
-   		
-   		Bitmap rotate = Bitmap.createBitmap(decodeSampledBitmapFromFile(f2, 150,150), 0, 0, 150, 150,
-   				matrix, true);
-   		
-       	im2.setImageBitmap(rotate);
-        }
-		 if (this.getIntent().getStringExtra("pict3")!=null){
-			 File f3 = new File(getRealPathFromURI(this,Uri.parse(this.getIntent().getStringExtra("pict3"))));
-			 Matrix matrix = new Matrix();
-    		 //rotate the Bitmap
-    		matrix.postRotate(90);
-    		
-    		Bitmap rotate = Bitmap.createBitmap(decodeSampledBitmapFromFile(f3, 150,150), 0, 0, 150, 150,
-    				matrix, true);
-    		
-        	im3.setImageBitmap(rotate);
-		 }	
-			
+	// find if the picture has been taken in landscape or portrait and return the rigth rotation angle
+	private int GetRotateAngle(Uri imageUri) {
+	    String[] columns = {MediaStore.Images.Media.DATA, MediaStore.Images.Media.ORIENTATION};
+	    Cursor cursor = getContentResolver().query(imageUri, columns, null, null, null);
+	    if (cursor == null) { return 0; }
+	    cursor.moveToFirst();
+
+	    int orientationColumnIndex = cursor.getColumnIndex(columns[1]);
+	    int orientation = cursor.getInt(orientationColumnIndex);
+	    cursor.close();
+	    return orientation;
 	}
-			
-		
-        	public static Bitmap decodeSampledBitmapFromFile(File res,
-        	        int reqWidth, int reqHeight) {
-
-        	    // First decode with inJustDecodeBounds=true to check dimensions
-        	    final BitmapFactory.Options options = new BitmapFactory.Options();
-        	    options.inJustDecodeBounds = true;
-        	    
-        	    
-        	    BitmapFactory.decodeFile(res.getAbsolutePath(), options);
-        	    
-
-        	    // Calculate inSampleSize
-        	    options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-
-        	    // Decode bitmap with inSampleSize set
-        	    options.inJustDecodeBounds = false;
-        	    
-        	 
-
-        	  //  return rotate;
-        	    return  BitmapFactory.decodeFile(res.getAbsolutePath(), options);
-        	    		
-        	}
-        	
-        	public static int calculateInSampleSize(
-                    BitmapFactory.Options options, int reqWidth, int reqHeight) {
-            // Raw height and width of image
-            final int height = options.outHeight;
-            final int width = options.outWidth;
-            int inSampleSize = 1;
-
-            if (height > reqHeight || width > reqWidth) {
-
-                final int halfHeight = height / 2;
-                final int halfWidth = width / 2;
-
-                // Calculate the largest inSampleSize value that is a power of 2 and keeps both
-                // height and width larger than the requested height and width.
-                while ((halfHeight / inSampleSize) > reqHeight
-                        && (halfWidth / inSampleSize) > reqWidth) {
-                    inSampleSize *= 2;
-                }
-            }
-
-            return inSampleSize;
-        }
-        	
-        	public String getRealPathFromURI(Context context, Uri contentUri) {
-        		  Cursor cursor = null;
-        		  try { 
-        		    String[] proj = { MediaStore.Images.Media.DATA };
-        		    cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
-        		    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-        		    cursor.moveToFirst();
-        		    return cursor.getString(column_index);
-        		  } finally {
-        		    if (cursor != null) {
-        		      cursor.close();
-        		    }
-        		  }
-        		}*/
+	
+	public String getRealPathFromURI(Context context, Uri contentUri) {
+		  Cursor cursor = null;
+		  try { 
+		    String[] proj = { MediaStore.Images.Media.DATA };
+		    cursor = context.getContentResolver().query(contentUri,  proj, null, null, null);
+		    int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+		    cursor.moveToFirst();
+		    return cursor.getString(column_index);
+		  } finally {
+		    if (cursor != null) {
+		      cursor.close();
+		    }
+		  }
+		}
+       
+    
         	
         	public void upload() {
         		UploadItemTask uploadItem = new UploadItemTask();
@@ -279,38 +265,13 @@ public class SumUpItem extends Activity {
 				}
 				
 			}
+        	
 	
 	
 
 	}
 
-/*Bitmap bitmap = BitmapFactory.decodeStream(is);
-im1.setImageBitmap(bitmap);
-im1.setScaleType(ScaleType.FIT_XY);
-is.close();
-bitmap = null;
 
-is = getContentResolver().openInputStream(Uri.parse(this.getIntent().getStringExtra("pict2")));
-bitmap = BitmapFactory.decodeStream(is); 
- im2.setImageBitmap(bitmap);
-is.close();
-im2.setScaleType(ScaleType.FIT_XY);
-bitmap = null;
-
-is = getContentResolver().openInputStream(Uri.parse(this.getIntent().getStringExtra("pict3")));
- bitmap = BitmapFactory.decodeStream(is); 
- im3.setImageBitmap(bitmap);
-is.close();
-im3.setScaleType(ScaleType.FIT_XY);
-bitmap = null;
-bitmap.recycle();
-}
-catch (Exception e){
-
-}
-
-
-}*/
 	
 
 
