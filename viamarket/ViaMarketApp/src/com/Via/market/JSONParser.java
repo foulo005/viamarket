@@ -103,7 +103,7 @@ public class JSONParser {
 	}
 	
 	// function for the categories 
-	public JSONArray categoryRequest(String url) throws IOException, JSONException {
+	public JSONArray request(String url) throws IOException, JSONException {
 
 				// request method is GET
 				DefaultHttpClient httpClient = new DefaultHttpClient();
