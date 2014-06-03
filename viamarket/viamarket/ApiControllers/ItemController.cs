@@ -42,7 +42,7 @@ namespace ViaMarket.ApiControllers
         [HttpGet]
         [Route("")]
         public IEnumerable<ItemDto> GetAll()
-        {
+        {   
             return Mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(db.Items.AsEnumerable());
         }
 
