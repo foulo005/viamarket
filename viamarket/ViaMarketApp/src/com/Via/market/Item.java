@@ -115,6 +115,10 @@ public class Item {
 	public void setSold(Boolean sold) {
 		this.sold = sold;
 	}
+	public String getImage(int i)
+	{
+		return imagesURLs[i];
+	}
 	
 	
 	

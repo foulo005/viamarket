@@ -106,6 +106,7 @@ public class JSONParser {
 	public boolean postItem(String URL,JSONObject item) throws ClientProtocolException, IOException, JSONException {
 		DefaultHttpClient httpClient = new DefaultHttpClient();
 		HttpPost httpPost = new HttpPost(URL);
+		System.out.println(item.toString(1));
 		
 		StringEntity se;
 		se = new StringEntity(item.toString());
@@ -133,6 +134,12 @@ public class JSONParser {
 		}
 		if(response.getStatusLine().getStatusCode() == 201)
 			return true;
+		else 
+		{
+			System.out.println(response.getStatusLine().toString());
+			System.out.println(response.getStatusLine().getReasonPhrase());
+			System.out.println(response.getStatusLine().getStatusCode());
+		}
 		return false;
 	}
 

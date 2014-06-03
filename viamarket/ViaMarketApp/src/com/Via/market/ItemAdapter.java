@@ -28,17 +28,36 @@ public class ItemAdapter extends ArrayAdapter<Item> {
 		));
 	}
 
+	/* private view holder class */
+	private class ViewHolder {
+		ImageView imageView;
+		TextView txtTitle;
+	}
+
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		ViewHolder holder = null;
+		View view = convertView;
+		Item item = getItem(position);
+
 		LayoutInflater inflater = (LayoutInflater) context
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View rowView = inflater.inflate(R.layout.item_row, parent, false);
-		TextView textView = (TextView) rowView.findViewById(R.id.label);
-		ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-		textView.setText(item[position]);
-		// Change the icon for Windows and iPhone
-		String s = item[position];
+		if (convertView == null) {
+			view = inflater.inflate(R.layout.item_row, parent, false);
+			holder.txtTitle = (TextView) view.findViewById(R.id.label);
+			holder.imageView = (ImageView) view.findViewById(R.id.icon);
+			view.setTag(holder);
+		} else {
+			holder = (ViewHolder) view.getTag();
+		}
+		
+		holder.txtTitle.setText(item.getTitle());
 
-		return rowView;
+        if(!item.getImage(0).equals("null")){
+            ImageLoader imageLoader = ImageLoader.getInstance();
+        	imageLoader.displayImage(item.getImage(0), holder.imageView);
+        }
+
+		return view;
 	}
 }
