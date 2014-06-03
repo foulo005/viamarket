@@ -88,35 +88,7 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener{
     
     public void goToNextActivity() {
     	
-    	/*
-    	if(!et1.getText().toString().equals("")&&!et2.getText().toString().equals("")&&!et3.getText().toString().equals("")&&!cat.equals("") ){
-    	Intent intent = new Intent(this.getActivity(), ChoosePictures.class);
-    	
-    	intent.putExtra("TITLE",et1.getText().toString());
-    	intent.putExtra("DESCRIPTION", et2.getText().toString());
-    	intent.putExtra("PRICE", et3.getText().toString());
-    	intent.putExtra("CAT", cat);
-        startActivity(intent);
-        
-    	}
-    	else {
-    		String error="";
-    		if(et1.getText().toString().equals("")){
-    			error += "You have to give a title" + '\n';
-    		}
-    		if(et2.getText().toString().equals("")){
-    			error +="You have to write a description" + '\n';
-    		}
-    		if(et3.getText().toString().equals("")){
-    			error += "You have set a price";
-    		}
-    		
-    		Toast.makeText(this.getActivity(),error,Toast.LENGTH_SHORT).show();
-    		
-    		
-    		
-    		
-    	}*/
+    
     	
     	et1.setError(null);
     	et2.setError(null);
