@@ -27,17 +27,22 @@ import android.widget.TextView;
 
 public class uploadNewItem extends Fragment implements OnItemSelectedListener{
 	
-	TextView tv;
-	TextView tv2;
-	TextView tv3;
-	TextView tv4;
-	TextView tv5;
-	EditText et1;
-	EditText et2;
-	EditText et3;
-	Button bt;
-	String cat="";
+	// TODO : DROPDOWN LIST POUR LA CURRENCY GROS SAC !!!!!! SINON ON NE PEUT PAS LA RECUPERER !!! 
+	// PUSH ENSUITE
+	private TextView tv;
+	private TextView tv2;
+	private TextView tv3;
+	private TextView tv4;
+	private TextView tv5;
+	private EditText et1;
+	private EditText et2;
+	private EditText et3;
+	private Button bt;
+	private String cat="";
+	private Spinner spinner;
+	private int catId;
 	private List<String> categoriesList = new ArrayList<String>();
+	private List<String> currencyList= new ArrayList<String>();
 	
 	
 	
@@ -67,7 +72,7 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener{
 			}
 		});
         
-        Spinner spinner = (Spinner) mainView.findViewById(R.id.spinner1);
+        spinner = (Spinner) mainView.findViewById(R.id.spinner1);
      // Create an ArrayAdapter using category list with a custom spinner R.layout.custom_spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 				R.layout.custom_spinner, categoriesList);
@@ -153,6 +158,8 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener{
         	intent.putExtra("DESCRIPTION", et2.getText().toString());
         	intent.putExtra("PRICE", et3.getText().toString());
         	intent.putExtra("CAT", cat);
+        	intent.putExtra("IDCAT",String.valueOf(catId));
+        	System.out.println(String.valueOf(catId));
             startActivity(intent);
     	}
 	}
@@ -163,6 +170,7 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener{
 	public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
 			long id) 
 	{
+		catId = pos;
 		cat = (String)parent.getItemAtPosition(pos);
 		
 	}
@@ -183,16 +191,18 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener{
 	}
 
 	public class categoryHttpRequest extends AsyncTask<Void, Void, Boolean> {
-		private String loginURL = "http://viamarket-001-site1.myasp.net/api/category";
-		private JSONArray json;
+		private String categoryURL = "http://viamarket-001-site1.myasp.net/api/category";
+		// private String currencyURL = "http://viamarket-001-site1.myasp.net/api/currency";
+		private JSONArray catjson;
+		//private JSONArray curjson;
 
 		@Override
 		protected Boolean doInBackground(Void... arg0) {
 			JSONParser jsonParser = new JSONParser();
 			try {
-				json = jsonParser.request(loginURL);
-
-				if (json != null)
+				catjson = jsonParser.request(categoryURL);
+				//curjson= = jsonParser.request(currencyURL);
+				if (catjson != null)
 					return true;
 
 			} catch (IOException e) {
@@ -208,11 +218,13 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener{
 		@Override
 		protected void onPostExecute(final Boolean success) {
 			if (success) {
-				for (int i = 0; i < json.length(); i++) {
+				for (int i = 0; i < catjson.length(); i++) {
 					try {
-						JSONObject jObj = json.getJSONObject(i);
+						JSONObject jObjCat = catjson.getJSONObject(i);
+						//JSONObject jObjCur = curjson.getJSONObject(i);
 
-						categoriesList.add(jObj.getString("Name").toString());
+						categoriesList.add(jObjCat.getString("Name").toString());
+						// currencyList.add(jObjCat.getString("Code").toString());
 
 					} catch (JSONException e) {
 						// TODO Auto-generated catch block

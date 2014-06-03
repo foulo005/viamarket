@@ -15,6 +15,7 @@ import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -94,25 +95,57 @@ public class JSONParser {
 		try {
 			jObj = new JSONObject(json);
 		} catch (JSONException e) {
-			Log.e("JSON Parser", "Error parsing data " + e.toString());						
+			Log.e("JSON Parser", "Error parsing data " + e.toString());
 		}
 
 		// return JSON String
 		return jObj;
 
 	}
-	
-	// function for the categories 
+
+	public boolean postItem(String URL,JSONObject item) throws ClientProtocolException, IOException, JSONException {
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+		HttpPost httpPost = new HttpPost(URL);
+		
+		StringEntity se;
+		se = new StringEntity(item.toString());
+		
+		httpPost.setEntity(se);
+		httpPost.setHeader("Accept", "application/json");
+		httpPost.setHeader("Content-type", "application/json");
+		
+		HttpResponse response = (HttpResponse) httpClient.execute(httpPost);
+		HttpEntity httpEntity = response.getEntity();
+		is = httpEntity.getContent();
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					is, "iso-8859-1"), 8);
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			is.close();
+			json = sb.toString();
+		}
+		catch (Exception e) {
+			Log.e("Buffer Error", "Error converting result " + e.toString());
+		}
+		if(response.getStatusLine().getStatusCode() == 201)
+			return true;
+		return false;
+	}
+
+	// function for the categories/currency
 	public JSONArray request(String url) throws IOException, JSONException {
 
-				// request method is GET
-				DefaultHttpClient httpClient = new DefaultHttpClient();
-				HttpGet httpGet = new HttpGet(url);
+		// request method is GET
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+		HttpGet httpGet = new HttpGet(url);
 
-				HttpResponse httpResponse = httpClient.execute(httpGet);
-				HttpEntity httpEntity = httpResponse.getEntity();
-				is = httpEntity.getContent();
-			
+		HttpResponse httpResponse = httpClient.execute(httpGet);
+		HttpEntity httpEntity = httpResponse.getEntity();
+		is = httpEntity.getContent();
 
 		try {
 			BufferedReader reader = new BufferedReader(new InputStreamReader(
@@ -128,12 +161,11 @@ public class JSONParser {
 			Log.e("Buffer Error", "Error converting result " + e.toString());
 		}
 
-		 try {
-	            jArr = new JSONArray(json);
-	        } catch (JSONException e) {
-	            Log.e("JSON Parser", "Error parsing data " + e.toString());
-	        }
-		
+		try {
+			jArr = new JSONArray(json);
+		} catch (JSONException e) {
+			Log.e("JSON Parser", "Error parsing data " + e.toString());
+		}
 
 		// return JSON String
 		return jArr;

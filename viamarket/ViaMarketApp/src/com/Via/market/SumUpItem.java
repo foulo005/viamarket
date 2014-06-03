@@ -3,11 +3,7 @@ package com.Via.market;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
-import org.apache.http.NameValuePair;
-import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -15,12 +11,14 @@ import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
@@ -34,37 +32,43 @@ import com.nostra13.universalimageloader.core.assist.ImageSize;
 
 public class SumUpItem extends Activity {
 	
-	TextView title;
-	TextView description;
-	TextView price;
-	TextView cat;
-	TextView catItem;
+	private TextView title;
+	private TextView description;
+	private TextView price;
+	private TextView cat;
+	private TextView catItem;
 	
-	Button change;
-	Button upload;
-	ImageView im0; // mainPicture
-	ImageView im1;
-	ImageView im2;
-	ImageView im3;
+	private Button change;
+	private Button upload;
+	private ImageView im0; // mainPicture
+	private ImageView im1;
+	private ImageView im2;
+	private ImageView im3;
 	
-	TextView titleItem;
-	TextView descriptionItem;
-	TextView priceItem;
+	private TextView titleItem;
+	private TextView descriptionItem;
+	private TextView priceItem;
 	
+	// Item attributes and information required for the upload 
+	private String descriptionText;
+	private String priceText;
+	private String TitleText;
 	private String idUser;
 	private String idCategory;
+	private String categoryText;
 	private String date;
 	private String idCurrency;
 	
   ArrayList<String> listUri = new ArrayList<String>();
 	
-	String urlRequest = "http://viamarket-001-site1.myasp.net/api/user";
+	String urlRequest = "http://viamarket-001-site1.myasp.net/api/item";
 
 	@SuppressLint("NewApi") @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_sum_up_item);
 		
+		// Setting the different UI Components
 		title = (TextView) findViewById(R.id.textView2);
 		description  = (TextView) findViewById(R.id.textView4);
 		price  = (TextView) findViewById(R.id.textView6);
@@ -84,12 +88,24 @@ public class SumUpItem extends Activity {
         im1.setImageResource(R.drawable.plus);
         im2.setImageResource(R.drawable.plus);
         im3.setImageResource(R.drawable.plus);
+        //Setting the onClickListeners for adding a picture
         this.addListener(im0);
         this.addListener(im1);
         this.addListener(im2);
         this.addListener(im3);
         
-        
+        // Setting the informations for the upload 
+        SharedPreferences session =  PreferenceManager
+				.getDefaultSharedPreferences(this);
+        Intent i = getIntent();
+        Bundle b = i.getExtras();
+        this.descriptionText = b.getString("DESCRIPTION");
+        this.TitleText = b.getString("TITLE");
+        this.priceText = b.getString("PRICE");
+        this.idCategory = b.getString("IDCAT");
+        this.categoryText = b.getString("CAT");
+        this.idUser = session.getString("idUser", " ");
+
        
         change = (Button) findViewById(R.id.button2);
         upload = (Button) findViewById(R.id.button1);
@@ -115,6 +131,7 @@ public class SumUpItem extends Activity {
         titleItem.setText(this.getIntent().getStringExtra("TITLE"));
         descriptionItem.setText(this.getIntent().getStringExtra("DESCRIPTION"));
         priceItem.setText(this.getIntent().getStringExtra("PRICE"));
+        
         
         
         
@@ -212,8 +229,8 @@ public class SumUpItem extends Activity {
         	
         	public void upload() {
         		UploadItemTask uploadItem = new UploadItemTask();
-				
-        		uploadItem.execute(titleItem.getText().toString(), descriptionItem.getText().toString(),idUser,priceItem.getText().toString(),idCurrency,idCategory,new java.util.Date().toString());
+                System.out.println(TitleText+" "+descriptionText+" "+priceText+" "+idCategory+" "+categoryText+" "+idUser);
+        		uploadItem.execute(TitleText, descriptionText,priceText,idCategory,categoryText,idUser);
         		
         	}
         	
@@ -225,28 +242,58 @@ public class SumUpItem extends Activity {
 				@Override
 				protected Boolean doInBackground(String... params) {
 					JSONParser  jsonParser = new JSONParser();
+					// Parent  node 
+					JSONObject node = new JSONObject();
+					// Item node 
+					JSONObject nodeSonItem = new JSONObject();
+					//application UserNode 
+					JSONObject nodeSonAppUser = new JSONObject();
+					// Building Category node 
+					JSONObject nodeSonCategory = new JSONObject();
+					//Building Currency node 
+					JSONObject nodeSonCurrency = new JSONObject();
+					//Double nodeHolder Item & App User 
+					JSONObject doubleNodeHolder = new JSONObject();
+					try {
+						// Adding Title, description & price to ItemNode
+						nodeSonItem.put("Title",params[0]);
+						nodeSonItem.put("Description",params[1]);
+						nodeSonItem.put("Price", params[2]);
+						//Adding Id and Name of category to CategoryNode
+						nodeSonCategory.put("Name", params[4]);
+						nodeSonCategory.put("Id",params[3] );
+
+						//Adding Id User to the ApplicationUserNode
+						nodeSonAppUser.put("Id",params[5]);
+						
+						//TODO : Add ID and Currency Name to the currencyNode & add it to the object
+						
+						
+						// adding appUser to the Item and this into a double Node
+						nodeSonItem.put("ApplicationUser", nodeSonAppUser);
+						//Adding the ItemNode and the category to the main node 
+						//TODO: add the curency
+						node.put("Category",nodeSonCategory);
+						node.put(" ", nodeSonItem);
+						//node.put("Currency", nodeSonCurrency);
+						System.out.println(node.toString(2));
+						
+					} catch (JSONException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 					
-					List<NameValuePair> paramslist = new ArrayList<NameValuePair>();
-					// Building parameters for the request
-					paramslist.add(new BasicNameValuePair("Title",params[0]));
-					paramslist.add(new BasicNameValuePair("Description",params[1]));
-					paramslist.add(new BasicNameValuePair("IdAspNetUsers",params[2] ));
-					paramslist.add(new BasicNameValuePair("Price", params[3]));
-					paramslist.add(new BasicNameValuePair("IdCurrency",params[4]));
-					paramslist.add(new BasicNameValuePair("IdCategory", params[5]));
-					paramslist.add(new BasicNameValuePair("date", params[6] ));
 					
 					try{
-						JSONObject json = jsonParser.makeHttpRequest(urlRequest , "POST",
-								paramslist);
-						JSONArray errors = json.getJSONArray("ErrorList");
-						if(errors.isNull(0)){
-							setResult(RESULT_OK);
+						boolean success = jsonParser.postItem(urlRequest,  node);
+						if(success){
+							//upload pictures
+							System.out.println("upload is a success");
 							return true;
 						}
 							
 						else{
-							System.out.println(errors);
+							System.out.println("upload has failed");
 							return false;
 						}
 					}

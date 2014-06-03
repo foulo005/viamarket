@@ -81,6 +81,7 @@ public class ChoosePictures extends Activity {
 						.getStringExtra("PRICE"));
 				intent.putExtra("CAT", ChoosePictures.this.getIntent()
 						.getStringExtra("CAT"));
+				intent.putExtra("IDCAT",ChoosePictures.this.getIntent().getStringExtra("IDCAT"));
 				if (path0 != null)
 					intent.putExtra("pict0", path0);
 				if (path1 != null)
