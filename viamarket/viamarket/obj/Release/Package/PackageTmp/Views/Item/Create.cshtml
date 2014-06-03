@@ -1,4 +1,4 @@
-﻿@model ViaMarket.DataAccess.Item
+﻿@model ViaMarket.Models.ItemViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -7,7 +7,7 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm("Create", "Item", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
 {
     @Html.AntiForgeryToken()
     
@@ -33,14 +33,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.IdAspNetUsers, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.IdAspNetUsers)
-                @Html.ValidationMessageFor(model => model.IdAspNetUsers)
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Price)
@@ -49,18 +41,16 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Currency.Name, new { @class = "control-label col-md-2" })
+            @Html.Label("Currency", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CurrenciesType")
-                @Html.ValidationMessageFor(model => model.Currency.Name)
+                @Html.DropDownListFor(x =>x.IdCurrency, Model.Currencies)
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Category.Name, new { @class = "control-label col-md-2" })
+            @Html.Label("Category", new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("CategoriesType")
-                @Html.ValidationMessageFor(model => model.Category.Name)
+                @Html.DropDownListFor(x => x.IdCategory, Model.Categories)
             </div>
         </div>
 

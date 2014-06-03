@@ -24,7 +24,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+
 public class uploadNewItem extends Fragment  {
+
 
 	// TODO : DROPDOWN LIST POUR LA CURRENCY
 	//TODO: spinner.getText et tu recupère aussi la position dans le onclick de ton spinner que tu store dans cur(le Code) et curID(position)
@@ -39,8 +41,10 @@ public class uploadNewItem extends Fragment  {
 	private EditText et3;
 	private Button bt;
 	private String cat = "";
+
 	private Spinner spinnerCat;
 	private Spinner spinnerCurrency;
+
 	private int catId;
 	private String cur; 
 	private int curId;
@@ -74,7 +78,9 @@ public class uploadNewItem extends Fragment  {
 			}
 		});
 
+
 		spinnerCat = (Spinner) mainView.findViewById(R.id.spinner1);
+
 		// Create an ArrayAdapter using category list with a custom spinner
 		// R.layout.custom_spinner
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
@@ -84,6 +90,7 @@ public class uploadNewItem extends Fragment  {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		// Apply the adapter to the spinner
+
 		spinnerCat.setAdapter(adapter);
 		spinnerCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
@@ -124,6 +131,7 @@ public class uploadNewItem extends Fragment  {
 				
 			}
 		});
+
 		return mainView;
 
 	}
@@ -170,10 +178,6 @@ public class uploadNewItem extends Fragment  {
 			startActivity(intent);
 		}
 	}
-
-	
-
-	
 
 	@Override
 	public void onCreate(Bundle b) {

@@ -11,11 +11,21 @@ namespace ViaMarket.DataAccess
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public int Id { get; set; }
-        public string IdAspNetUsers { get; set; }
-        public string ContactType { get; set; }
+        public ContactType ContactType { get; set; }
         public string Value { get; set; }
 
-        [ForeignKey("IdAspNetUsers")] 
+        [ForeignKey("IdAspNetUsers")]
         public virtual ApplicationUser ApplicationUser { get; set; }
+       
+        public string IdAspNetUsers { get; set; }
+    }
+
+    public enum ContactType
+    {
+        MOBILE,
+        HOME,
+        EMAIL,
+        SKYPE,
+        FACEBOOK
     }
 }

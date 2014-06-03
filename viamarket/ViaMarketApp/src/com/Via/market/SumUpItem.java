@@ -140,6 +140,7 @@ public class SumUpItem extends Activity {
         
         
         
+        
        
         try{
         	
