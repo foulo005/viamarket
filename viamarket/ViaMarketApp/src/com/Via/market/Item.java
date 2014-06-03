@@ -4,23 +4,23 @@ import java.sql.Date;
 
 public class Item {
 	
-	int id;
-	int price;
-	int idCurrency;
-	int idCategory;
+	private String id;
+	private String price;
+	private String idCurrency;
+	private String idCategory;
 	
-	String title;
-	String description;
-	String iDAsoNetUsers;
-	String ApplicationUser_Id;
+	private String title;
+	private String description;
+	private String iDAsoNetUsers;
+	private String ApplicationUser_Id;
 	
-	Date date;
+	private String date;
 	
-	Boolean sold;
+	private Boolean sold;
+	private String[] imagesURLs;
 
-	public Item(int id, int price, int idCurrency, int idCategory,
-			String title, String description, String iDAsoNetUsers,
-			String applicationUser_Id, Date date, Boolean sold) {
+	public Item(String id, String price, String idCurrency, String idCategory,
+			String title, String description, String applicationUser_Id, String date, String[] imagesURLs) {
 		super();
 		this.id = id;
 		this.price = price;
@@ -28,41 +28,40 @@ public class Item {
 		this.idCategory = idCategory;
 		this.title = title;
 		this.description = description;
-		this.iDAsoNetUsers = iDAsoNetUsers;
 		ApplicationUser_Id = applicationUser_Id;
 		this.date = date;
-		this.sold = sold;
+		this.imagesURLs = imagesURLs;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
-	public int getIdCurrency() {
+	public String getIdCurrency() {
 		return idCurrency;
 	}
 
-	public void setIdCurrency(int idCurrency) {
+	public void setIdCurrency(String idCurrency) {
 		this.idCurrency = idCurrency;
 	}
 
-	public int getIdCategory() {
+	public String getIdCategory() {
 		return idCategory;
 	}
 
-	public void setIdCategory(int idCategory) {
+	public void setIdCategory(String idCategory) {
 		this.idCategory = idCategory;
 	}
 
@@ -98,11 +97,11 @@ public class Item {
 		ApplicationUser_Id = applicationUser_Id;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -112,6 +111,10 @@ public class Item {
 
 	public void setSold(Boolean sold) {
 		this.sold = sold;
+	}
+	public String getImage(int i)
+	{
+		return imagesURLs[i];
 	}
 	
 	
