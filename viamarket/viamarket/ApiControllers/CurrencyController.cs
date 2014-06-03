@@ -24,12 +24,12 @@ namespace ViaMarket.ApiControllers
 
         [HttpGet]
         [Route("list")]
-        public ICollection<CurrencyDto> GetAllCurrencies()
+        public IEnumerable<CurrencyDto> GetAllCurrencies()
         {
             var currencies = from c in db.Currencies
                         orderby c.Code ascending
                         select c;
-            return Mapper.Map<IEnumerable<Currency>, ICollection<CurrencyDto>>(currencies);
+            return Mapper.Map<IEnumerable<Currency>, IEnumerable<CurrencyDto>>(currencies);
         }
     }
 }

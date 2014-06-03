@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 using System.IO;
 using ViaMarket.Models;
 using ViaMarket.ApiControllers.Dto;
+using System.Net.Http;
 
 namespace ViaMarket.Controllers
 {
@@ -19,12 +20,12 @@ namespace ViaMarket.Controllers
     {
         private ViaMarket.ApiControllers.ItemController ws = new ViaMarket.ApiControllers.ItemController();
         private ViaMarket.ApiControllers.CategoryController wsCategory = new ViaMarket.ApiControllers.CategoryController();
-        //private ViaMarket.ApiControllers.CurrencyController wsCurrency = new ViaMarket.ApiControllers.CurrencyController();
+        private ViaMarket.ApiControllers.CurrencyController wsCurrency = new ViaMarket.ApiControllers.CurrencyController();
 
         // GET: /Item/
         public ActionResult Index()
         {
-            return View(ws.GetItemsForUser(User.Identity.GetUserId(), true));
+            return View(ws.GetAll());
         }
 
         // GET: /Item/Details/5
@@ -56,8 +57,8 @@ namespace ViaMarket.Controllers
         {
             ItemViewModel model = new ItemViewModel();
             //CategoryList
-            model.ListCategories = db.Categories.ToList<Category>();
-            model.ListCurrencies = db.Currencies.ToList<Currency>();
+            model.ListCategories = wsCategory.CategoryList().ToList<CategoryDto>();
+            model.ListCurrencies = wsCurrency.GetAllCurrencies().ToList<CurrencyDto>();
 
             return View(model);
         }
@@ -71,29 +72,27 @@ namespace ViaMarket.Controllers
         {
             if (ModelState.IsValid)
             {
-                ItemDto item = new ItemDto();
+                ItemUpdateDto item = new ItemUpdateDto();
                 item.Title = model.Title;
                 item.Description = model.Description;
-                item.Category = model.IdCategory;
-                item.Currency = model.IdCurrency;
+                item.IdCategory = model.IdCategory;
+                item.IdCurrency = model.IdCurrency;
                 item.Price = model.Price;
-                item.ApplicationUser = new UserDto();
-                item.ApplicationUser.Id
-                ws.UpdateItem(item);
-
+                item.IdAspNetUsers = User.Identity.GetUserId();
+                item.Ongoing = true;
+                item.Created = DateTime.Now;
+                try
+                {
+                    HttpResponseMessage response = ws.UpdateItem(item);
+                }catch{}
+                return RedirectToAction("Index");
                 /*ViaMarket.ApiControllers.ItemController wsItem = new ViaMarket.ApiControllers.ItemController();
                 HttpRequest request = (HttpRequest)WebRequest.Create();
                 request.Method = "POST";
                 request.KeepAlive = true;
                 request.ContentLength = data.Length;
                 request.ContentType = "application/x-www-form-urlencoded";*/
-
-
-                //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                
-                return RedirectToAction("Index");
             }
-
             return View(model);
         }
 
@@ -117,7 +116,7 @@ namespace ViaMarket.Controllers
             model.IdCurrency = (int)item.Currency.Id;
             model.Price = (double)item.Price;
             model.ListCategories = wsCategory.CategoryList().ToList<CategoryDto>();
-            //model.ListCurrencies = wsCurrency.CurrencyList().ToList<CurrencyDto>();
+            model.ListCurrencies = wsCurrency.GetAllCurrencies().ToList<CurrencyDto>();
             return View(model);
         }
 
@@ -130,15 +129,21 @@ namespace ViaMarket.Controllers
         {
             if (ModelState.IsValid)
             {
-                ItemDto item = ws.GetById(model.Id);
+                ItemUpdateDto item = new ItemUpdateDto();
+                item.Id = model.Id;
                 item.Title = model.Title;
                 item.Description = model.Description;
-                item.Category.Id = model.IdCategory;
-                item.Currency.Id = model.IdCurrency;
+                item.IdCategory = model.IdCategory;
+                item.IdCurrency = model.IdCurrency;
                 item.Price = model.Price;
-                item.ApplicationUser.Id = User.Identity.GetUserId();
+                item.IdAspNetUsers = User.Identity.GetUserId();
+                item.Ongoing = true;
                 item.Created = DateTime.Now;
-                ws.UpdateItem(item);
+                try
+                {
+                    HttpResponseMessage response = ws.UpdateItem(item);
+                }
+                catch { }
                 return RedirectToAction("Index");
             }
             return View(model);

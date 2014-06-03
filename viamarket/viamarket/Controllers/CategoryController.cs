@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 using ViaMarket.Models;
 using ViaMarket.ApiControllers;
 using ViaMarket.ApiControllers.Dto;
+using System.Net.Http;
 
 namespace ViaMarket.Controllers
 {
@@ -62,7 +63,15 @@ namespace ViaMarket.Controllers
             {
                 CategoryDto category = new CategoryDto();
                 category.Name = model.Name;
-                ws.UpdateCategory(category);
+                try
+                {
+                    HttpResponseMessage response = ws.UpdateCategory(category);
+                    if (response.StatusCode == HttpStatusCode.Created)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch { }
                 return RedirectToAction("Index");
             }
 
@@ -99,7 +108,11 @@ namespace ViaMarket.Controllers
                 CategoryDto category = new CategoryDto();
                 category.Id = model.Id;
                 category.Name = model.Name;
-                ws.UpdateCategory(category);
+                try
+                {
+                    HttpResponseMessage response = ws.UpdateCategory(category);
+                }
+                catch { }
                 return RedirectToAction("Index");
             }
             return View(model);
