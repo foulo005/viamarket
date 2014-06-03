@@ -12,13 +12,13 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 public class ItemAdapter extends ArrayAdapter<Item> {
-	private String[] item;
+	private Item[] item;
 	ImageLoader imageLoader;
 	private Context context;
 
 	// String imgSrc;
 
-	public ItemAdapter(Context context, String[] item) {
+	public ItemAdapter(Context context, Item[] item) {
 		super(context, R.layout.item_row);
 		this.item = item;
 		this.context = context;

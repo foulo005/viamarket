@@ -20,7 +20,7 @@ namespace ViaMarket.ApiControllers
     [RoutePrefix("api/item")]
     public class ItemController : ApiController
     {
-       private ApplicationDbContext db;
+        private ApplicationDbContext db;
 
         public ItemController()
         {
@@ -34,7 +34,8 @@ namespace ViaMarket.ApiControllers
             Mapper.CreateMap<CurrencyDto, Currency>();
             Mapper.CreateMap<ApplicationUser, UserDto>();
             Mapper.CreateMap<UserDto, ApplicationUser>();
-
+            Mapper.CreateMap<ViaMarket.DataAccess.Image, ImageDto>();
+            Mapper.CreateMap<ImageDto, ViaMarket.DataAccess.Image>();
         }
 
         // returns a list with all items
@@ -75,18 +76,28 @@ namespace ViaMarket.ApiControllers
         // creates a new item and returns it (with http status code created 201)
         [HttpPost]
         [Route("")]
-        public HttpResponseMessage UpdateItem(ItemDto itemDto)
+        public HttpResponseMessage UpdateItem(ItemUpdateDto itemDto)
         {
-            Item item = Mapper.Map<Item>(itemDto);
+            Item item = new Item
+            {
+                IdAspNetUsers = itemDto.IdAspNetUsers,
+                IdCategory = itemDto.IdCategory,
+                IdCurrency = itemDto.IdCurrency,
+                Created = DateTime.Now,
+                Description = itemDto.Description,
+                Id = itemDto.Id,
+                Price = itemDto.Price,
+                Title = itemDto.Title
+            };
 
             if (item.Id > 0)
             {
                 if (db.Items.Any(i => i.Id == item.Id))
                 {
-                    item.Created = DateTime.Now;
                     db.Items.Attach(item);
                     db.Entry(item).State = EntityState.Modified;
                     db.SaveChanges();
+                    item = db.Items.Find(item.Id);
                     return Request.CreateResponse<ItemDto>(HttpStatusCode.OK, Mapper.Map<ItemDto>(item));
                 }
                 else
@@ -99,7 +110,7 @@ namespace ViaMarket.ApiControllers
                 item.Created = DateTime.Now;
                 db.Entry(item).State = EntityState.Added;
                 db.SaveChanges();
-
+                item = db.Items.Find(item.Id);
                 return Request.CreateResponse<ItemDto>(HttpStatusCode.Created, Mapper.Map<ItemDto>(item));
             }
         }
@@ -127,7 +138,29 @@ namespace ViaMarket.ApiControllers
             return Mapper.Map<IEnumerable<Item>, List<ItemDto>>(items);
         }
 
+        [HttpGet]
+        [Route("category/{id:int}/{search}")]
+        public ICollection<ItemDto> SearchItemsInCategory(int id, string search)
+        {
+            if (db.Categories.Any(c => c.Id == id))
+            {
+                var resultsTitle = from c in db.Items
+                              where c.IdCategory == id
+                              && c.Title.Contains(search)
+                                       select c;
+                var resultsDescr = from c in db.Items
+                                   where c.IdCategory == id
+                                   && c.Description.Contains(search)
+                                   select c;
+                return Mapper.Map<IEnumerable<Item>, ICollection<ItemDto>>(resultsTitle.Union(resultsDescr));
+            }
+            else
+            {
+                return new List<ItemDto>();
+            }
+        }
         
+
         [HttpPost]
         [Route("{idItem:int}/image/upload")]
         public async Task<HttpResponseMessage> PostFormData(int idItem)
@@ -192,8 +225,11 @@ namespace ViaMarket.ApiControllers
 
                 ViaMarket.DataAccess.Image image = new ViaMarket.DataAccess.Image();
                 image.IdItem = idItem;
+
                 image.PathOriginal = Path.Combine(ApplicationConfig.ImgDir, idItem.ToString(), newFileName);
+                image.PathOriginal = new Uri(Request.RequestUri, Url.Content(image.PathOriginal)).ToString();
                 image.PathPreview = Path.Combine(ApplicationConfig.ImgDir, idItem.ToString(), "preview", newFileName);
+                image.PathPreview = new Uri(Request.RequestUri, Url.Content(image.PathPreview)).ToString();
 
                 db.Images.Add(image);
                 await db.SaveChangesAsync();
