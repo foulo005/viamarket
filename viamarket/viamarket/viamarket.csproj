@@ -207,49 +207,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201405281640243_startup.cs" />
-    <Compile Include="Migrations\201405281640243_startup.Designer.cs">
-      <DependentUpon>201405281640243_startup.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405282114185_OngoingAttribute.cs" />
-    <Compile Include="Migrations\201405282114185_OngoingAttribute.Designer.cs">
-      <DependentUpon>201405282114185_OngoingAttribute.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405290955323_UserActive.cs" />
-    <Compile Include="Migrations\201405290955323_UserActive.Designer.cs">
-      <DependentUpon>201405290955323_UserActive.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405291452102_ActiveUSer.cs" />
-    <Compile Include="Migrations\201405291452102_ActiveUSer.Designer.cs">
-      <DependentUpon>201405291452102_ActiveUSer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405311455382_RemoveUni.cs" />
-    <Compile Include="Migrations\201405311455382_RemoveUni.Designer.cs">
-      <DependentUpon>201405311455382_RemoveUni.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406020848470_enum.cs" />
-    <Compile Include="Migrations\201406020848470_enum.Designer.cs">
-      <DependentUpon>201406020848470_enum.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406020940591_contacts.cs" />
-    <Compile Include="Migrations\201406020940591_contacts.Designer.cs">
-      <DependentUpon>201406020940591_contacts.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406021347161_contacts2.cs" />
-    <Compile Include="Migrations\201406021347161_contacts2.Designer.cs">
-      <DependentUpon>201406021347161_contacts2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406021412015_contact3.cs" />
-    <Compile Include="Migrations\201406021412015_contact3.Designer.cs">
-      <DependentUpon>201406021412015_contact3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406021422220_contact4.cs" />
-    <Compile Include="Migrations\201406021422220_contact4.Designer.cs">
-      <DependentUpon>201406021422220_contact4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201406032046505_random.cs" />
-    <Compile Include="Migrations\201406032046505_random.Designer.cs">
-      <DependentUpon>201406032046505_random.cs</DependentUpon>
+    <Compile Include="Migrations\201406032346004_test.cs" />
+    <Compile Include="Migrations\201406032346004_test.Designer.cs">
+      <DependentUpon>201406032346004_test.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -353,38 +313,8 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405281640243_startup.resx">
-      <DependentUpon>201405281640243_startup.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405282114185_OngoingAttribute.resx">
-      <DependentUpon>201405282114185_OngoingAttribute.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405290955323_UserActive.resx">
-      <DependentUpon>201405290955323_UserActive.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405291452102_ActiveUSer.resx">
-      <DependentUpon>201405291452102_ActiveUSer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405311455382_RemoveUni.resx">
-      <DependentUpon>201405311455382_RemoveUni.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406020848470_enum.resx">
-      <DependentUpon>201406020848470_enum.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406020940591_contacts.resx">
-      <DependentUpon>201406020940591_contacts.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406021347161_contacts2.resx">
-      <DependentUpon>201406021347161_contacts2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406021412015_contact3.resx">
-      <DependentUpon>201406021412015_contact3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406021422220_contact4.resx">
-      <DependentUpon>201406021422220_contact4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201406032046505_random.resx">
-      <DependentUpon>201406032046505_random.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201406032346004_test.resx">
+      <DependentUpon>201406032346004_test.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

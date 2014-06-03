@@ -9,7 +9,8 @@ namespace ViaMarket.App_Start
     public class ApplicationConfig
     {
         // global config
-        public const string HostBaseUrl = "http://viamarket-001-site1.myasp.net/";
+       public const string HostBaseUrl = "http://viamarket-001-site1.myasp.net/";
+      //  public const string HostBaseUrl = "hhtp://localhost:14254";
         public const string Domain = "via.dk";
         public const string Name = "ViaMarket";
 
@@ -31,5 +32,6 @@ namespace ViaMarket.App_Start
         public const string ImgDir = "~/ItemsPictures/";
         public const int ImgPreviewMaxHeight = 100; //in pixels
         public const int ImgPreviewMaxWidth = 100;
+        public const int ImgMaxAmountUpload = 4; //maximum amount of pictures per item
     }
 }

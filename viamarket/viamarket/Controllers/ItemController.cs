@@ -14,6 +14,8 @@ using ViaMarket.Models;
 using ViaMarket.ApiControllers.Dto;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using ViaMarket.App_Start;
 
 namespace ViaMarket.Controllers
 {
@@ -50,6 +52,7 @@ namespace ViaMarket.Controllers
             model.Price = (double)item.Price;
             model.Currency = item.Currency.Name;
             model.Category = item.Category.Name;
+            model.Images = item.Image;
             return View(model);
         }
 
@@ -72,11 +75,10 @@ namespace ViaMarket.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(ItemViewModel model, IEnumerable<HttpPostedFileBase> files)
+        public ActionResult Create(ItemViewModel model)
         {
             if (ModelState.IsValid)
             {
-
                 ItemUpdateDto item = new ItemUpdateDto();
                 item.Title = model.Title;
                 item.Description = model.Description;
@@ -84,53 +86,39 @@ namespace ViaMarket.Controllers
                 item.IdCurrency = model.IdCurrency;
                 item.Price = model.Price;
                 item.IdAspNetUsers = User.Identity.GetUserId();
-                HttpResponseMessage response;
+                ItemDto response;
                 try
                 {
                     response = ws.UpdateItem(item);
-                    ItemDto dto = await response.Content.ReadAsAsync<Task<ItemDto>>().Unwrap();
-                }catch{}
+                    string url = ApplicationConfig.HostBaseUrl + "api/item/{0}/image/upload";
+                    url = string.Format(url, response.Id);
+                    for (int i = 0; i < Request.Files.Count; i++)
+                    {
+                        byte[] fileData = null;
+                        using (var binaryReader = new BinaryReader(Request.Files[i].InputStream))
+                        {
+                            fileData = binaryReader.ReadBytes(Request.Files[i].ContentLength);
+                        }
 
+                        HttpContent bytesContent = new ByteArrayContent(fileData);
+                        using (var client = new HttpClient())
+                        using (var formData = new MultipartFormDataContent())
+                        {
+                            formData.Add(bytesContent, "fileParam", Request.Files[i].FileName);
+                            var result = client.PostAsync(url, formData).Result;
+                        }
+                    }
 
-                byte[] fileData = null;
-                using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
-                {
-                    fileData = binaryReader.ReadBytes(Request.Files[0].ContentLength);
                 }
-
-                string url = "api/item/2/image/upload";
-                Upload(url, "bla", Request.Files[0].InputStream, fileData);
-
-
+                catch { }
                 return RedirectToAction("Index");
-                /*ViaMarket.ApiControllers.ItemController wsItem = new ViaMarket.ApiControllers.ItemController();
-                HttpRequest request = (HttpRequest)WebRequest.Create();
-                request.Method = "POST";
-                request.KeepAlive = true;
-                request.ContentLength = data.Length;
-                request.ContentType = "application/x-www-form-urlencoded";*/
             }
             return View(model);
         }
 
-        private System.IO.Stream Upload(string url, string param1, Stream fileStream, byte[] fileBytes)
+        private void Upload(string url, string param1, Stream fileStream, byte[] fileBytes)
         {
-            HttpContent stringContent = new StringContent(param1);
-            HttpContent fileStreamContent = new StreamContent(fileStream);
-            HttpContent bytesContent = new ByteArrayContent(fileBytes);
-            using (var client = new HttpClient())
-            using (var formData = new MultipartFormDataContent())
-            {
-                formData.Add(stringContent, "param1", "param1");
-                formData.Add(fileStreamContent, "file1", "file1");
-                formData.Add(bytesContent, "file2", "file2");
-                var response = client.PostAsync("http://localhost:14254/api/item/2/image/upload", formData).Result;
-                if (!response.IsSuccessStatusCode)
-                {
-                    return null;
-                }
-                return response.Content.ReadAsStreamAsync().Result;
-            }
+
         }
 
         // GET: /Item/Edit/5
@@ -178,7 +166,7 @@ namespace ViaMarket.Controllers
                 item.Created = DateTime.Now;
                 try
                 {
-                    HttpResponseMessage response = ws.UpdateItem(item);
+                    ItemDto response = ws.UpdateItem(item);
                 }
                 catch { }
                 return RedirectToAction("Index");
@@ -193,7 +181,7 @@ namespace ViaMarket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ItemDto item = ws.GetById((int) id);
+            ItemDto item = ws.GetById((int)id);
             if (item == null)
             {
                 return HttpNotFound();

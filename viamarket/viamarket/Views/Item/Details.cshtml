@@ -9,7 +9,7 @@
 
 <div>
     <h4>Item</h4>
-	<hr />
+    <hr />
     <dl class="dl-horizontal">
         <dt>
             @Html.DisplayNameFor(model => model.Title)
@@ -50,6 +50,27 @@
 
         <dd>
             @Html.DisplayFor(model => model.Category)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Images)
+        </dt>
+
+        <dd>
+            @foreach (var img in Model.Images)
+            {
+                <img src="@Url.Content(img.PathPreview)" data-toggle="modal" data-target="#myModal@(img.Id)" />
+                <div id="myModal@(img.Id)" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel@(img.Id)" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <img src="@Url.Content(img.PathOriginal)" class="img-responsive">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
         </dd>
 
     </dl>

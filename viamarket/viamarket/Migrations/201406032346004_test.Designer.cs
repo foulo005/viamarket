@@ -7,13 +7,13 @@ namespace viamarket.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.0-20911")]
-    public sealed partial class OngoingAttribute : IMigrationMetadata
+    public sealed partial class test : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(OngoingAttribute));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(test));
         
         string IMigrationMetadata.Id
         {
-            get { return "201405282114185_OngoingAttribute"; }
+            get { return "201406032346004_test"; }
         }
         
         string IMigrationMetadata.Source

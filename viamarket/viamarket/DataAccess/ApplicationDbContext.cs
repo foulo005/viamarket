@@ -21,7 +21,5 @@ namespace ViaMarket.DataAccess
         public DbSet<Image> Images { get; set; }
         public DbSet<Item> Items { get; set; }
 
-        public System.Data.Entity.DbSet<ViaMarket.ApiControllers.Dto.UserDto> UserDtoes { get; set; }
-
     }
 }
