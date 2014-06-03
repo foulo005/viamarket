@@ -49,7 +49,7 @@ public class LoginActivity extends Activity {
 	private String mUsername;
 	private String mPassword;
 	
-	//Used for the sharedPreferences
+	// Used for the sharedPreferences
 	private String idUser;
 	private String personName;
 	private String personLastName;
@@ -61,8 +61,7 @@ public class LoginActivity extends Activity {
 	private View mLoginStatusView;
 	private TextView mLoginStatusMessageView;
 
-	// HTTP REQUEST
-	private String loginURL = "http://viamarket-001-site1.myasp.net/api/user/";
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -162,8 +161,10 @@ public class LoginActivity extends Activity {
 			// perform the user login attempt.
 			mLoginStatusMessageView.setText(R.string.login_progress_signing_in);
 			showProgress(true);
+			//launch asynctask for login
 			mAuthTask = new UserLoginTask();
 			mAuthTask.execute(mUsername, mPassword);
+
 		}
 	}
 
@@ -213,6 +214,9 @@ public class LoginActivity extends Activity {
 	 * the user.
 	 */
 	public class UserLoginTask extends AsyncTask<String, Void, Boolean> {
+		// HTTP REQUEST
+		private String loginURL = "http://viamarket-001-site1.myasp.net/api/user/";
+		private int errorCode;
 		@Override
 		protected Boolean doInBackground(String... credentials) {
 			JSONParser jsonParser = new JSONParser();
@@ -222,20 +226,31 @@ public class LoginActivity extends Activity {
 			List<NameValuePair> params = new ArrayList<NameValuePair>();
 			params.add(new BasicNameValuePair("username", credentials[0]));
 			params.add(new BasicNameValuePair("password", credentials[1]));
-
 			// Getting JSON Object
 			try {
 				JSONObject json = jsonParser.makeHttpRequest(loginURL, "GET",
 						params);
-				if (json != null && json.has("Id")){
+				System.out.println(json);
+				if (json.get("ErrorList").toString() == "null") {
+
 					idUser = json.getString("Id").toString();
 					personName = json.getString("FirstName").toString();
 					personLastName = json.getString("LastName").toString();
-					savePreferences(credentials[0],personName,personLastName,idUser);
+					boolean p =  savePreferences(mUsername, personName, personLastName,
+							idUser);
+					System.out.println(p);
 					return true;
-				}	
-				 else
+				} else if (json.get("ErrorList").toString().contains("validated"))
+				{
+					errorCode =99;
 					return false;
+				}
+				else if(json.getString("ErrorList").toString().contains("credentials"))
+				{
+					errorCode = 10;
+					return false;
+				}
+					
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -244,33 +259,36 @@ public class LoginActivity extends Activity {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			 System.out.println("Try some simple operation to learn well");
 			return true;
 		}
 
 		@Override
 		protected void onPreExecute() {
-
 		}
 
 		@Override
 		protected void onPostExecute(final Boolean success) {
 			mAuthTask = null;
 			showProgress(false);
-
+			System.out.println("hi");
+			
 			if (success) {
 				Intent i = new Intent(getApplicationContext(),
 						MarketTimeLine.class);
-				i.putExtra("idUser", idUser);
-				i.putExtra("personName",personName);
 				startActivity(i);
 				finish();
-			} else {
-				/*mPasswordView
-						.setError(getString(R.string.error_incorrect_password));
-				mPasswordView.requestFocus();*/
+			} else if(!success && errorCode == 10) {
+
 				mPasswordView.setText("");
 				mUsernameView.setText("");
-				Toast.makeText(getApplicationContext(), "invalid username or password", Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(),
+						"invalid username or password", Toast.LENGTH_LONG)
+						.show();
+			}
+			else if(!success && errorCode == 99)
+			{
+				Toast.makeText(getApplicationContext(),"account not activated",Toast.LENGTH_LONG).show();
 			}
 		}
 
@@ -289,18 +307,28 @@ public class LoginActivity extends Activity {
 		login.execute(mUsername, mPassword);
 
 	}
-	
-	//Creating the Session by setting the sharedPreferences
-	public void savePreferences(String ... credentials)
-	{
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this); 
-		Editor edit = sp.edit(); 
-		edit.putString("username", credentials[0]);
-		edit.putString("firstname", credentials[1] );
-		edit.putString("lastname", credentials[2]);
-		edit.putString("idUser", credentials[3]);
-		edit.apply(); 
+
+	// Creating the Session by setting the sharedPreferences
+	public boolean savePreferences(String... credentials) {
+		try{
+			SharedPreferences sp = PreferenceManager
+					.getDefaultSharedPreferences(this);
+			Editor edit = sp.edit();
+			edit.putString("username", credentials[0]);
+			edit.putString("firstname", credentials[1]);
+			edit.putString("lastname", credentials[2]);
+			edit.putString("idUser", credentials[3]);
+			edit.apply();
+			return true;
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+		
+		
 	}
+
 	public void gotoSignUp(View v) {
 		Intent i = new Intent(getApplicationContext(), SignUp.class);
 		startActivity(i);
