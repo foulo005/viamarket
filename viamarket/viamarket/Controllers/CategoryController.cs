@@ -10,17 +10,19 @@ using ViaMarket.DataAccess;
 using System.Linq.Expressions;
 using Microsoft.AspNet.Identity;
 using ViaMarket.Models;
+using ViaMarket.ApiControllers;
+using ViaMarket.ApiControllers.Dto;
+using System.Net.Http;
 
 namespace ViaMarket.Controllers
 {
     public class CategoryController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
-
+        private ViaMarket.ApiControllers.CategoryController ws = new ViaMarket.ApiControllers.CategoryController();
         // GET: /Category/
         public ActionResult Index()
         {
-            return View(db.Categories.ToList());
+            return View(ws.CategoryList());
         }
 
         // GET: /Category/Details/5
@@ -30,7 +32,7 @@ namespace ViaMarket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
+            CategoryDto category = ws.CategoryById((int)id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -38,12 +40,8 @@ namespace ViaMarket.Controllers
             CategoryViewModel model = new CategoryViewModel();
             model.Id = category.Id;
             model.Name = category.Name;
-            model.Items = new List<Item>();
-            foreach (Item i in db.Items.ToList<Item>())
-            {
-                if (i.IdCategory == model.Id)
-                    model.Items.Add(i);
-            }
+            ViaMarket.ApiControllers.ItemController wsItem = new ViaMarket.ApiControllers.ItemController();
+            model.Items = wsItem.GetItemsForCategory((int)id).ToList<ItemDto>();
             return View(model);
         }
 
@@ -63,10 +61,17 @@ namespace ViaMarket.Controllers
         {
             if (ModelState.IsValid)
             {
-                Category category = new Category();
+                CategoryDto category = new CategoryDto();
                 category.Name = model.Name;
-                db.Categories.Add(category);
-                db.SaveChanges();
+                try
+                {
+                    HttpResponseMessage response = ws.UpdateCategory(category);
+                    if (response.StatusCode == HttpStatusCode.Created)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch { }
                 return RedirectToAction("Index");
             }
 
@@ -80,7 +85,7 @@ namespace ViaMarket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find((int)id);
+            CategoryDto category = ws.CategoryById((int)id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -100,10 +105,14 @@ namespace ViaMarket.Controllers
         {
             if (ModelState.IsValid)
             {
-                Category category = db.Categories.Find(model.Id);
+                CategoryDto category = new CategoryDto();
+                category.Id = model.Id;
                 category.Name = model.Name;
-                db.Entry(category).State = EntityState.Modified;
-                db.SaveChanges();
+                try
+                {
+                    HttpResponseMessage response = ws.UpdateCategory(category);
+                }
+                catch { }
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -116,12 +125,15 @@ namespace ViaMarket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = db.Categories.Find(id);
+            CategoryDto category = ws.CategoryById((int)id);
+            CategoryViewModel model = new CategoryViewModel();
+            model.Id = category.Id;
+            model.Name = category.Name;
             if (category == null)
             {
                 return HttpNotFound();
             }
-            return View(category);
+            return View(model);
         }
 
         // POST: /Category/Delete/5
@@ -129,19 +141,8 @@ namespace ViaMarket.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
+            ws.DeleteCategory(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

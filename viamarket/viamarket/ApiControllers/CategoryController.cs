@@ -81,7 +81,6 @@ namespace ViaMarket.ApiControllers
                 else
                 {
                     throw new HttpResponseException(HttpStatusCode.NotFound);
-
                 }
             }
             //create new entry

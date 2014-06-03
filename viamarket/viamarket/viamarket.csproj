@@ -197,7 +197,6 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
-    <Compile Include="Controllers\SharedController.cs" />
     <Compile Include="DataAccess\ApplicationDbContext.cs" />
     <Compile Include="DataAccess\ApplicationUser.cs" />
     <Compile Include="DataAccess\Category.cs" />

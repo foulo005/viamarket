@@ -10,12 +10,12 @@ namespace ViaMarket.Controllers
 {
     public class HomeController : Controller
     {
-        //ApplicationDbContext db = new ApplicationDbContext();
+        ApplicationDbContext db = new ApplicationDbContext();
         HomeViewModel model = new HomeViewModel();
         public ActionResult Index()
         {
-            //var model = db.Items.ToList();
-            return View();
+            model.Items = db.Items.ToList<Item>();
+            return View(model);
         }
 
         public ActionResult About()
