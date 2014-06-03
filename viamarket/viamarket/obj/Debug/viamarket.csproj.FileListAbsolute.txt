@@ -117,7 +117,6 @@ D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.Net4.dll
 D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.dll
 D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.xml
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.startup.resources
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.OngoingAttribute.resources
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.UserActive.resources
@@ -191,13 +190,16 @@ C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
-<<<<<<< HEAD
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations._enum.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts2.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact3.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact4.resources
-=======
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.ActiveUSer.resources
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
->>>>>>> 066ad25871163bb9855f0f0ba317ccb95eb9eab3
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations._enum.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts2.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact3.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact4.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache

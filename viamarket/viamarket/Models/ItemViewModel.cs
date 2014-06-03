@@ -4,14 +4,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ViaMarket.DataAccess;
+using ViaMarket.ApiControllers.Dto;
 
 namespace ViaMarket.Models
 {
     public class ItemViewModel : ViewModelBase
     {
         public int Id { get; set; }
-        public List<Category> ListCategories;
-        public List<Currency> ListCurrencies;
+        public List<CategoryDto> ListCategories;
+        public List<CurrencyDto> ListCurrencies;
         public string Title { get; set; }
         public string Description { get; set; }
         public double Price { get; set; }
