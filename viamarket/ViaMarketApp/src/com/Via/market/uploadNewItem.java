@@ -203,8 +203,7 @@ public class uploadNewItem extends Fragment  {
 				catjson = jsonParser.request(categoryURL);
 				curjson = jsonParser.request(currencyURL);
 				if (catjson != null && curjson != null)
-					System.out.println(curjson);
-				return true;
+					return true;
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -224,7 +223,6 @@ public class uploadNewItem extends Fragment  {
 					try {
 						JSONObject jObjCur = curjson.getJSONObject(e);
 						currencyList.add(jObjCur.getString("Code").toString());
-						System.out.println(currencyList);
 					} catch (JSONException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
