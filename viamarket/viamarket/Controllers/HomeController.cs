@@ -5,16 +5,20 @@ using System.Web;
 using System.Web.Mvc;
 using ViaMarket.DataAccess;
 using ViaMarket.Models;
+using ViaMarket.ApiControllers;
+using ViaMarket.ApiControllers.Dto;
 
 namespace ViaMarket.Controllers
 {
     public class HomeController : Controller
     {
-        ApplicationDbContext db = new ApplicationDbContext();
-        HomeViewModel model = new HomeViewModel();
-        public ActionResult Index()
+        private ViaMarket.ApiControllers.ItemController ws = new ViaMarket.ApiControllers.ItemController();
+        public ActionResult Index(int? id)
         {
-            model.Items = db.Items.ToList<Item>();
+            HomeViewModel model = new HomeViewModel();
+            if(id == null)
+                id = 0;
+            model.Items = ws.GetLatest(20, (int) id).ToList<ItemDto>();
             return View(model);
         }
 

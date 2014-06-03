@@ -247,6 +247,10 @@
     <Compile Include="Migrations\201406021422220_contact4.Designer.cs">
       <DependentUpon>201406021422220_contact4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201406032046505_random.cs" />
+    <Compile Include="Migrations\201406032046505_random.Designer.cs">
+      <DependentUpon>201406032046505_random.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -378,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201406021422220_contact4.resx">
       <DependentUpon>201406021422220_contact4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406032046505_random.resx">
+      <DependentUpon>201406032046505_random.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

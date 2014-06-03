@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using ViaMarket.DataAccess;
+using ViaMarket.ApiControllers.Dto;
 
 namespace ViaMarket.Models
 {
     public class HomeViewModel : ViewModelBase
     {
-        public List<Item> Items { get; set; }
+        public List<ItemDto> Items { get; set; }
     }
 }
