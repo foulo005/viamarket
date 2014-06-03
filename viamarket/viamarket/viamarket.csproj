@@ -177,6 +177,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiControllers\Dto\CategoryDto.cs" />
+    <Compile Include="ApiControllers\Dto\ContactDto.cs" />
+    <Compile Include="ApiControllers\Dto\CurrencyDto.cs" />
+    <Compile Include="ApiControllers\Dto\ImageDto.cs" />
+    <Compile Include="ApiControllers\Dto\ItemDto.cs" />
+    <Compile Include="ApiControllers\Dto\UserDto.cs" />
     <Compile Include="ApiControllers\ItemController.cs" />
     <Compile Include="ApiControllers\UserController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -220,6 +226,26 @@
     <Compile Include="Migrations\201405311455382_RemoveUni.cs" />
     <Compile Include="Migrations\201405311455382_RemoveUni.Designer.cs">
       <DependentUpon>201405311455382_RemoveUni.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406020848470_enum.cs" />
+    <Compile Include="Migrations\201406020848470_enum.Designer.cs">
+      <DependentUpon>201406020848470_enum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406020940591_contacts.cs" />
+    <Compile Include="Migrations\201406020940591_contacts.Designer.cs">
+      <DependentUpon>201406020940591_contacts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406021347161_contacts2.cs" />
+    <Compile Include="Migrations\201406021347161_contacts2.Designer.cs">
+      <DependentUpon>201406021347161_contacts2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406021412015_contact3.cs" />
+    <Compile Include="Migrations\201406021412015_contact3.Designer.cs">
+      <DependentUpon>201406021412015_contact3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201406021422220_contact4.cs" />
+    <Compile Include="Migrations\201406021422220_contact4.Designer.cs">
+      <DependentUpon>201406021422220_contact4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -337,6 +363,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405311455382_RemoveUni.resx">
       <DependentUpon>201405311455382_RemoveUni.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406020848470_enum.resx">
+      <DependentUpon>201406020848470_enum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406020940591_contacts.resx">
+      <DependentUpon>201406020940591_contacts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406021347161_contacts2.resx">
+      <DependentUpon>201406021347161_contacts2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406021412015_contact3.resx">
+      <DependentUpon>201406021412015_contact3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201406021422220_contact4.resx">
+      <DependentUpon>201406021422220_contact4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

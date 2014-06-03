@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -26,7 +27,7 @@ namespace ViaMarket.App_Start
         public const string ActivationSmtpPassword = "";
 
         // image upload
-        public const string ImgTempDir = "~/App_Data/uploads";
+        public const string ImgTempDir = "~/App_Data\\uploads";
         public const string ImgDir = "~/ItemsPictures/";
         public const int ImgPreviewMaxHeight = 100; //in pixels
         public const int ImgPreviewMaxWidth = 100;

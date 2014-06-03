@@ -68,3 +68,8 @@ C:\Dev\viamarket\viamarket\viamarket\obj\Release\ViaMarket.csprojResolveAssembly
 C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.UserActive.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.ActiveUSer.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.RemoveUni.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations._enum.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.contacts.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.contacts2.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.contact3.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.contact4.resources
