@@ -4,10 +4,10 @@ import java.sql.Date;
 
 public class Item {
 	
-	private int id;
-	private int price;
-	private int idCurrency;
-	private int idCategory;
+	private String id;
+	private String price;
+	private String idCurrency;
+	private String idCategory;
 	
 	private String title;
 	private String description;
@@ -19,8 +19,8 @@ public class Item {
 	private Boolean sold;
 	private String[] imagesURLs;
 
-	public Item(int id, int price, int idCurrency, int idCategory,
-			String title, String description, String iDAsoNetUsers,
+	public Item(String id, String price, String idCurrency, String idCategory,
+			String title, String description, String iDAdoNetUsers,
 			String applicationUser_Id, Date date, Boolean sold, String[] imagesURLs) {
 		super();
 		this.id = id;
@@ -36,35 +36,35 @@ public class Item {
 		this.imagesURLs = imagesURLs;
 	}
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
-	public int getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 
-	public int getIdCurrency() {
+	public String getIdCurrency() {
 		return idCurrency;
 	}
 
-	public void setIdCurrency(int idCurrency) {
+	public void setIdCurrency(String idCurrency) {
 		this.idCurrency = idCurrency;
 	}
 
-	public int getIdCategory() {
+	public String getIdCategory() {
 		return idCategory;
 	}
 
-	public void setIdCategory(int idCategory) {
+	public void setIdCategory(String idCategory) {
 		this.idCategory = idCategory;
 	}
 

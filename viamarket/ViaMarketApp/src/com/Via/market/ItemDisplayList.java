@@ -17,7 +17,7 @@ import android.widget.ListView;
 
 public class ItemDisplayList extends ListFragment {
 	
-	private  String[] items;
+	private  Item[] items;
 	private int amount; 
 	private int startPos;
 	
@@ -41,14 +41,14 @@ public class ItemDisplayList extends ListFragment {
      }
 	 
 	 public class TimeLineHttpRequest extends AsyncTask<Integer, Void, Boolean> {
-			private String loginURL = "http://viamarket-001-site1.myasp.net/api/item/latest/"+amount+"/"+startPos;
+			private String loadURL = "http://viamarket-001-site1.myasp.net/api/item/latest/"+amount+"/"+startPos;
 			private JSONArray json;
 
 			@Override
 			protected Boolean doInBackground(Integer... arg0) {
 				JSONParser jsonParser = new JSONParser();
 				try {
-					json = jsonParser.request(loginURL);
+					json = jsonParser.request(loadURL);
 
 					if (json != null)
 						return true;
