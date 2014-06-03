@@ -1,3 +1,4 @@
+
 package com.Via.market;
 
 import java.io.IOException;
@@ -48,13 +49,12 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener{
         super.onCreate(savedInstanceState);
         View mainView = inflater.inflate(R.layout.fragment_main, container, false);
         
-        
+        // creation of the form elements
         tv2 = (TextView) mainView.findViewById(R.id.textView2);
         tv3 = (TextView)  mainView.findViewById(R.id.textView3);
         tv4 = (TextView)  mainView.findViewById(R.id.textView3);
         tv5 = (TextView)  mainView.findViewById(R.id.textView4);
         et1 = (EditText)  mainView.findViewById(R.id.editText1);
-        
         et2 = (EditText)  mainView.findViewById(R.id.editText2);
         et3 = (EditText)  mainView.findViewById(R.id.editText3);
         bt = (Button)  mainView.findViewById(R.id.button1);
@@ -68,7 +68,7 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener{
 		});
         
         Spinner spinner = (Spinner) mainView.findViewById(R.id.spinner1);
-     // Create an ArrayAdapter using the string array and a default spinner layout
+     // Create an ArrayAdapter using category list with a custom spinner R.layout.custom_spinner
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 				R.layout.custom_spinner, categoriesList);
      // Specify the layout to use when the list of choices appears
@@ -158,14 +158,15 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener{
 	}
     
     
-
+ // what happened when you click on one element on the categoriesList
 	@Override
 	public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
-			long id) {
+			long id) 
+	{
 		cat = (String)parent.getItemAtPosition(pos);
-		System.out.println(cat);
+		
 	}
-
+//
  @Override
 	public void onNothingSelected(AdapterView<?> arg0) {
 		// TODO Auto-generated method stub
@@ -189,7 +190,7 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener{
 		protected Boolean doInBackground(Void... arg0) {
 			JSONParser jsonParser = new JSONParser();
 			try {
-				json = jsonParser.categoryRequest(loginURL);
+				json = jsonParser.request(loginURL);
 
 				if (json != null)
 					return true;

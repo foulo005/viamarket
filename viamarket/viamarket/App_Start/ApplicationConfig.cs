@@ -24,7 +24,7 @@ namespace ViaMarket.App_Start
         public const string ActivationSmtp = "smtp.mail.yahoo.com";
         public const int ActivationSmtpPort = 587;
         public const bool ActivationSmtpEnableSsl = true;
-        public const string ActivationSmtpPassword = "9rlQCOApaCoASB2QAE7R";
+        public const string ActivationSmtpPassword = "";
 
         // image upload
         public const string ImgTempDir = "~/App_Data\\uploads";

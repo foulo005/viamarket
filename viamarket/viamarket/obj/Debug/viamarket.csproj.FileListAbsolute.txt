@@ -191,8 +191,13 @@ C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
+<<<<<<< HEAD
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations._enum.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts2.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact3.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact4.resources
+=======
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.ActiveUSer.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
+>>>>>>> 066ad25871163bb9855f0f0ba317ccb95eb9eab3

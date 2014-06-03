@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 using Microsoft.AspNet.Identity;
 using System.IO;
 using ViaMarket.Models;
-using AutoMapper;
+
 
 namespace ViaMarket.Controllers
 {
@@ -38,7 +38,16 @@ namespace ViaMarket.Controllers
             {
                 return HttpNotFound();
             }
-            return View(item);
+            ItemViewModel model = new ItemViewModel();
+            model.Id = (int)id;
+            model.Title = item.Title;
+            model.Description = item.Description;
+            model.IdCategory = item.IdCategory;
+            model.IdCurrency = (int)item.IdCurrency;
+            model.Price = (double)item.Price;
+            model.Currency = db.Currencies.Find((int)item.IdCurrency).Name;
+            model.Category = db.Categories.Find((int)item.IdCategory).Name;
+            return View(model);
         }
 
         // GET: /Item/Create
@@ -100,6 +109,7 @@ namespace ViaMarket.Controllers
                 return HttpNotFound();
             }
             ItemViewModel model = new ItemViewModel();
+            model.Id = (int)id;
             model.Title = item.Title;
             model.Description = item.Description;
             model.IdCategory = item.IdCategory;
@@ -107,7 +117,9 @@ namespace ViaMarket.Controllers
             model.Price = (double)item.Price;
             model.IdCurrency = (int)item.IdCurrency;
             model.IdCategory = (int)item.IdCategory;
-            return View(item);
+            model.ListCategories = db.Categories.ToList<Category>();
+            model.ListCurrencies = db.Currencies.ToList<Currency>();
+            return View(model);
         }
 
         // POST: /Item/Edit/5
@@ -115,15 +127,24 @@ namespace ViaMarket.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,Title,Description,IdAspNetUsers,Price,IdCurrency,IdCategory")] Item item)
+        public ActionResult Edit(ItemViewModel model)
         {
             if (ModelState.IsValid)
             {
+                Item item = db.Items.Find(model.Id);
+                item.Title = model.Title;
+                item.Description = model.Description;
+                item.IdCategory = model.IdCategory;
+                item.IdCurrency = model.IdCurrency;
+                item.Price = model.Price;
+                item.IdAspNetUsers = User.Identity.GetUserId();
+                item.Created = DateTime.Now;
+                db.Items.Attach(item);
                 db.Entry(item).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(item);
+            return View(model);
         }
 
         // GET: /Item/Delete/5
