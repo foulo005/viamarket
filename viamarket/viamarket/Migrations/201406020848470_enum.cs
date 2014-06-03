@@ -1,0 +1,18 @@
+namespace viamarket.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class _enum : DbMigration
+    {
+        public override void Up()
+        {
+            AlterColumn("dbo.Contacts", "ContactType", c => c.Int(nullable: false));
+        }
+        
+        public override void Down()
+        {
+            AlterColumn("dbo.Contacts", "ContactType", c => c.String());
+        }
+    }
+}
