@@ -13,6 +13,7 @@ using System.IO;
 using ViaMarket.Models;
 using ViaMarket.ApiControllers.Dto;
 using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace ViaMarket.Controllers
 {
@@ -66,12 +67,16 @@ namespace ViaMarket.Controllers
         // POST: /Item/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ItemViewModel model, IEnumerable<HttpPostedFileBase> files)
+        public async Task<ActionResult> Create(ItemViewModel model, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
+
                 ItemUpdateDto item = new ItemUpdateDto();
                 item.Title = model.Title;
                 item.Description = model.Description;
@@ -79,12 +84,24 @@ namespace ViaMarket.Controllers
                 item.IdCurrency = model.IdCurrency;
                 item.Price = model.Price;
                 item.IdAspNetUsers = User.Identity.GetUserId();
-                item.Ongoing = true;
-                item.Created = DateTime.Now;
+                HttpResponseMessage response;
                 try
                 {
-                    HttpResponseMessage response = ws.UpdateItem(item);
+                    response = ws.UpdateItem(item);
+                    ItemDto dto = await response.Content.ReadAsAsync<Task<ItemDto>>().Unwrap();
                 }catch{}
+
+
+                byte[] fileData = null;
+                using (var binaryReader = new BinaryReader(Request.Files[0].InputStream))
+                {
+                    fileData = binaryReader.ReadBytes(Request.Files[0].ContentLength);
+                }
+
+                string url = "api/item/2/image/upload";
+                Upload(url, "bla", Request.Files[0].InputStream, fileData);
+
+
                 return RedirectToAction("Index");
                 /*ViaMarket.ApiControllers.ItemController wsItem = new ViaMarket.ApiControllers.ItemController();
                 HttpRequest request = (HttpRequest)WebRequest.Create();
@@ -94,6 +111,26 @@ namespace ViaMarket.Controllers
                 request.ContentType = "application/x-www-form-urlencoded";*/
             }
             return View(model);
+        }
+
+        private System.IO.Stream Upload(string url, string param1, Stream fileStream, byte[] fileBytes)
+        {
+            HttpContent stringContent = new StringContent(param1);
+            HttpContent fileStreamContent = new StreamContent(fileStream);
+            HttpContent bytesContent = new ByteArrayContent(fileBytes);
+            using (var client = new HttpClient())
+            using (var formData = new MultipartFormDataContent())
+            {
+                formData.Add(stringContent, "param1", "param1");
+                formData.Add(fileStreamContent, "file1", "file1");
+                formData.Add(bytesContent, "file2", "file2");
+                var response = client.PostAsync("http://localhost:14254/api/item/2/image/upload", formData).Result;
+                if (!response.IsSuccessStatusCode)
+                {
+                    return null;
+                }
+                return response.Content.ReadAsStreamAsync().Result;
+            }
         }
 
         // GET: /Item/Edit/5
