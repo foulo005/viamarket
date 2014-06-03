@@ -135,7 +135,8 @@ public class SumUpItem extends Activity {
         catItem.setText(this.getIntent().getStringExtra("CAT"));
         titleItem.setText(this.getIntent().getStringExtra("TITLE"));
         descriptionItem.setText(this.getIntent().getStringExtra("DESCRIPTION"));
-        priceItem.setText(this.getIntent().getStringExtra("PRICE"));
+        priceItem.setText(this.getIntent().getStringExtra("PRICE")+this.Currency);
+        
         
         
         

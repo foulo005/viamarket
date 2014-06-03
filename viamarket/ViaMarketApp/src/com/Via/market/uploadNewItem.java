@@ -24,7 +24,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class uploadNewItem extends Fragment implements OnItemSelectedListener {
+
+public class uploadNewItem extends Fragment  {
+
 
 	// TODO : DROPDOWN LIST POUR LA CURRENCY
 	//TODO: spinner.getText et tu recupère aussi la position dans le onclick de ton spinner que tu store dans cur(le Code) et curID(position)
@@ -39,7 +41,10 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener {
 	private EditText et3;
 	private Button bt;
 	private String cat = "";
-	private Spinner spinner;
+
+	private Spinner spinnerCat;
+	private Spinner spinnerCurrency;
+
 	private int catId;
 	private String cur; 
 	private int curId;
@@ -73,7 +78,9 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener {
 			}
 		});
 
-		spinner = (Spinner) mainView.findViewById(R.id.spinner1);
+
+		spinnerCat = (Spinner) mainView.findViewById(R.id.spinner1);
+
 		// Create an ArrayAdapter using category list with a custom spinner
 		// R.layout.custom_spinner
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
@@ -83,8 +90,47 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
 		// Apply the adapter to the spinner
-		spinner.setAdapter(adapter);
-		spinner.setOnItemSelectedListener(this);
+
+		spinnerCat.setAdapter(adapter);
+		spinnerCat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
+			long id) {
+				catId = pos;
+				cat = (String) parent.getItemAtPosition(pos);
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+			
+				
+			}
+		});
+		
+		
+		spinnerCurrency = (Spinner) mainView.findViewById((R.id.spinner2));
+		ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(getActivity(), R.layout.custom_spinner,currencyList);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinnerCurrency.setAdapter(adapter2);
+		
+		spinnerCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
+					long id) {
+				curId = pos;
+				cur = (String)parent.getItemAtPosition(pos);
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 
 		return mainView;
 
@@ -131,22 +177,6 @@ public class uploadNewItem extends Fragment implements OnItemSelectedListener {
 			intent.putExtra("IDCUT",String.valueOf(curId));
 			startActivity(intent);
 		}
-	}
-
-	// Category Dropdown list onClick
-	@Override
-	public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
-			long id) {
-		catId = pos;
-		cat = (String) parent.getItemAtPosition(pos);
-
-	}
-
-	//
-	@Override
-	public void onNothingSelected(AdapterView<?> arg0) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override

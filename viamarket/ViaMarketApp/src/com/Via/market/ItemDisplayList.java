@@ -1,6 +1,7 @@
 package com.Via.market;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +40,17 @@ public class ItemDisplayList extends ListFragment {
      public void onListItemClick(ListView l, View v, int position, long id) {
         System.out.println("item clicked ");
      }
+	 public Item ItemFromJson(JSONObject j)
+	 {
+		 if(j != null )
+		 {
+		//	 int price, int idCurrency, int idCategory,
+			//	String title, String description, String iDAdoNetUsers,
+				//String applicationUser_Id, Date date, Boolean sold, String[] imagesURLs)
+			Item i = new Item(j.getString("Id").toString(),j.get("Price").toString(),j.getString("Category").)
+		 }
+		 return null;
+	 }
 	 
 	 public class TimeLineHttpRequest extends AsyncTask<Integer, Void, Boolean> {
 			private String loadURL = "http://viamarket-001-site1.myasp.net/api/item/latest/"+amount+"/"+startPos;
@@ -69,8 +81,7 @@ public class ItemDisplayList extends ListFragment {
 					for (int i = 0; i < json.length(); i++) {
 						try {
 							JSONObject jObj = json.getJSONObject(i);
-
-							//categoriesList.add(jObj.getString("Name").toString());
+							
 
 						} catch (JSONException e) {
 							// TODO Auto-generated catch block
