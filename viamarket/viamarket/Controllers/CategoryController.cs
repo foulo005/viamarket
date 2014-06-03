@@ -10,13 +10,14 @@ using ViaMarket.DataAccess;
 using System.Linq.Expressions;
 using Microsoft.AspNet.Identity;
 using ViaMarket.Models;
+using ViaMarket.ApiControllers;
 
 namespace ViaMarket.Controllers
 {
     public class CategoryController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        private ViaMarket.ApiControllers.CategoryController ws = new ViaMarket.ApiControllers.CategoryController();
         // GET: /Category/
         public ActionResult Index()
         {
@@ -117,6 +118,7 @@ namespace ViaMarket.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Category category = db.Categories.Find(id);
+            //
             if (category == null)
             {
                 return HttpNotFound();
@@ -129,9 +131,7 @@ namespace ViaMarket.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Category category = db.Categories.Find(id);
-            db.Categories.Remove(category);
-            db.SaveChanges();
+            ws.DeleteCategory(id);
             return RedirectToAction("Index");
         }
 

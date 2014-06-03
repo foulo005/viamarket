@@ -66,7 +66,7 @@ namespace ViaMarket.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ItemViewModel model)
+        public ActionResult Create(ItemViewModel model, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
@@ -81,14 +81,15 @@ namespace ViaMarket.Controllers
                 db.Items.Add(item);
                 db.SaveChanges();
 
-                //Directory.CreateDirectory(Server.MapPath("~/ItemsPictures/"+item.Id.ToString()));
-                /*  foreach(File f in files.List){
-                 *     file.SaveAs(Path.Combine(Server.MapPath("~/ItemsPictures/"+item.Id.ToString()), Path.GetFileName(f.FileName)));
-                 *  }
-                 *  We need to pass as a Parameter the pictures
-                 *  Checkout this : @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                 *  We use the Id of the Item as the name of the folder where the pictures we'll be stored
-                 */
+                /*ViaMarket.ApiControllers.ItemController wsItem = new ViaMarket.ApiControllers.ItemController();
+                HttpRequest request = (HttpRequest)WebRequest.Create();
+                request.Method = "POST";
+                request.KeepAlive = true;
+                request.ContentLength = data.Length;
+                request.ContentType = "application/x-www-form-urlencoded";*/
+
+
+                //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 
                 return RedirectToAction("Index");
             }
