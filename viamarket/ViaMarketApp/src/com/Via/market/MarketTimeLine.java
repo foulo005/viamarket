@@ -18,7 +18,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class MarketTimeLine extends FragmentActivity {
-	static final int NUM_ITEMS = 3;
+	static final int NUM_ITEMS = 4;
 
 	private PagerAdapter mPagerAdapter;
 
@@ -43,10 +43,9 @@ public class MarketTimeLine extends FragmentActivity {
 
 		// Adding fragments to the liste
 
-		fragments
-				.add(Fragment.instantiate(this, ItemDisplayList.class.getName()));
-		fragments.add(Fragment.instantiate(this,
-				SearchActivity.class.getName()));
+		fragments.add(Fragment.instantiate(this,ItemDisplayList.class.getName()));
+		fragments.add(Fragment.instantiate(this,SearchActivity.class.getName()));
+		fragments.add(Fragment.instantiate(this,SearchResult.class.getName()));
 
 		// adapter of fragment list
 		this.mPagerAdapter = new PageAdapter(super.getSupportFragmentManager(),
@@ -85,12 +84,15 @@ public class MarketTimeLine extends FragmentActivity {
 		};
 
 		// Add 3 tabs, specifying the tab's text and TabListener
+	
 		actionBar.addTab(actionBar.newTab().setText("Upload an item").setTabListener(tabListener));
 		actionBar.addTab(actionBar.newTab().setText("Newest")
 				.setTabListener(tabListener));
 		actionBar.addTab(actionBar.newTab().setText("Search")
 				.setTabListener(tabListener));
+		actionBar.addTab(actionBar.newTab().setText("Search result").setTabListener(tabListener));
 		pager.setCurrentItem(1);
+		
 
 	}
 	

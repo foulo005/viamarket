@@ -1,5 +1,7 @@
 package com.Via.market;
 
+import java.util.ArrayList;
+
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -83,14 +85,28 @@ public class ChoosePictures extends Activity {
 				intent.putExtra("IDCAT",ChoosePictures.this.getIntent().getStringExtra("IDCAT"));
 				intent.putExtra("CUR",ChoosePictures.this.getIntent().getStringExtra("CUR"));
 				intent.putExtra("IDCUR",ChoosePictures.this.getIntent().getStringExtra("IDCUR"));
+				
+				
+				ArrayList<String> list = new ArrayList<String>();
+				
+				
 				if (path0 != null)
-					intent.putExtra("pict0", path0);
+					list.add(path0);
+					
 				if (path1 != null)
-					intent.putExtra("pict1", path1);
+					list.add(path1);
 				if (path2 != null)
-					intent.putExtra("pict2", path2);
+					list.add(path2);
 				if (path3 != null)
-					intent.putExtra("pict3", path3);
+					list.add(path3);
+				
+				String[] arr = list.toArray(new String[list.size()]);
+				String pict;
+				for (int i = 0; i < arr.length; i++) {
+					pict = "pict"+String.valueOf(i);
+					intent.putExtra(pict, arr[i]);
+					
+				}
 				// mainPicture
 				startActivityForResult(intent, 10);
 			}
@@ -106,7 +122,7 @@ public class ChoosePictures extends Activity {
 	// method called when you want delete a picture
 	public void deletePicture(int numButton) {
 		if (numButton == 0) {
-			this.initImageButton(ib1);
+			this.initImageButton(ibFront);
 			path0 = null;
 		}
 		if (numButton == 1) {

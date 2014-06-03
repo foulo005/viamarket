@@ -8,6 +8,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class uploadNewItem extends Fragment  {
@@ -97,6 +99,7 @@ public class uploadNewItem extends Fragment  {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
 			long id) {
+				
 				catId = pos;
 				cat = (String) parent.getItemAtPosition(pos);
 				
@@ -120,6 +123,9 @@ public class uploadNewItem extends Fragment  {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
 					long id) {
+				
+					
+				
 				curId = pos;
 				cur = (String)parent.getItemAtPosition(pos);
 				
@@ -142,6 +148,7 @@ public class uploadNewItem extends Fragment  {
 		et3.setError(null);
 
 		boolean cancel = false;
+		
 		View focusView = null;
 		// verification function for the fields of the upload form
 		if (TextUtils.isEmpty(et1.getText().toString())) {
@@ -161,10 +168,27 @@ public class uploadNewItem extends Fragment  {
 			focusView = et3;
 			cancel = true;
 		}
-
+		String error = "";
+		if (curId == 0 ){
+			
+			focusView = spinnerCurrency;
+			cancel = true;
+			error = error + "You need to choose a currency"+ "\n";
+			
+		}
+		if (catId == 0){
+			focusView = spinnerCat;
+			cancel = true;
+			error = error + "You need to choose a category"+ "\n";
+		}
+		
+		
 		if (cancel) {
 			focusView.requestFocus();
-		} else {
+			
+		}
+		if (!error.equals("")) Toast.makeText(this.getActivity().getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+		else {
 			//Launching new intent with the informations TITLE,DESCRIPTION,PRICE,CATEGORY,IDCATEGORY
 			Intent intent = new Intent(this.getActivity(), ChoosePictures.class);
 
