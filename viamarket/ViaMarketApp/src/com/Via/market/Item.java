@@ -14,14 +14,13 @@ public class Item {
 	private String iDAsoNetUsers;
 	private String ApplicationUser_Id;
 	
-	private Date date;
+	private String date;
 	
 	private Boolean sold;
 	private String[] imagesURLs;
 
 	public Item(String id, String price, String idCurrency, String idCategory,
-			String title, String description, String iDAdoNetUsers,
-			String applicationUser_Id, Date date, Boolean sold, String[] imagesURLs) {
+			String title, String description, String applicationUser_Id, String date, String[] imagesURLs) {
 		super();
 		this.id = id;
 		this.price = price;
@@ -29,10 +28,8 @@ public class Item {
 		this.idCategory = idCategory;
 		this.title = title;
 		this.description = description;
-		this.iDAsoNetUsers = iDAsoNetUsers;
 		ApplicationUser_Id = applicationUser_Id;
 		this.date = date;
-		this.sold = sold;
 		this.imagesURLs = imagesURLs;
 	}
 
@@ -100,11 +97,11 @@ public class Item {
 		ApplicationUser_Id = applicationUser_Id;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

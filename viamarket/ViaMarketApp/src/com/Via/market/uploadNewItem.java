@@ -174,7 +174,7 @@ public class uploadNewItem extends Fragment  {
 			intent.putExtra("CAT", cat);
 			intent.putExtra("IDCAT", String.valueOf(catId));
 			intent.putExtra("CUR", cur);
-			intent.putExtra("IDCUT",String.valueOf(curId));
+			intent.putExtra("IDCUR",String.valueOf(curId));
 			startActivity(intent);
 		}
 	}
