@@ -10,35 +10,52 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Http;
+using ViaMarket.ApiControllers.Dto;
 using ViaMarket.App_Start;
 using ViaMarket.DataAccess;
+using AutoMapper;
 
 namespace ViaMarket.ApiControllers
 {
     [RoutePrefix("api/item")]
     public class ItemController : ApiController
     {
-        ApplicationDbContext db = new ApplicationDbContext();
+       private ApplicationDbContext db;
+
+        public ItemController()
+        {
+            db = new ApplicationDbContext();
+            Mapper.CreateMap<Item, ItemDto>();
+            Mapper.CreateMap<ItemDto, Item>();
+            Mapper.CreateMap<ViaMarket.DataAccess.Image, ImageDto>();
+            Mapper.CreateMap<Category, CategoryDto>();
+            Mapper.CreateMap<CategoryDto, Category>();
+            Mapper.CreateMap<Currency, CurrencyDto>();
+            Mapper.CreateMap<CurrencyDto, Currency>();
+            Mapper.CreateMap<ApplicationUser, UserDto>();
+            Mapper.CreateMap<UserDto, ApplicationUser>();
+
+        }
 
         // returns a list with all items
         [HttpGet]
         [Route("")]
-        public IEnumerable<Item> GetAll()
+        public IEnumerable<ItemDto> GetAll()
         {
-            return db.Items.AsEnumerable();
+            return Mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(db.Items.AsEnumerable());
         }
 
         // gets an item by id
         [HttpGet]
         [Route("{id:int}")]
-        public Item GetById(int id)
+        public ItemDto GetById(int id)
         {
             Item item = db.Items.Find(id);
             if (item == null)
             {
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            return item;
+            return Mapper.Map<ItemDto>(item);
         }
 
         // deletes the item with id (or returns a 404 response when invalid)
@@ -58,8 +75,10 @@ namespace ViaMarket.ApiControllers
         // creates a new item and returns it (with http status code created 201)
         [HttpPost]
         [Route("")]
-        public HttpResponseMessage UpdateItem(Item item)
+        public HttpResponseMessage UpdateItem(ItemDto itemDto)
         {
+            Item item = Mapper.Map<Item>(itemDto);
+
             if (item.Id > 0)
             {
                 if (db.Items.Any(i => i.Id == item.Id))
@@ -68,7 +87,7 @@ namespace ViaMarket.ApiControllers
                     db.Items.Attach(item);
                     db.Entry(item).State = EntityState.Modified;
                     db.SaveChanges();
-                    return Request.CreateResponse<Item>(HttpStatusCode.OK, item);
+                    return Request.CreateResponse<ItemDto>(HttpStatusCode.OK, Mapper.Map<ItemDto>(item));
                 }
                 else
                 {
@@ -81,7 +100,7 @@ namespace ViaMarket.ApiControllers
                 db.Entry(item).State = EntityState.Added;
                 db.SaveChanges();
 
-                return Request.CreateResponse<Item>(HttpStatusCode.Created, item);
+                return Request.CreateResponse<ItemDto>(HttpStatusCode.Created, Mapper.Map<ItemDto>(item));
             }
         }
 
@@ -89,25 +108,26 @@ namespace ViaMarket.ApiControllers
 
         [HttpGet]
         [Route("{userId}/{ongoing:bool}")]
-        public IEnumerable<Item> GetItemsForUser(string userId, bool ongoing)
+        public IEnumerable<ItemDto> GetItemsForUser(string userId, bool ongoing)
         {
             var items = from i in db.Items
                         where i.IdAspNetUsers == userId
                         && i.Ongoing == ongoing
                         select i;
-            return items;
+            return Mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(items);
         }
 
         [HttpGet]
         [Route("category/{id:int}")]
-        public IEnumerable<Item> GetItemsForCategory(int id)
+        public IEnumerable<ItemDto> GetItemsForCategory(int id)
         {
             var items = from i in db.Items
                         where i.IdCategory == id
                         select i;
-            return items;
+            return Mapper.Map<IEnumerable<Item>, List<ItemDto>>(items);
         }
 
+        
         [HttpPost]
         [Route("{idItem:int}/image/upload")]
         public async Task<HttpResponseMessage> PostFormData(int idItem)
@@ -172,19 +192,34 @@ namespace ViaMarket.ApiControllers
 
                 ViaMarket.DataAccess.Image image = new ViaMarket.DataAccess.Image();
                 image.IdItem = idItem;
-                image.PathOriginal = newPathOrig;
-                image.PathPreview = newPathPrev;
+                image.PathOriginal = Path.Combine(ApplicationConfig.ImgDir, idItem.ToString(), newFileName);
+                image.PathPreview = Path.Combine(ApplicationConfig.ImgDir, idItem.ToString(), "preview", newFileName);
 
                 db.Images.Add(image);
                 await db.SaveChangesAsync();
 
-                return Request.CreateResponse<ViaMarket.DataAccess.Image>(HttpStatusCode.OK, image);
+                return Request.CreateResponse<ImageDto>(HttpStatusCode.OK, Mapper.Map<ImageDto>(image));
             }
             catch (System.Exception e)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.InternalServerError, e);
             }
         }
+
+        [HttpGet]
+        [Route("image/delete/{idImage:int}")]
+        public HttpResponseMessage DeleteImage(int idImage)
+        {
+            if (db.Images.Any(i => i.Id == idImage) == false)
+            {
+                return Request.CreateResponse(HttpStatusCode.NotFound, "The provided image id is not valid.");
+            }
+            ViaMarket.DataAccess.Image item = db.Images.Find(idImage);
+            db.Entry(item).State = EntityState.Deleted;
+            db.SaveChanges();
+            return Request.CreateResponse(HttpStatusCode.OK);
+        }
+
 
         private static System.Drawing.Image ScaleImage(System.Drawing.Image image, int maxWidth, int maxHeight)
         {
@@ -198,6 +233,16 @@ namespace ViaMarket.ApiControllers
             var newImage = new Bitmap(newWidth, newHeight);
             Graphics.FromImage(newImage).DrawImage(image, 0, 0, newWidth, newHeight);
             return newImage;
+        }
+
+        [HttpGet]
+        [Route("latest/{amount:int}/{startPos:int?}")]
+        public ICollection<ItemDto> GetLatest(int amount, int startPos = 0)
+        {
+            var items = from i in db.Items
+                        orderby i.Created descending
+                        select i;
+            return Mapper.Map<IEnumerable<Item>, List<ItemDto>>(items.Skip(startPos).Take(amount));
         }
     }
 }

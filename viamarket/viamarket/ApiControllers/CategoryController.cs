@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using ViaMarket.ApiControllers.Dto;
 using ViaMarket.DataAccess;
 
 namespace ViaMarket.Controllers
@@ -93,11 +94,5 @@ namespace ViaMarket.Controllers
                 return Request.CreateResponse<CategoryDto>(HttpStatusCode.Created, Mapper.Map<CategoryDto>(entity));
             }
         }
-    }
-
-    public class CategoryDto
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
     }
 }
