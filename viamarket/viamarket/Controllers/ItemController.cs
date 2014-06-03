@@ -11,19 +11,20 @@ using System.Linq.Expressions;
 using Microsoft.AspNet.Identity;
 using System.IO;
 using ViaMarket.Models;
-
+using ViaMarket.ApiControllers.Dto;
 
 namespace ViaMarket.Controllers
 {
     public class ItemController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ViaMarket.ApiControllers.ItemController ws = new ViaMarket.ApiControllers.ItemController();
+        private ViaMarket.ApiControllers.CategoryController wsCategory = new ViaMarket.ApiControllers.CategoryController();
+        //private ViaMarket.ApiControllers.CurrencyController wsCurrency = new ViaMarket.ApiControllers.CurrencyController();
 
         // GET: /Item/
         public ActionResult Index()
         {
-
-            return View(db.Items.ToList());
+            return View(ws.GetItemsForUser(User.Identity.GetUserId(), true));
         }
 
         // GET: /Item/Details/5
@@ -33,7 +34,7 @@ namespace ViaMarket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            ItemDto item = ws.GetById((int)id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -42,11 +43,11 @@ namespace ViaMarket.Controllers
             model.Id = (int)id;
             model.Title = item.Title;
             model.Description = item.Description;
-            model.IdCategory = item.IdCategory;
-            model.IdCurrency = (int)item.IdCurrency;
+            model.IdCategory = (int)item.Category.Id;
+            model.IdCurrency = (int)item.Currency.Id;
             model.Price = (double)item.Price;
-            model.Currency = db.Currencies.Find((int)item.IdCurrency).Name;
-            model.Category = db.Categories.Find((int)item.IdCategory).Name;
+            model.Currency = item.Currency.Name;
+            model.Category = item.Category.Name;
             return View(model);
         }
 
@@ -66,29 +67,29 @@ namespace ViaMarket.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ItemViewModel model)
+        public ActionResult Create(ItemViewModel model, IEnumerable<HttpPostedFileBase> files)
         {
             if (ModelState.IsValid)
             {
-                Item item = new Item();
+                ItemDto item = new ItemDto();
                 item.Title = model.Title;
                 item.Description = model.Description;
-                item.IdCategory = model.IdCategory;
-                item.IdCurrency = model.IdCurrency;
+                item.Category = model.IdCategory;
+                item.Currency = model.IdCurrency;
                 item.Price = model.Price;
-                item.IdAspNetUsers = User.Identity.GetUserId();
-                item.Created = DateTime.Now;
-                db.Items.Add(item);
-                db.SaveChanges();
+                item.ApplicationUser = new UserDto();
+                item.ApplicationUser.Id
+                ws.UpdateItem(item);
 
-                //Directory.CreateDirectory(Server.MapPath("~/ItemsPictures/"+item.Id.ToString()));
-                /*  foreach(File f in files.List){
-                 *     file.SaveAs(Path.Combine(Server.MapPath("~/ItemsPictures/"+item.Id.ToString()), Path.GetFileName(f.FileName)));
-                 *  }
-                 *  We need to pass as a Parameter the pictures
-                 *  Checkout this : @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-                 *  We use the Id of the Item as the name of the folder where the pictures we'll be stored
-                 */
+                /*ViaMarket.ApiControllers.ItemController wsItem = new ViaMarket.ApiControllers.ItemController();
+                HttpRequest request = (HttpRequest)WebRequest.Create();
+                request.Method = "POST";
+                request.KeepAlive = true;
+                request.ContentLength = data.Length;
+                request.ContentType = "application/x-www-form-urlencoded";*/
+
+
+                //HttpWebResponse response = (HttpWebResponse)request.GetResponse();
                 
                 return RedirectToAction("Index");
             }
@@ -103,7 +104,7 @@ namespace ViaMarket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            ItemDto item = ws.GetById((int)id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -112,13 +113,11 @@ namespace ViaMarket.Controllers
             model.Id = (int)id;
             model.Title = item.Title;
             model.Description = item.Description;
-            model.IdCategory = item.IdCategory;
-            model.IdCurrency = (int)item.IdCurrency;
+            model.IdCategory = (int)item.Category.Id;
+            model.IdCurrency = (int)item.Currency.Id;
             model.Price = (double)item.Price;
-            model.IdCurrency = (int)item.IdCurrency;
-            model.IdCategory = (int)item.IdCategory;
-            model.ListCategories = db.Categories.ToList<Category>();
-            model.ListCurrencies = db.Currencies.ToList<Currency>();
+            model.ListCategories = wsCategory.CategoryList().ToList<CategoryDto>();
+            //model.ListCurrencies = wsCurrency.CurrencyList().ToList<CurrencyDto>();
             return View(model);
         }
 
@@ -131,17 +130,15 @@ namespace ViaMarket.Controllers
         {
             if (ModelState.IsValid)
             {
-                Item item = db.Items.Find(model.Id);
+                ItemDto item = ws.GetById(model.Id);
                 item.Title = model.Title;
                 item.Description = model.Description;
-                item.IdCategory = model.IdCategory;
-                item.IdCurrency = model.IdCurrency;
+                item.Category.Id = model.IdCategory;
+                item.Currency.Id = model.IdCurrency;
                 item.Price = model.Price;
-                item.IdAspNetUsers = User.Identity.GetUserId();
+                item.ApplicationUser.Id = User.Identity.GetUserId();
                 item.Created = DateTime.Now;
-                db.Items.Attach(item);
-                db.Entry(item).State = EntityState.Modified;
-                db.SaveChanges();
+                ws.UpdateItem(item);
                 return RedirectToAction("Index");
             }
             return View(model);
@@ -154,7 +151,7 @@ namespace ViaMarket.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Item item = db.Items.Find(id);
+            ItemDto item = ws.GetById((int) id);
             if (item == null)
             {
                 return HttpNotFound();
@@ -167,19 +164,8 @@ namespace ViaMarket.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Item item = db.Items.Find(id);
-            db.Items.Remove(item);
-            db.SaveChanges();
+            ws.DeleteItem(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
