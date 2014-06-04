@@ -3,13 +3,24 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<table class="table-bordered">
-    @foreach (var item in Model.Items)
-    {
-        <tr>
-            <td>@item.Title</td>
-            <td>@item.Price</td>
-            <td>@item.Description</td>
-        </tr>
-    }
-</table>
+<div class="container custom-container">
+    <div class="row">
+        @foreach(var item in Model.Items)
+        {
+            <div class="col-xs-6 col-md-3">
+                <a href="~/Item/Details/@item.Id" class="thumbnail">
+                    @if (item.Image == null)
+                    {
+                        <img src="/ItemsPictures/200.jpg" class="img-thumbnail img-responsive" />
+                    }
+                    else
+                    {
+                        <img src="@item.Image[0].PathPreview" class="img-thumbnail img-responsive" />
+                    }
+                    <h4 class="text-center">@item.Title</h4>
+                </a>
+            </div>
+
+        }
+    </div>
+</div>

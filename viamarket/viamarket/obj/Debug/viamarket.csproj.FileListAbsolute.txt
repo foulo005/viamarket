@@ -192,6 +192,28 @@ C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
+<<<<<<< HEAD
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.ActiveUSer.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations._enum.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts2.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact3.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact4.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations._enum.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts2.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact3.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact4.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.random.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
+=======
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.test.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
+<<<<<<< HEAD
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
+=======
+>>>>>>> 19156ed887d7975b126ce387cc2e64b4b90afbc0
+>>>>>>> e7643a7212755c4a32f22db09410d1d35fdb4945
