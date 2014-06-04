@@ -180,13 +180,7 @@ C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations._enum.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts2.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact3.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact4.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.test.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.test.resources
