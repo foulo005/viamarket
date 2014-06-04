@@ -214,7 +214,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
-    <Compile Include="Models\Files.cs" />
+    <Compile Include="Models\Page.cs" />
     <Compile Include="Models\HomeViewModel.cs" />
     <Compile Include="Models\ItemViewModel.cs" />
     <Compile Include="Models\ViewModelBase.cs" />
@@ -233,8 +233,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="ItemsPictures\100.jpg" />
-    <Content Include="ItemsPictures\200.jpg" />
+    <Content Include="ItemsPictures\default.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Properties\PublishProfiles\myasp.net.pubxml" />

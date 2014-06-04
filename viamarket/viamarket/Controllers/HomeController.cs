@@ -15,10 +15,22 @@ namespace ViaMarket.Controllers
         private ViaMarket.ApiControllers.ItemController ws = new ViaMarket.ApiControllers.ItemController();
         public ActionResult Index(int? id)
         {
-            HomeViewModel model = new HomeViewModel();
-            if(id == null)
+            if (id == null)
                 id = 0;
-            model.Items = ws.GetLatest(20, (int) id).ToList<ItemDto>();
+            int numberByPage = 20;
+            int items = 100;//ws.GetTotalCount();
+            HomeViewModel model = new HomeViewModel();
+            model.Items = ws.GetLatest(numberByPage, (int)id).ToList<ItemDto>();
+            model.Pages = new List<Page>();
+            model.MaxPages = items % numberByPage == 0 ? items / numberByPage : items / numberByPage + 1;
+            
+
+            
+            for (int i=1; i <= 5; i++)
+            {
+                model.Pages.Add(new Page(i, i==(int)id));
+            }
+            
             return View(model);
         }
 
