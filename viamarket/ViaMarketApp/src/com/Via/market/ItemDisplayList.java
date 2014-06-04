@@ -12,12 +12,11 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.provider.SyncStateContract.Constants;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ListView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -119,7 +118,7 @@ public class ItemDisplayList extends ListFragment {
 			String userName,String curCode,String catName,String ongoing,String[] imagesURLs
 		 */
 		Item item = (Item) l.getItemAtPosition(position);
-		Intent i = new Intent();
+		Intent i = new Intent(this.getActivity(), ShowItemToSell.class);
 		i.putExtra("Id",item.getId());
 		i.putExtra("Title",item.getTitle());
 		i.putExtra("Description",item.getDescription());
@@ -206,7 +205,6 @@ public class ItemDisplayList extends ListFragment {
 				json = jsonParser.loadListItem(loadURL);
 
 				if (json != null)
-					// System.out.println(json);
 					return true;
 
 			} catch (IOException e) {

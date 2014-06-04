@@ -311,7 +311,11 @@ public class SumUpItem extends Activity {
 					System.out.println(listUri);
 					idObjRet = jObj.get("Id").toString();
 					String url = "http://viamarket-001-site1.myasp.net/api/item/"+idObjRet+"/image/upload";
-					jsonParser.postImage(url, listUri);
+					for(int i = 0; i<listUri.size();i++)
+					{
+						jsonParser.postImage(url, listUri.get(i));
+					}
+					
 					return true;
 				}
 

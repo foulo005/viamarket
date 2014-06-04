@@ -21,13 +21,21 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Spinner;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.core.assist.ImageSize;
+import com.nostra13.universalimageloader.core.display.RoundedBitmapDisplayer;
 
 public class SearchActivity extends Fragment {
 	// UI componennts
 	private EditText searchField;
 	private Button searchButton;
 	private Spinner categoriesSpinner;
+	
 	//List of categories + list for the result
 	private List<String> categoriesList = new ArrayList<String>();
 	private List<Item> result = new ArrayList<Item>();
@@ -61,6 +69,11 @@ public class SearchActivity extends Fragment {
 	private String[] images;
 	private String userName;
 	private String ongoing;
+	private ListView lv;
+	private ItemAdapter adapter;
+	
+	private DisplayImageOptions opt;
+	private List<String> options = new ArrayList<String>();
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,10 +81,6 @@ public class SearchActivity extends Fragment {
 		View view = inflater
 				.inflate(R.layout.activity_search, container, false);
 		Intent i = getActivity().getIntent();
-		String str = i.getStringExtra("lol");
-		if (str != null) {
-
-		} else {
 			searchField = (EditText) view.findViewById(R.id.searchEditText);
 			searchButton = (Button) view.findViewById(R.id.searchButton);
 			categoriesSpinner = (Spinner) view
@@ -87,11 +96,35 @@ public class SearchActivity extends Fragment {
 					String idCat = categoriesSpinner.getSelectedItem().toString();
 					SearchRequest searchTask = new SearchRequest();
 					searchTask.execute(idCat,search);
+					
 				}
 			});
-		}
-		return view;
+			lv = (ListView) view.findViewById(R.id.listView1);
+			options.add("item1");
+			options.add("item2");
+			options.add("item3");
+			options.add("item4");
+			
+			// No reload of the data screen orientation change
+			setRetainInstance(true);
+			// building new configuration
+			ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(
+					getActivity().getApplicationContext()).build();
+			ImageSize targetSize = new ImageSize(72, 72);
+			ImageLoader.getInstance().init(config);
+			// Building new options
+			opt = new DisplayImageOptions.Builder()
+					.showImageOnLoading(R.drawable.circle)
+					.showImageForEmptyUri(R.drawable.ic_empty)
+					.showImageOnFail(R.drawable.ic_error).cacheInMemory(true)
+					.cacheOnDisk(true).considerExifParams(true)
+					.displayer(new RoundedBitmapDisplayer(20)).build();
 
+			 adapter = new ItemAdapter(getActivity(),result, opt);
+			adapter.notifyDataSetChanged();
+			lv.setAdapter(adapter);
+
+		return view;
 	}
 
 	@Override
@@ -161,7 +194,7 @@ public class SearchActivity extends Fragment {
 		@Override
 		protected Boolean doInBackground(String... params) {
 			JSONParser jsonParser = new JSONParser();
-			String requestURL = "http://viamarket-001-site1.myasp.net/api/item/category/"+ params[0] +"/"
+			String requestURL = "http://viamarket-001-site1.myasp.net/api/item/category/title/"+ params[0] +"/"
 					+ params[1];
 			try {
 				URLEncoder.encode(requestURL,"UTF-8");
@@ -196,7 +229,7 @@ public class SearchActivity extends Fragment {
 						Item it = ItemFromJson(jObj);
 						result.add(it);
 					}
-					System.out.println(result);
+					adapter.setItemList(result);
 					dialog.dismiss();
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block

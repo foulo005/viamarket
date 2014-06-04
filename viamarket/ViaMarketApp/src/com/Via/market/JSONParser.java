@@ -212,19 +212,17 @@ public class JSONParser {
 		return json;
 
 	}
-	public void postImage(String url, ArrayList<String> listesURI) {
+	public void postImage(String url, String string) {
 		HttpClient httpClient = (HttpClient) new DefaultHttpClient();
 		HttpContext localContext = new BasicHttpContext();
 		HttpPost httpPost = new HttpPost(url);
-		System.out.println(listesURI);
+
 		try {
 			MultipartEntity entity = new MultipartEntity(
 					HttpMultipartMode.BROWSER_COMPATIBLE);
 
-			for (int index = 0; index < listesURI.size(); index++) {
-				File f = new File(listesURI.get(index));
+				File f = new File(string);
 					entity.addPart("picture", new FileBody(f));
-				}
 			httpPost.setEntity(entity);
 
 			HttpResponse response = (HttpResponse) httpClient.execute(
