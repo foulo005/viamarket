@@ -281,7 +281,30 @@ namespace ViaMarket.ApiControllers
             return Mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(items.Skip(startPos).Take(amount));
         }
 
+<<<<<<< HEAD
         
+=======
+        [HttpGet]
+        [Route("category/{category:int}/latest/{amount:int}/{startPos:int?}")]
+        public IEnumerable<ItemDto> GetLatest(int category, int amount, int startPos = 0)
+        {
+            var items = from i in db.Items
+                        where i.IdCategory == category
+                        orderby i.Created descending
+                        select i;
+            return Mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(items.Skip(startPos).Take(amount));
+        }
+
+        [HttpGet]
+        [Route("category/{id:int}/count")]
+        public int GetCountByCategory(int id)
+        {
+            int count = (from i in db.Items
+                        where i.IdCategory == id
+                        select i).Count();
+            return count;
+        }
+>>>>>>> e0d5ec9c0ecbe6a1c8f3c493a9573234609b6aef
 
         [HttpGet]
         [Route("count")]
