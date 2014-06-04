@@ -34,6 +34,16 @@ namespace ViaMarket.ApiControllers
             return Mapper.Map<IEnumerable<Category>, ICollection<CategoryDto>>(categories);
         }
 
+        [HttpGet]
+        [Route("category/{id:int}/count")]
+        public int GetCountByCategory(int id)
+        {
+            int count = (from i in db.Items
+                         where i.IdCategory == id
+                         select i).Count();
+            return count;
+        }
+
         // Returns a category by id, throws exception when not found
         [Route("{id:int}")]
         [HttpGet]

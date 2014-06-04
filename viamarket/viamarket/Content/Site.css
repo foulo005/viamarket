@@ -53,3 +53,12 @@ input[type="checkbox"].input-validation-error {
     color: #212121; /*#696969;*/
     text-decoration: none;
 }
+.thumbnail {
+    min-height: 250px;
+    height: 250px;
+}
+.thumbnail a{
+    display: block;
+    min-height: 250px;
+    height: 250px;
+}

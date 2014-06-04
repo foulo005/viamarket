@@ -189,13 +189,5 @@ C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact3.res
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact4.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.test.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
-<<<<<<< HEAD
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.test.resources
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
-=======
-<<<<<<< HEAD
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
-=======
->>>>>>> 19156ed887d7975b126ce387cc2e64b4b90afbc0
->>>>>>> e7643a7212755c4a32f22db09410d1d35fdb4945
->>>>>>> 15741701c851be2b01271bd7d48854f0320a42ac

@@ -16,21 +16,26 @@ namespace ViaMarket.Controllers
         public ActionResult Index(int? id)
         {
             if (id == null)
-                id = 0;
+                id = 1;
             int numberByPage = 20;
-            int items = 100;//ws.GetTotalCount();
+            int items = ws.GetTotalCount();
             HomeViewModel model = new HomeViewModel();
-            model.Items = ws.GetLatest(numberByPage, (int)id).ToList<ItemDto>();
+            model.Items = ws.GetLatest(numberByPage, (int)id-1).ToList<ItemDto>();
             model.Pages = new List<Page>();
             model.MaxPages = items % numberByPage == 0 ? items / numberByPage : items / numberByPage + 1;
-            
-
-            
-            for (int i=1; i <= 5; i++)
+            int interval = 5;
+            int half = interval / 2 + 1;
+            int startIndex = 1;
+            int endIndex = model.MaxPages;
+            if(model.MaxPages >= interval)
+            {
+                startIndex = id <= half ? 1 : id >= model.MaxPages - half ? model.MaxPages - (interval - 1) : (int)id - (interval / 2);
+                endIndex = startIndex + interval-1;
+            }
+            for (int i=startIndex; i <= endIndex; i++)
             {
                 model.Pages.Add(new Page(i, i==(int)id));
             }
-            
             return View(model);
         }
 

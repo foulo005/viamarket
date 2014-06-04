@@ -24,34 +24,36 @@
         }
     </div>
 </div>
-<div class="container">
-    <ul class="pagination">
-        @if (Model.Pages[0].id == 1)
-        {
-            <li class="disabled"><a href="#">&laquo;</a></li>
-        }
-        else
-        {
-            <li><a href="/Home/Index/@Model.Pages[0].id-1">&laquo;</a></li>
-        }
-        @foreach (var page in Model.Pages)
-        {
-            if (page.isCurrent)
+<div class="text-center custom-container container">
+    <div class="row">
+        <ul class="pagination pagination-lg">
+            @if (Model.Pages[0].id == 1)
             {
-                <li class="active"><a href="/Home/Index/@page.id">@page.id</a></li>
+                <li class="disabled"><a href="#">&laquo;</a></li>
             }
             else
             {
-                <li><a href="/Home/Index/@page.id">@page.id</a></li>
+                <li><a href="/Home/Index/@(Model.Pages[0].id-1)">&laquo;</a></li>
             }
-        }
-        @if (Model.Pages[Model.Pages.Count-1].id == Model.MaxPage)
-        {
-            <li><a class="disabled" href="#">&laquo;</a></li>
-        }
-        else
-        {
-            <li><a href="/Home/Index/@Model.Pages[Model.Pages.Count - 1].id+1">&laquo;</a></li>
-        }
-    </ul>
+            @foreach (var page in Model.Pages)
+            {
+                if (page.isCurrent)
+                {
+                    <li class="active"><a href="/Home/Index/@page.id">@page.id</a></li>
+                }
+                else
+                {
+                    <li><a href="/Home/Index/@page.id">@page.id</a></li>
+                }
+            }
+            @if (Model.Pages[Model.Pages.Count - 1].id == Model.MaxPages)
+            {
+                <li class="disabled"><a href="#">&raquo;</a></li>
+            }
+            else
+            {
+                <li><a href="/Home/Index/@(Model.Pages[Model.Pages.Count - 1].id+1)">&raquo;</a></li>
+            }
+        </ul>
+    </div>
 </div>
