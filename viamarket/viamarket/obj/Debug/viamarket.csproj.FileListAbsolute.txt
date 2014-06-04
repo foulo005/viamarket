@@ -178,7 +178,6 @@ C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.Google.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-<<<<<<< HEAD
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
@@ -191,11 +190,3 @@ C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact4.res
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.test.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.test.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
-=======
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.test.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
->>>>>>> e0d5ec9c0ecbe6a1c8f3c493a9573234609b6aef
