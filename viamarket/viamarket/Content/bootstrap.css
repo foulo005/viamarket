@@ -315,7 +315,7 @@ body {
   font-size: 14px;
   line-height: 1.428571429;
   color: #333333;
-  background-color: #ffffff;
+  background-color: #eaeaea;
 }
 
 input,
@@ -335,13 +335,13 @@ textarea {
 }
 
 a {
-  color: #428bca;
+  color: #212121;
   text-decoration: none;
 }
 
 a:hover,
 a:focus {
-  color: #2a6496;
+  color: #aaee11;
   text-decoration: underline;
 }
 
@@ -4399,11 +4399,11 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-default .navbar-text {
-  color: #777777;
+  color: #595959;
 }
 
 .navbar-default .navbar-nav > li > a {
-  color: #777777;
+  color: #595959;
 }
 
 .navbar-default .navbar-nav > li > a:hover,
@@ -4501,12 +4501,12 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #222222;
-  border-color: #080808;
+  background-color: #212121;
+  border-bottom: solid 3px #aaee11;
 }
 
 .navbar-inverse .navbar-brand {
-  color: #999999;
+  color: #a3a3a3;
 }
 
 .navbar-inverse .navbar-brand:hover,
@@ -4516,16 +4516,16 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse .navbar-text {
-  color: #999999;
+  color: #696969;
 }
 
 .navbar-inverse .navbar-nav > li > a {
-  color: #999999;
+  color: #696969;
 }
 
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
-  color: #ffffff;
+  color: #999999;
   background-color: transparent;
 }
 
@@ -4693,8 +4693,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
   z-index: 2;
   color: #ffffff;
   cursor: default;
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: #aaee11;
+  border-color: #aaee11;
 }
 
 .pagination > .disabled > span,
@@ -4986,7 +4986,7 @@ a.list-group-item.active > .badge,
 
 a.thumbnail:hover,
 a.thumbnail:focus {
-  border-color: #428bca;
+  border-color: #6da568;/*#aaee11;*/
 }
 
 .thumbnail > img {

@@ -1,4 +1,5 @@
 ﻿@model ViaMarket.Models.ItemViewModel
+@using ViaMarket.App_Start;
 
 @{
     ViewBag.Title = "Edit";
@@ -7,7 +8,7 @@
 
 <h2>Edit</h2>
 
-@using (Html.BeginForm("Edit", "Item", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+@using (Html.BeginForm("Edit", "Item", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
@@ -62,8 +63,31 @@
         </div>
 
         <div class="form-group">
-            <input type="file" name="Files" multiple />
+            @for (int i = 0; i < ApplicationConfig.ImgMaxAmountUpload; i++)
+            {
+                if (Model.Images != null && i < Model.Images.Count())
+                {
+                    <img src="@Url.Content(Model.Images.ElementAt(i).PathPreview)" data-toggle="modal" data-target="#myModal@(Model.Images.ElementAt(i).Id)" />
+                    <button type="button" class="btn btn-default btn-lg">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                    <div id="myModal@(Model.Images.ElementAt(i).Id)" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel@(Model.Images.ElementAt(i).Id)" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <img src="@Url.Content(Model.Images.ElementAt(i).PathOriginal)" class="img-responsive">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                else
+                {
+                    <input type="file" name="file" /><br />
+                }
+            }
         </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">

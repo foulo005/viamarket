@@ -12,9 +12,11 @@ using Microsoft.AspNet.Identity;
 using ViaMarket.Models;
 using ViaMarket.ApiControllers;
 using ViaMarket.ApiControllers.Dto;
+using System.Net.Http;
 
 namespace ViaMarket.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private ViaMarket.ApiControllers.CategoryController ws = new ViaMarket.ApiControllers.CategoryController();
@@ -25,12 +27,14 @@ namespace ViaMarket.Controllers
         }
 
         // GET: /Category/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int? id, int? idPage)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            if (idPage == null)
+                idPage = 1;
             CategoryDto category = ws.CategoryById((int)id);
             if (category == null)
             {
@@ -39,8 +43,26 @@ namespace ViaMarket.Controllers
             CategoryViewModel model = new CategoryViewModel();
             model.Id = category.Id;
             model.Name = category.Name;
-            ViaMarket.ApiControllers.ItemController wsItem = new ViaMarket.ApiControllers.ItemController();
-            model.Items = wsItem.GetItemsForCategory((int)id).ToList<ItemDto>();
+            int numberByPage = 20;
+            int interval = 5;
+            int half = interval / 2 + 1;
+            
+            int items = ws.GetCountByCategory((int)(id));
+            model.MaxPages = items % numberByPage == 0 ? items / numberByPage : items / numberByPage + 1;
+            model.Items = ws.GetLatest((int)id, numberByPage, (int)idPage - 1).ToList<ItemDto>(); // TO MODIFY TO FECTH DATA FOR PAGINATION
+            model.Pages = new List<Page>();
+
+            int startIndex = 1;
+             int endIndex = model.MaxPages;          
+             if(model.MaxPages >= interval)
+             {
+                 startIndex = idPage <= half ? 1 : idPage >= model.MaxPages - half ? model.MaxPages - (interval - 1) : (int)idPage - (interval / 2);
+                endIndex = startIndex + interval-1;
+             }
+            for (int i=startIndex; i <= endIndex; i++)
+            {
+                model.Pages.Add(new Page(i, i==(int)idPage));
+            }
             return View(model);
         }
 
@@ -62,7 +84,15 @@ namespace ViaMarket.Controllers
             {
                 CategoryDto category = new CategoryDto();
                 category.Name = model.Name;
-                ws.UpdateCategory(category);
+                try
+                {
+                    HttpResponseMessage response = ws.UpdateCategory(category);
+                    if (response.StatusCode == HttpStatusCode.Created)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch { }
                 return RedirectToAction("Index");
             }
 
@@ -99,7 +129,11 @@ namespace ViaMarket.Controllers
                 CategoryDto category = new CategoryDto();
                 category.Id = model.Id;
                 category.Name = model.Name;
-                ws.UpdateCategory(category);
+                try
+                {
+                    HttpResponseMessage response = ws.UpdateCategory(category);
+                }
+                catch { }
                 return RedirectToAction("Index");
             }
             return View(model);

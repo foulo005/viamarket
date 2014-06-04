@@ -28,12 +28,31 @@ namespace ViaMarket.ApiControllers
         [HttpGet]
         public IEnumerable<CategoryDto> CategoryList()
         {
-            List<CategoryDto> list = new List<CategoryDto>();
-            foreach (var item in db.Categories.AsEnumerable())
-            {
-                list.Add(Mapper.Map<CategoryDto>(item));
-            }
-            return list;
+            var categories = from c in db.Categories
+                             orderby c.Name ascending
+                             select c;
+            return Mapper.Map<IEnumerable<Category>, ICollection<CategoryDto>>(categories);
+        }
+
+        [HttpGet]
+        [Route("category/{id:int}/count")]
+        public int GetCountByCategory(int id)
+        {
+            int count = (from i in db.Items
+                         where i.IdCategory == id
+                         select i).Count();
+            return count;
+        }
+
+        [HttpGet]
+        [Route("category/{category:int}/latest/{amount:int}/{startPos:int?}")]
+        public IEnumerable<ItemDto> GetLatest(int category, int amount, int startPos = 0)
+        {
+            var items = from i in db.Items
+                        where i.IdCategory == category
+                        orderby i.Created descending
+                        select i;
+            return Mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(items.Skip(startPos).Take(amount));
         }
 
         // Returns a category by id, throws exception when not found

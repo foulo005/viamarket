@@ -13,5 +13,7 @@ namespace ViaMarket.Models
         public string Name { get; set; }
 
         public List<ItemDto> Items { get; set; }
+        public List<Page> Pages { get; set; }
+        public int MaxPages { get; set; }
     }
 }
