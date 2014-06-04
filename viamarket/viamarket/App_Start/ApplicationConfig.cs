@@ -30,8 +30,8 @@ namespace ViaMarket.App_Start
         // image upload
         public const string ImgTempDir = "~/App_Data\\uploads";
         public const string ImgDir = "~/ItemsPictures/";
-        public const int ImgPreviewMaxHeight = 100; //in pixels
-        public const int ImgPreviewMaxWidth = 100;
+        public const int ImgPreviewMaxHeight = 200; //in pixels
+        public const int ImgPreviewMaxWidth = 200;
         public const int ImgMaxAmountUpload = 4; //maximum amount of pictures per item
     }
 }

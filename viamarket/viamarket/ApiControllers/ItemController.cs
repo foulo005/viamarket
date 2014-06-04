@@ -280,5 +280,24 @@ namespace ViaMarket.ApiControllers
                         select i;
             return Mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(items.Skip(startPos).Take(amount));
         }
+
+        [HttpGet]
+        [Route("category/{id:int}/count")]
+        public int GetCountByCategory(int id)
+        {
+            int count = (from i in db.Items
+                        where i.IdCategory == id
+                        select i).Count();
+            return count;
+        }
+
+        [HttpGet]
+        [Route("count")]
+        public int GetTotalCount()
+        {
+            int count = (from i in db.Items
+                         select i).Count();
+            return count;
+        }
     }
 }

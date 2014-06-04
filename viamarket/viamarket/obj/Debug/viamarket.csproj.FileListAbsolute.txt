@@ -194,3 +194,4 @@ C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.test.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
