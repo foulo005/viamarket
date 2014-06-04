@@ -19,6 +19,7 @@ using ViaMarket.App_Start;
 
 namespace ViaMarket.Controllers
 {
+    [Authorize]
     public class ItemController : Controller
     {
         private ViaMarket.ApiControllers.ItemController ws = new ViaMarket.ApiControllers.ItemController();
