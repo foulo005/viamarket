@@ -142,6 +142,8 @@ namespace ViaMarket.Controllers
             model.Price = (double)item.Price;
             model.ListCategories = wsCategory.CategoryList().ToList<CategoryDto>();
             model.ListCurrencies = wsCurrency.GetAllCurrencies().ToList<CurrencyDto>();
+            model.Images = item.Image;
+
             return View(model);
         }
 
@@ -162,11 +164,29 @@ namespace ViaMarket.Controllers
                 item.IdCurrency = model.IdCurrency;
                 item.Price = model.Price;
                 item.IdAspNetUsers = User.Identity.GetUserId();
-                item.Ongoing = true;
-                item.Created = DateTime.Now;
+                ItemDto response;
                 try
                 {
-                    ItemDto response = ws.UpdateItem(item);
+                    response = ws.UpdateItem(item);
+                    string url = ApplicationConfig.HostBaseUrl + "api/item/{0}/image/upload";
+                    url = string.Format(url, response.Id);
+                    for (int i = 0; i < Request.Files.Count; i++)
+                    {
+                        byte[] fileData = null;
+                        using (var binaryReader = new BinaryReader(Request.Files[i].InputStream))
+                        {
+                            fileData = binaryReader.ReadBytes(Request.Files[i].ContentLength);
+                        }
+
+                        HttpContent bytesContent = new ByteArrayContent(fileData);
+                        using (var client = new HttpClient())
+                        using (var formData = new MultipartFormDataContent())
+                        {
+                            formData.Add(bytesContent, "fileParam", Request.Files[i].FileName);
+                            var result = client.PostAsync(url, formData).Result;
+                        }
+                    }
+
                 }
                 catch { }
                 return RedirectToAction("Index");
@@ -197,5 +217,6 @@ namespace ViaMarket.Controllers
             ws.DeleteItem(id);
             return RedirectToAction("Index");
         }
+
     }
 }
