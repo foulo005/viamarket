@@ -16,6 +16,7 @@ using System.Net.Http;
 
 namespace ViaMarket.Controllers
 {
+    [Authorize]
     public class CategoryController : Controller
     {
         private ViaMarket.ApiControllers.CategoryController ws = new ViaMarket.ApiControllers.CategoryController();

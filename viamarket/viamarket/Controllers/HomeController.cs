@@ -10,6 +10,7 @@ using ViaMarket.ApiControllers.Dto;
 
 namespace ViaMarket.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private ViaMarket.ApiControllers.ItemController ws = new ViaMarket.ApiControllers.ItemController();
@@ -22,12 +23,14 @@ namespace ViaMarket.Controllers
             return View(model);
         }
 
+        [AllowAnonymous]
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
             return View();
         }
 
+        [AllowAnonymous]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
