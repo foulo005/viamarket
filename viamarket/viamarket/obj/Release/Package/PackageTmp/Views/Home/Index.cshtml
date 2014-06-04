@@ -1,3 +1,15 @@
-﻿@{
+﻿@model ViaMarket.Models.HomeViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
+<table class="table-bordered">
+    @foreach (var item in Model.Items)
+    {
+        <tr>
+            <td>@item.Title</td>
+            <td>@item.Price</td>
+            <td>@item.Description</td>
+        </tr>
+    }
+</table>

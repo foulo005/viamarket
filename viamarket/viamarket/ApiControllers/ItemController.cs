@@ -76,7 +76,7 @@ namespace ViaMarket.ApiControllers
         // creates a new item and returns it (with http status code created 201)
         [HttpPost]
         [Route("")]
-        public HttpResponseMessage UpdateItem(ItemUpdateDto itemDto)
+        public ItemDto UpdateItem(ItemUpdateDto itemDto)
         {
             Item item = new Item
             {
@@ -98,7 +98,7 @@ namespace ViaMarket.ApiControllers
                     db.Entry(item).State = EntityState.Modified;
                     db.SaveChanges();
                     item = db.Items.Find(item.Id);
-                    return Request.CreateResponse<ItemDto>(HttpStatusCode.OK, Mapper.Map<ItemDto>(item));
+                    return  Mapper.Map<ItemDto>(item);
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace ViaMarket.ApiControllers
                 db.Entry(item).State = EntityState.Added;
                 db.SaveChanges();
                 item = db.Items.Find(item.Id);
-                return Request.CreateResponse<ItemDto>(HttpStatusCode.Created, Mapper.Map<ItemDto>(item));
+                return Mapper.Map<ItemDto>(item);
             }
         }
 
@@ -140,7 +140,7 @@ namespace ViaMarket.ApiControllers
 
         [HttpGet]
         [Route("category/{id:int}/{search}")]
-        public ICollection<ItemDto> SearchItemsInCategory(int id, string search)
+        public IEnumerable<ItemDto> SearchItemsInCategory(int id, string search)
         {
             if (db.Categories.Any(c => c.Id == id))
             {
@@ -152,7 +152,7 @@ namespace ViaMarket.ApiControllers
                                    where c.IdCategory == id
                                    && c.Description.Contains(search)
                                    select c;
-                return Mapper.Map<IEnumerable<Item>, ICollection<ItemDto>>(resultsTitle.Union(resultsDescr));
+                return Mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(resultsTitle.Union(resultsDescr));
             }
             else
             {
@@ -273,12 +273,12 @@ namespace ViaMarket.ApiControllers
 
         [HttpGet]
         [Route("latest/{amount:int}/{startPos:int?}")]
-        public ICollection<ItemDto> GetLatest(int amount, int startPos = 0)
+        public IEnumerable<ItemDto> GetLatest(int amount, int startPos = 0)
         {
             var items = from i in db.Items
                         orderby i.Created descending
                         select i;
-            return Mapper.Map<IEnumerable<Item>, List<ItemDto>>(items.Skip(startPos).Take(amount));
+            return Mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(items.Skip(startPos).Take(amount));
         }
     }
 }
