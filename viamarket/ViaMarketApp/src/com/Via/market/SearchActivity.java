@@ -23,6 +23,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Spinner;
 
 public class SearchActivity extends Fragment {
@@ -30,7 +32,9 @@ public class SearchActivity extends Fragment {
 	private EditText searchField;
 	private Button searchButton;
 	private Spinner categoriesSpinner;
+	private ListView lv;
 	private List<String> categoriesList = new ArrayList<String>();
+	private List<String> options = new ArrayList<String>();
 	
 
 	// HttpRequest
@@ -60,6 +64,16 @@ public class SearchActivity extends Fragment {
 				
 			}
 		});}
+		
+		lv = (ListView) view.findViewById(R.id.listView1);
+		options.add("item1");
+		options.add("item2");
+		options.add("item3");
+		options.add("item4");
+		
+		ListAdapter adapter = new ArrayAdapter<String>(view.getContext(),
+				android.R.layout.simple_list_item_1, options);
+		lv.setAdapter(adapter);
 		return view;
 		
 	}
