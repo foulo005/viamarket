@@ -20,6 +20,7 @@ namespace ViaMarket.Models
         public int IdCurrency { get; set; }
         public string Category { get; set; }
         public string Currency { get; set; }
+        public IEnumerable<ImageDto> Images { get; set; }
         public IEnumerable<SelectListItem> Categories
         {
             get { return new SelectList(ListCategories, "Id", "Name"); }

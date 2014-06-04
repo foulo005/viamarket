@@ -9,7 +9,8 @@ namespace ViaMarket.App_Start
     public class ApplicationConfig
     {
         // global config
-        public const string HostBaseUrl = "http://viamarket-001-site1.myasp.net/";
+       public const string HostBaseUrl = "http://viamarket-001-site1.myasp.net/";
+      //  public const string HostBaseUrl = "hhtp://localhost:14254";
         public const string Domain = "via.dk";
         public const string Name = "ViaMarket";
 
@@ -24,12 +25,13 @@ namespace ViaMarket.App_Start
         public const string ActivationSmtp = "smtp.mail.yahoo.com";
         public const int ActivationSmtpPort = 587;
         public const bool ActivationSmtpEnableSsl = true;
-        public const string ActivationSmtpPassword = "";
+        public const string ActivationSmtpPassword = "9rlQCOApaCoASB2QAE7R";
 
         // image upload
         public const string ImgTempDir = "~/App_Data\\uploads";
         public const string ImgDir = "~/ItemsPictures/";
-        public const int ImgPreviewMaxHeight = 100; //in pixels
-        public const int ImgPreviewMaxWidth = 100;
+        public const int ImgPreviewMaxHeight = 200; //in pixels
+        public const int ImgPreviewMaxWidth = 200;
+        public const int ImgMaxAmountUpload = 4; //maximum amount of pictures per item
     }
 }

@@ -12,7 +12,7 @@ namespace ViaMarket.ApiControllers.Dto
         public CategoryDto Category { get; set; }
 
         public CurrencyDto Currency { get; set; }
-        public ICollection<ImageDto> Image { get; set; }
+        public IEnumerable<ImageDto> Image { get; set; }
     }
 
     public class ItemUpdateDto

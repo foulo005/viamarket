@@ -117,9 +117,6 @@ D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.Net4.dll
 D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.dll
 D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.xml
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.startup.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.OngoingAttribute.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.UserActive.resources
 C:\Dev\viamarket\viamarket\viamarket\bin\AutoMapper.Net4.dll
 C:\Dev\viamarket\viamarket\viamarket\bin\ViaMarket.dll.config
 C:\Dev\viamarket\viamarket\viamarket\bin\ViaMarket.dll
@@ -181,33 +178,9 @@ C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.Google.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.startup.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.OngoingAttribute.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.UserActive.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.ActiveUSer.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
-<<<<<<< HEAD
-=======
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.ActiveUSer.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
->>>>>>> b13fe50232ef082084033814c2e16ec40fd5bafa
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations._enum.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts2.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact3.resources
-C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact4.resources
-<<<<<<< HEAD
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.ActiveUSer.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.RemoveUni.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations._enum.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts2.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact3.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact4.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
-=======
->>>>>>> b13fe50232ef082084033814c2e16ec40fd5bafa
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.test.resources
+C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.test.resources

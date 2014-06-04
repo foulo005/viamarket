@@ -34,7 +34,9 @@ public class SearchActivity extends Fragment {
 	private Spinner categoriesSpinner;
 	private ListView lv;
 	private List<String> categoriesList = new ArrayList<String>();
+
 	private List<String> options = new ArrayList<String>();
+
 	
 
 	// HttpRequest
