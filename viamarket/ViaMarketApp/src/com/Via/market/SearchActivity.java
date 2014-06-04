@@ -12,7 +12,11 @@ import org.json.JSONObject;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+import android.os.Handler.Callback;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +31,8 @@ public class SearchActivity extends Fragment {
 	private Button searchButton;
 	private Spinner categoriesSpinner;
 	private List<String> categoriesList = new ArrayList<String>();
+	//yeah its api/item/category/{id:int}/{search}
+	
 
 	// HttpRequest
 
@@ -35,6 +41,11 @@ public class SearchActivity extends Fragment {
 			Bundle savedInstanceState) {
 		View view = inflater
 				.inflate(R.layout.activity_search, container, false);
+		Intent i = getActivity().getIntent();
+		String str = i.getStringExtra("lol");
+		if (str !=null){
+			
+		} else{
 		searchField = (EditText) view.findViewById(R.id.searchEditText);
 		searchButton = (Button) view.findViewById(R.id.searchButton);
 		categoriesSpinner = (Spinner) view.findViewById(R.id.categoriesSpinner);
@@ -45,10 +56,11 @@ public class SearchActivity extends Fragment {
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getActivity(), ShowItemToSell.class);
-				startActivity(intent);
+				
+	
+				
 			}
-		});
+		});}
 		return view;
 		
 	}

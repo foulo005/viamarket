@@ -1,3 +1,4 @@
+
 package com.Via.market;
 
 import java.io.IOException;
@@ -7,6 +8,9 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+
+import android.content.Context;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -23,6 +27,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import android.widget.Toast;
+
 
 
 public class uploadNewItem extends Fragment  {
@@ -97,6 +104,7 @@ public class uploadNewItem extends Fragment  {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
 			long id) {
+
 				catId = pos;
 				cat = (String) parent.getItemAtPosition(pos);
 				
@@ -120,6 +128,7 @@ public class uploadNewItem extends Fragment  {
 			@Override
 			public void onItemSelected(AdapterView<?> parent, View arg1, int pos,
 					long id) {
+
 				curId = pos;
 				cur = (String)parent.getItemAtPosition(pos);
 				
@@ -142,6 +151,7 @@ public class uploadNewItem extends Fragment  {
 		et3.setError(null);
 
 		boolean cancel = false;
+
 		View focusView = null;
 		// verification function for the fields of the upload form
 		if (TextUtils.isEmpty(et1.getText().toString())) {
@@ -162,9 +172,33 @@ public class uploadNewItem extends Fragment  {
 			cancel = true;
 		}
 
+
 		if (cancel) {
 			focusView.requestFocus();
 		} else {
+
+		String error = "";
+		if (curId == 0 ){
+			
+			focusView = spinnerCurrency;
+			cancel = true;
+			error = error + "You need to choose a currency"+ "\n";
+			
+		}
+		if (catId == 0){
+			focusView = spinnerCat;
+			cancel = true;
+			error = error + "You need to choose a category"+ "\n";
+		}
+		
+		
+		if (cancel) {
+			focusView.requestFocus();
+			
+		}
+		if (!error.equals("")) Toast.makeText(this.getActivity().getApplicationContext(), error, Toast.LENGTH_SHORT).show();
+		else {
+
 			//Launching new intent with the informations TITLE,DESCRIPTION,PRICE,CATEGORY,IDCATEGORY
 			Intent intent = new Intent(this.getActivity(), ChoosePictures.class);
 
@@ -174,8 +208,13 @@ public class uploadNewItem extends Fragment  {
 			intent.putExtra("CAT", cat);
 			intent.putExtra("IDCAT", String.valueOf(catId));
 			intent.putExtra("CUR", cur);
+
 			intent.putExtra("IDCUR",String.valueOf(curId));
+
+			intent.putExtra("IDCUT",String.valueOf(curId));
+
 			startActivity(intent);
+		}
 		}
 	}
 
@@ -203,7 +242,9 @@ public class uploadNewItem extends Fragment  {
 				catjson = jsonParser.request(categoryURL);
 				curjson = jsonParser.request(currencyURL);
 				if (catjson != null && curjson != null)
-					return true;
+
+				return true;
+
 
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -223,6 +264,7 @@ public class uploadNewItem extends Fragment  {
 					try {
 						JSONObject jObjCur = curjson.getJSONObject(e);
 						currencyList.add(jObjCur.getString("Code").toString());
+
 					} catch (JSONException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();

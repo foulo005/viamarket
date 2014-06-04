@@ -74,7 +74,7 @@ public class SumUpItem extends Activity {
 	private String Currency;
 	private String idCurrency;
 	// Photo upload
-	private List<NameValuePair> params;
+	private List<NameValuePair> imageNameValue;
 	private ArrayList<String> listUri = new ArrayList<String>();
 	private String idObjRet;
 
@@ -179,11 +179,11 @@ public class SumUpItem extends Activity {
 					Uri.parse(this.getIntent().getStringExtra("pict3"))));
 			
 			//Adding the pictures URI to the Namevaluepair list for the upload
-			params = new ArrayList<NameValuePair>();
-			if (url != null)params.add(new BasicNameValuePair("pict1", url));
-			if (url1 != null) params.add(new BasicNameValuePair("pict2", url1));
-			if (url2 != null)params.add(new BasicNameValuePair("pict3", url2));
-			if (url3 != null)params.add(new BasicNameValuePair("pict4", url3));
+			imageNameValue = new ArrayList<NameValuePair>();
+			if (url != null)imageNameValue.add(new BasicNameValuePair("pict1", url));
+			if (url1 != null) imageNameValue.add(new BasicNameValuePair("pict2", url1));
+			if (url2 != null)imageNameValue.add(new BasicNameValuePair("pict3", url2));
+			if (url3 != null)imageNameValue.add(new BasicNameValuePair("pict4", url3));
 
 		} catch (Exception e) {
 
@@ -269,8 +269,6 @@ public class SumUpItem extends Activity {
 
 	public void upload() {
 		UploadItemTask uploadItem = new UploadItemTask();
-		System.out.println(TitleText + " " + descriptionText + " " + priceText
-				+ " " + idCategory + " " + categoryText + " " + idUser);
 		uploadItem.execute(TitleText, descriptionText, priceText, idCategory,
 				categoryText, idUser, Currency, idCurrency);
 
@@ -302,15 +300,18 @@ public class SumUpItem extends Activity {
 				node.put("IdCurrency", params[7]);
 
 			} catch (JSONException e1) {
-				// TODO Auto-generated catch block
+				
 				e1.printStackTrace();
 			}
 
 			try {
-				boolean success = jsonParser.postItem(urlRequest, node);
-				if (success) {
-					// upload pictures
-					System.out.println("upload is a success");
+				JSONObject jObj = jsonParser.postItem(urlRequest, node);
+				System.out.println(jObj);
+				if (jObj != null) {
+					System.out.println(listUri);
+					idObjRet = jObj.get("Id").toString();
+					String url = "http://viamarket-001-site1.myasp.net/api/item/"+idObjRet+"/image/upload";
+					jsonParser.postImage(url, listUri);
 					return true;
 				}
 
@@ -321,7 +322,7 @@ public class SumUpItem extends Activity {
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (JSONException e) {
-				// TODO: handle exception
+
 			}
 
 			return true;
@@ -329,44 +330,11 @@ public class SumUpItem extends Activity {
 
 		@Override
 		protected void onPostExecute(Boolean result) {
-			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 		}
 
 	}
 
-	public void post(String url, List<NameValuePair> nameValuePairs) {
-		HttpClient httpClient = new DefaultHttpClient();
-		HttpContext localContext = new BasicHttpContext();
-		HttpPost httpPost = new HttpPost(url);
 
-		try {
-			MultipartEntity entity = new MultipartEntity(
-					HttpMultipartMode.BROWSER_COMPATIBLE);
-
-			for (int index = 0; index < nameValuePairs.size(); index++) {
-				if (nameValuePairs.get(index).getName()
-						.equalsIgnoreCase("image")) {
-					// If the key equals to "image", we use FileBody to transfer
-					// the data
-					entity.addPart(nameValuePairs.get(index).getName(),
-							new FileBody(new File(nameValuePairs.get(index)
-									.getValue())));
-				} else {
-					// Normal string data
-					entity.addPart(
-							nameValuePairs.get(index).getName(),
-							new StringBody(nameValuePairs.get(index).getValue()));
-				}
-			}
-
-			httpPost.setEntity(entity);
-
-			HttpResponse response = httpClient.execute(
-					(HttpUriRequest) httpPost, localContext);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
 }
