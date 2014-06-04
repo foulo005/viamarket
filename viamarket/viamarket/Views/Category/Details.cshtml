@@ -5,38 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Html.DisplayFor(model => model.Name)</h2>
+<h2 class="text-center">@Html.DisplayFor(model => model.Name)</h2>
 
-<div>
-	<hr />
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayName("Title")
-            </th>
-            <th>
-                @Html.DisplayName("Description")
-            </th>
-            <th>
-                @Html.DisplayName("Price")
-            </th>
-            <th>
-                @Html.DisplayName("Currency")
-            </th>
-            <th>
-                @Html.DisplayName("Category")
-            </th>
-            <th></th>
-        </tr>
+<div class="container custom-container">
+    <div class="row">
         @foreach (var item in Model.Items)
         {
-            <tr>
-            <td>@Html.DisplayFor(modelItem => item.Title)</td>
-            <td>@Html.DisplayFor(modelItem => item.Description)</td>
-            <td>@Html.DisplayFor(modelItem => item.Price)</td>
-            <td>@Html.DisplayFor(modelItem => item.IdCurrency)</td>
-            <td>@Html.DisplayFor(modelItem => item.IdCategory)</td>
-            </tr>
-        } 
-</table>
+            <div class="col-xs-6 col-md-3">
+                <a href="~/Item/Details/@item.Id" class="thumbnail">
+                    @if (item.Image == null) { 
+                        <img src="/ItemsPictures/200.jpg" class="img-thumbnail img-responsive" />
+                    }
+                    else
+                    {
+                        <img src="@item.Image[0].PathPreview" class="img-thumbnail img-responsive" />
+                    }
+                    <h4 class="text-center">@item.Title</h4>
+                </a>
+            </div>
+
+        }
+    </div>
 </div>

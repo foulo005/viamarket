@@ -4502,7 +4502,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-inverse {
   background-color: #212121;
-  border-bottom: solid 3px #6da568;
+  border-bottom: solid 3px #aaee11;
 }
 
 .navbar-inverse .navbar-brand {
@@ -4986,7 +4986,7 @@ a.list-group-item.active > .badge,
 
 a.thumbnail:hover,
 a.thumbnail:focus {
-  border-color: #428bca;
+  border-color: #6da568;/*#aaee11;*/
 }
 
 .thumbnail > img {

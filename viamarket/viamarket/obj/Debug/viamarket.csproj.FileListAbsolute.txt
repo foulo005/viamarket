@@ -202,5 +202,5 @@ D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts.
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contacts2.resources
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact3.resources
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.contact4.resources
-D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\viamarket.Migrations.random.resources
+D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
