@@ -119,7 +119,7 @@ public class ItemDisplayList extends ListFragment {
 			String userName,String curCode,String catName,String ongoing,String[] imagesURLs
 		 */
 		Item item = (Item) l.getItemAtPosition(position);
-		Intent i = new Intent();
+		Intent i = new Intent(this.getActivity(), ShowItemToSell.class);
 		i.putExtra("Id",item.getId());
 		i.putExtra("Title",item.getTitle());
 		i.putExtra("Description",item.getDescription());
