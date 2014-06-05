@@ -35,7 +35,7 @@ namespace ViaMarket.ApiControllers
         }
 
         [HttpGet]
-        [Route("category/{id:int}/count")]
+        [Route("{id:int}/count")]
         public int GetCountByCategory(int id)
         {
             int count = (from i in db.Items
@@ -45,7 +45,7 @@ namespace ViaMarket.ApiControllers
         }
 
         [HttpGet]
-        [Route("category/{category:int}/latest/{amount:int}/{startPos:int?}")]
+        [Route("{category:int}/latest/{amount:int}/{startPos:int?}")]
         public IEnumerable<ItemDto> GetLatest(int category, int amount, int startPos = 0)
         {
             var items = from i in db.Items
