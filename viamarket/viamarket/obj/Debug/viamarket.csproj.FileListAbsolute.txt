@@ -63,9 +63,9 @@ C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.Migrations.sven2.resour
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csproj.GenerateResource.Cache
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
-<<<<<<< HEAD
+
 C:\Dev\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
-=======
+
 D:\GitHub\viamarket\viamarket\viamarket\bin\AutoMapper.Net4.dll
 D:\GitHub\viamarket\viamarket\viamarket\bin\ViaMarket.dll.config
 D:\GitHub\viamarket\viamarket\viamarket\bin\ViaMarket.dll
@@ -130,4 +130,3 @@ D:\GitHub\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.MicrosoftAcc
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.csprojResolveAssemblyReference.cache
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.dll
 D:\GitHub\viamarket\viamarket\viamarket\obj\Debug\ViaMarket.pdb
->>>>>>> 274dad915985d4153a92c38ffab841ccea71c758

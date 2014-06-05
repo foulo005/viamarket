@@ -87,7 +87,8 @@ namespace ViaMarket.ApiControllers
                 Description = itemDto.Description,
                 Id = itemDto.Id,
                 Price = itemDto.Price,
-                Title = itemDto.Title
+                Title = itemDto.Title,
+                Ongoing = true
             };
 
             if (item.Id > 0)

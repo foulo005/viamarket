@@ -29,9 +29,18 @@ namespace ViaMarket.ApiControllers
         public IEnumerable<CategoryDto> CategoryList()
         {
             var categories = from c in db.Categories
+                             where c.Name != "Others"
                              orderby c.Name ascending
                              select c;
-            return Mapper.Map<IEnumerable<Category>, ICollection<CategoryDto>>(categories);
+            var others = 
+                             from c in db.Categories
+                             where c.Name == "Others"
+                                 select c;
+
+            ICollection<Category> collection = categories.ToList();
+            collection.Add(others.FirstOrDefault());
+
+            return Mapper.Map<ICollection<Category>, ICollection<CategoryDto>>(collection);
         }
 
         [HttpGet]
