@@ -20,6 +20,11 @@ namespace ViaMarket
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+                name: "DetailsCategory",
+                url: "{controller}/{action}/{id}/{idPage}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional ,idPage = UrlParameter.Optional }
+            );
         }
     }
 }
