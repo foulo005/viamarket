@@ -8,29 +8,37 @@ public class Item {
 	private String price;
 	private String idCurrency;
 	private String idCategory;
+	private String catname;
+	private String curCode;
 	
 	private String title;
 	private String description;
 	private String iDAsoNetUsers;
 	private String ApplicationUser_Id;
+	private String ApplicationUser_Username;
 	
 	private String date;
 	
-	private Boolean sold;
+	private String sold;
 	private String[] imagesURLs;
 
-	public Item(String id, String price, String idCurrency, String idCategory,
-			String title, String description, String applicationUser_Id, String date, String[] imagesURLs) {
-		super();
-		this.id = id;
-		this.price = price;
-		this.idCurrency = idCurrency;
-		this.idCategory = idCategory;
-		this.title = title;
-		this.description = description;
-		ApplicationUser_Id = applicationUser_Id;
-		this.date = date;
-		this.imagesURLs = imagesURLs;
+	public Item(String itemID,String itemTitle,String itemDesc,String itemPrice,
+			String itemCreationDate,String curID, String catID, String userID,
+			String userName,String curCode,String catName,String ongoing,String[] imagesURLs){
+	this.id = itemID;
+	this.title = itemTitle;
+	this.description=itemDesc;
+	this.price = itemPrice;
+	this.date=itemCreationDate;
+	this.idCurrency = curID;
+	this.idCategory = catID;
+	this.ApplicationUser_Id = userID;
+	this.ApplicationUser_Username=userName;
+	this.sold =ongoing;
+	this.catname = catName;
+	this.curCode = curCode;
+	this.imagesURLs = imagesURLs;
+	
 	}
 
 	public String getId() {
@@ -66,7 +74,7 @@ public class Item {
 	}
 
 	public String getTitle() {
-		return title;
+		return this.title;
 	}
 
 	public void setTitle(String title) {
@@ -105,18 +113,42 @@ public class Item {
 		this.date = date;
 	}
 
-	public Boolean getSold() {
+	public String getSold() {
 		return sold;
 	}
 
-	public void setSold(Boolean sold) {
+	public void setSold(String sold) {
 		this.sold = sold;
 	}
 	public String getImage(int i)
 	{
 		return imagesURLs[i];
 	}
+	public String getImagePreview()
+	{
+		if(this.imagesURLs.length > 0)
+			return imagesURLs[2];
+		return null;
+	}
+	public String[] getImagesArray()
+	{
+		return this.imagesURLs;
+	}
 	
+	public String getApplicationUser_Username()
+	{
+		return this.ApplicationUser_Username;
+	}
+	
+	public String getCurCode()
+	{
+		return this.curCode;
+	}
+	
+	public String getCatName()
+	{
+		return this.catname;
+	}
 	
 	
 

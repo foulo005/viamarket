@@ -45,7 +45,7 @@ public class MarketTimeLine extends FragmentActivity {
 
 		fragments.add(Fragment.instantiate(this,ItemDisplayList.class.getName()));
 		fragments.add(Fragment.instantiate(this,SearchActivity.class.getName()));
-		fragments.add(Fragment.instantiate(this,SearchResult.class.getName()));
+		
 
 		// adapter of fragment list
 		this.mPagerAdapter = new PageAdapter(super.getSupportFragmentManager(),
@@ -90,7 +90,7 @@ public class MarketTimeLine extends FragmentActivity {
 				.setTabListener(tabListener));
 		actionBar.addTab(actionBar.newTab().setText("Search")
 				.setTabListener(tabListener));
-		actionBar.addTab(actionBar.newTab().setText("Search result").setTabListener(tabListener));
+		
 		pager.setCurrentItem(1);
 		
 
