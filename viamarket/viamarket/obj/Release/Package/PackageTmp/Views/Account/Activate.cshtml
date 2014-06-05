@@ -1,0 +1,22 @@
+﻿@model ViaMarket.Models.ActivateViewModel
+
+@{
+    ViewBag.Title = "Activation of your account";
+}
+
+<h2>@ViewBag.Title.</h2>
+    <h4>Activation</h4>
+    @if (Model.Successful)
+    {
+        <div>Your account was successfully activated! You can now login.</div>
+        <br />
+        <div>@Html.ActionLink("Login", "Login", "Account")</div>
+    }else{
+        <div>The activation link you provided is not valid or you activated your account already!</div>
+    }
+    
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
