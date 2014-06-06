@@ -22,10 +22,10 @@
             @Html.DisplayNameFor(model => model.Price)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdCurrency)
+            @Html.DisplayName("Currency")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.IdCategory)
+            @Html.DisplayName("Category")
         </th>
         <th></th>
     </tr>
@@ -42,10 +42,10 @@
             @Html.DisplayFor(modelItem => item.Price)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdCurrency)
+            @Html.DisplayFor(modelItem => item.Currency.Code)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.IdCategory)
+            @Html.DisplayFor(modelItem => item.Category.Name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
