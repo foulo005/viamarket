@@ -1,5 +1,5 @@
 ﻿@model ViaMarket.Models.RegisterViewModel
-           @using ViaMarket.App_Start
+@using ViaMarket.App_Start
 @{
     ViewBag.Title = "Register";
 }
@@ -16,8 +16,10 @@
         <div class="row">
             <div class="form-group">
                 @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
+                <div class="col-md-10">
                     @Html.TextBoxFor(m => m.UserName, new { @class = "col-md-5 form-control" })
-                    <label>@("@"+ApplicationConfig.Domain)</label>
+                    <label>@("@" + ApplicationConfig.Domain)</label>
+                </div>
             </div>
         </div>
     </div>
@@ -33,7 +35,7 @@
             @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
         </div>
     </div>
-        <div class="form-group">
+    <div class="form-group">
         @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
