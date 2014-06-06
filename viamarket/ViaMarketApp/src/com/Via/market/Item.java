@@ -40,6 +40,11 @@ public class Item {
 	this.imagesURLs = imagesURLs;
 	
 	}
+	public Item(String Title,String[] imagesURLs)
+	{
+		this.title = Title;
+		this.imagesURLs = imagesURLs;
+	}
 
 	public String getId() {
 		return id;

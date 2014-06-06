@@ -2,8 +2,11 @@
 package com.Via.market;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -39,7 +42,7 @@ public class SplashScreen extends Activity {
 	            }
 	        }, SPLASH_TIME_OUT);
 		}
-		else
+		else if(settings.contains("username") && isNetworkReady())
 		{
 			new Handler().postDelayed(new Runnable() {
 				 
@@ -61,5 +64,17 @@ public class SplashScreen extends Activity {
 
 		}
     }
+	public boolean isNetworkReady() {
+
+		ConnectivityManager connMgr = (ConnectivityManager) getApplicationContext()
+				.getSystemService(Context.CONNECTIVITY_SERVICE);
+		NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+		if (networkInfo != null && networkInfo.isConnected())
+		{
+			return true;
+		}
+
+		return false;
+	}
 
 }
