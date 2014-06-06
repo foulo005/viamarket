@@ -29,7 +29,7 @@ public class Profile extends Activity {
 		setContentView(R.layout.activity_profile);
 		// Getting the username in the shared preferences
 		// Setting the username in the textView under the logo of the Uni
-		SharedPreferences session = PreferenceManager
+		final SharedPreferences session = PreferenceManager
 				.getDefaultSharedPreferences(this);
 		userNameText = (TextView) findViewById(R.id.usernameText);
 		userNameText.setText(session.getString("username", " "));
@@ -59,14 +59,19 @@ public class Profile extends Activity {
 				}
 				else if(position == 1)
 				{
-					//Intent i = new Intent(getApplicationContext(),OngoingSales.class);
-					//startActivity(i);
-					System.out.println(position);
+					Intent i = new Intent(getApplicationContext(),OnGoingSales.class);
+					i.putExtra("user", session.getString("idUser", " "));
+					i.putExtra("ongoing","true");
+					startActivity(i);
+
 				}
 				else if(position == 2)
 				{
-					//Intent i = new Intent(getApplicationContext(),SoldItems.class);
-					//startActivity(i);
+					Intent i = new Intent(getApplicationContext(),SoldItems.class);
+					i.putExtra("user", session.getString("idUser", " "));
+					String ongoing = "true";
+					i.putExtra("ongoing","false");
+					startActivity(i);
 					System.out.println(position);
 				}
 					

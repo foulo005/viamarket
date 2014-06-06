@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
+import java.net.URLEncoder;
 import java.util.List;
 
 import org.apache.http.HttpEntity;
@@ -105,6 +105,7 @@ public class JSONParser {
 			jObj = new JSONObject(json);
 		} catch (JSONException e) {
 			Log.e("JSON Parser", "Error parsing data " + e.toString());
+			return null;
 		}
 
 		// return JSON String
@@ -141,12 +142,12 @@ public class JSONParser {
 		}
 		catch (Exception e) {
 			Log.e("Buffer Error", "Error converting result " + e.toString());
+			return null;
 		}
 		if(response.getStatusLine().getStatusCode() == 200){
 			
 			return jObj;
 		}
-		System.out.println(response.getStatusLine().getStatusCode());
 		return null;
 	}
 
@@ -179,14 +180,64 @@ public class JSONParser {
 			jArr = new JSONArray(json);
 		} catch (JSONException e) {
 			Log.e("JSON Parser", "Error parsing data " + e.toString());
+			return null;
 		}
 
 		// return JSON String
 		return jArr;
 
 	}
-	public String loadListItem(String url) throws IOException, JSONException {
+	public String loadListItem(String ... url) throws IOException, JSONException {
+		String baseUrl= " ";
+		String param1 = " ";
+		String param2 = " ";
+		String safeUrl = " ";
+		if(url.length == 1)
+			safeUrl= url[0];
+		else if(url.length == 2)
+		{
+			baseUrl = url[0];
+			param1 = URLEncoder.encode(url[1], "UTF-8").replace("%2B", "%20");
+			safeUrl = baseUrl+param1;
+		}
+		else if(url.length == 3)
+		{
+			baseUrl = url[0];
+			param1 = URLEncoder.encode(url[1], "UTF-8").replace("%2B", "%20");
+			param2 = URLEncoder.encode(url[2], "UTF-8").replace("%2B", "%20");
+			safeUrl = baseUrl+param1+"/"+param2;
+		}
 
+		System.out.println(safeUrl);
+		
+		// request method is GET
+		DefaultHttpClient httpClient = new DefaultHttpClient();
+		HttpGet httpGet = new HttpGet(safeUrl);
+
+		HttpResponse httpResponse = httpClient.execute(httpGet);
+		HttpEntity httpEntity = httpResponse.getEntity();
+		is = httpEntity.getContent();
+
+		try {
+			BufferedReader reader = new BufferedReader(new InputStreamReader(
+					is, "iso-8859-1"), 8);
+			StringBuilder sb = new StringBuilder();
+			String line = null;
+			while ((line = reader.readLine()) != null) {
+				sb.append(line + "\n");
+			}
+			is.close();
+			json = sb.toString();
+		} catch (Exception e) {
+			Log.e("Buffer Error", "Error converting result " + e.toString());
+			return null;
+		}
+		// return JSON String
+		return json;
+
+	}
+	
+	public String loadListLatestItem(String  url) throws IOException, JSONException {
 		// request method is GET
 		DefaultHttpClient httpClient = new DefaultHttpClient();
 		HttpGet httpGet = new HttpGet(url);
@@ -205,26 +256,25 @@ public class JSONParser {
 			}
 			is.close();
 			json = sb.toString();
-		} catch (Exception e) {
+		} catch (Exception e) {			
 			Log.e("Buffer Error", "Error converting result " + e.toString());
+			return null;
 		}
 		// return JSON String
 		return json;
 
 	}
-	public void postImage(String url, ArrayList<String> listesURI) {
+	public void postImage(String url, String string) {
 		HttpClient httpClient = (HttpClient) new DefaultHttpClient();
 		HttpContext localContext = new BasicHttpContext();
 		HttpPost httpPost = new HttpPost(url);
-		System.out.println(listesURI);
+
 		try {
 			MultipartEntity entity = new MultipartEntity(
 					HttpMultipartMode.BROWSER_COMPATIBLE);
 
-			for (int index = 0; index < listesURI.size(); index++) {
-				File f = new File(listesURI.get(index));
+				File f = new File(string);
 					entity.addPart("picture", new FileBody(f));
-				}
 			httpPost.setEntity(entity);
 
 			HttpResponse response = (HttpResponse) httpClient.execute(
@@ -232,6 +282,7 @@ public class JSONParser {
 			System.out.println(response.getStatusLine().getStatusCode());
 		} catch (IOException e) {
 			e.printStackTrace();
+			
 		}
 	}
 }

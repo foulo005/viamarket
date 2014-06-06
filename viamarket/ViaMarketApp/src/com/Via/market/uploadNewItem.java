@@ -1,5 +1,3 @@
-
-
 package com.Via.market;
 
 import java.io.IOException;
@@ -34,10 +32,6 @@ import android.widget.Toast;
 
 
 public class uploadNewItem extends Fragment  {
-
-
-	// TODO : DROPDOWN LIST POUR LA CURRENCY
-	//TODO: spinner.getText et tu recupère aussi la position dans le onclick de ton spinner que tu store dans cur(le Code) et curID(position)
 	
 	private TextView tv;
 	private TextView tv2;
@@ -214,11 +208,12 @@ public class uploadNewItem extends Fragment  {
 
 			intent.putExtra("IDCUT",String.valueOf(curId));
 
-			startActivity(intent);
+			startActivityForResult(intent, 99);
 		}
 		}
 	}
 
+	
 	@Override
 	public void onCreate(Bundle b) {
 		super.onCreate(b);

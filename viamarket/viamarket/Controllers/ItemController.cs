@@ -29,7 +29,7 @@ namespace ViaMarket.Controllers
         // GET: /Item/
         public ActionResult Index()
         {
-            return View(ws.GetAll());
+            return View(ws.GetItemsForUser(User.Identity.GetUserId(),true));
         }
 
         // GET: /Item/Details/5

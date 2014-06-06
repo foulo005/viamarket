@@ -82,5 +82,7 @@
     <string name="title_activity_image_pager">ImagePagerActivity</string>
     <string name="descr_image">ImagePagerActivity</string>
     <string name="title_activity_search_result">SearchResult</string>
+    <string name="title_activity_on_going_sales">OnGoingSales</string>
+    <string name="title_activity_sold_items">SoldItems</string>
 
 </resources>

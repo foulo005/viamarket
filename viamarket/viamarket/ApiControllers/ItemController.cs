@@ -42,7 +42,7 @@ namespace ViaMarket.ApiControllers
         [HttpGet]
         [Route("")]
         public IEnumerable<ItemDto> GetAll()
-        {   
+        {
             return Mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(db.Items.AsEnumerable());
         }
 
@@ -87,7 +87,8 @@ namespace ViaMarket.ApiControllers
                 Description = itemDto.Description,
                 Id = itemDto.Id,
                 Price = itemDto.Price,
-                Title = itemDto.Title
+                Title = itemDto.Title,
+                Ongoing = true
             };
 
             if (item.Id > 0)
@@ -98,7 +99,7 @@ namespace ViaMarket.ApiControllers
                     db.Entry(item).State = EntityState.Modified;
                     db.SaveChanges();
                     item = db.Items.Find(item.Id);
-                    return  Mapper.Map<ItemDto>(item);
+                    return Mapper.Map<ItemDto>(item);
                 }
                 else
                 {
@@ -139,15 +140,29 @@ namespace ViaMarket.ApiControllers
         }
 
         [HttpGet]
+        [Route("{search}")]
+        public IEnumerable<ItemDto> SearchItems(string search)
+        {
+
+            var resultsTitle = from c in db.Items
+                               where c.Title.Contains(search)
+                               select c;
+            var resultsDescr = from c in db.Items
+                               where c.Description.Contains(search)
+                               select c;
+            return Mapper.Map<IEnumerable<Item>, IEnumerable<ItemDto>>(resultsTitle.Union(resultsDescr));
+        }
+
+        [HttpGet]
         [Route("category/{id:int}/{search}")]
         public IEnumerable<ItemDto> SearchItemsInCategory(int id, string search)
         {
             if (db.Categories.Any(c => c.Id == id))
             {
                 var resultsTitle = from c in db.Items
-                              where c.IdCategory == id
-                              && c.Title.Contains(search)
-                                       select c;
+                                   where c.IdCategory == id
+                                   && c.Title.Contains(search)
+                                   select c;
                 var resultsDescr = from c in db.Items
                                    where c.IdCategory == id
                                    && c.Description.Contains(search)
@@ -159,7 +174,42 @@ namespace ViaMarket.ApiControllers
                 return new List<ItemDto>();
             }
         }
-        
+
+        [HttpGet]
+        [Route("category/title/{category}/{search}")]
+        public IEnumerable<ItemDto> SearchItemsByCategoryName(string category, string search)
+        {
+            if (db.Categories.Count(c => c.Name == category) == 1)
+            {
+                var result = (from c in db.Categories
+                              where c.Name == category
+                              select c).FirstOrDefault();
+
+                return SearchItemsInCategory(result.Id, search);
+            }
+            else
+            {
+                return new List<ItemDto>();
+            }
+        }
+
+        [HttpGet]
+        [Route("category/name/{category}")]
+        public IEnumerable<ItemDto> ListItemsByCategoryName(string category)
+        {
+            if (db.Categories.Count(c => c.Name == category) == 1)
+            {
+                var result = (from c in db.Categories
+                              where c.Name == category
+                              select c).FirstOrDefault();
+
+                return GetItemsForCategory(result.Id);
+            }
+            else
+            {
+                return new List<ItemDto>();
+            }
+        }
 
         [HttpPost]
         [Route("{idItem:int}/image/upload")]

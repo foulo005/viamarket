@@ -129,9 +129,9 @@ namespace ViaMarket.ApiControllers
         public ICollection<String> GetContactTypes()
         {
             return Enum.GetValues(typeof(ContactType))
-    .Cast<ContactType>()
-    .Select(v => v.ToString())
-    .ToList();
+                .Cast<ContactType>()
+                .Select(v => v.ToString())
+                .ToList();
         }
     }
 }

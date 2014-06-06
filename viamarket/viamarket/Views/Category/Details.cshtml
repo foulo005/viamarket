@@ -37,17 +37,17 @@
                     }
                     else
                     {
-                        <li><a href="/Home/Index/@(Model.Pages[0].id-1)">&laquo;</a></li>
+                        <li><a href="/Category/Details/@Model.Id/@(Model.Pages[0].id-1)">&laquo;</a></li>
                     }
                     @foreach (var page in Model.Pages)
                     {
                         if (page.isCurrent)
                         {
-                            <li class="active"><a href="/Home/Index/@page.id">@page.id</a></li>
+                            <li class="active"><a href="/Category/Details/@Model.Id/@page.id">@page.id</a></li>
                         }
                         else
                         {
-                            <li><a href="/Home/Index/@page.id">@page.id</a></li>
+                            <li><a href="/Category/Details/@Model.Id/@page.id">@page.id</a></li>
                         }
                     }
                     @if (Model.Pages[Model.Pages.Count - 1].id == Model.MaxPages)
@@ -56,7 +56,7 @@
                     }
                     else
                     {
-                        <li><a href="/Home/Index/@(Model.Pages[Model.Pages.Count - 1].id+1)">&raquo;</a></li>
+                        <li><a href="/Category/Details/@Model.Id/@(Model.Pages[Model.Pages.Count - 1].id+1)">&raquo;</a></li>
                     }
                 </ul>
             </div>
