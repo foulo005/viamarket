@@ -193,6 +193,23 @@ namespace ViaMarket.ApiControllers
             }
         }
 
+        [HttpGet]
+        [Route("category/name/{category}")]
+        public IEnumerable<ItemDto> ListItemsByCategoryName(string category)
+        {
+            if (db.Categories.Count(c => c.Name == category) == 1)
+            {
+                var result = (from c in db.Categories
+                              where c.Name == category
+                              select c).FirstOrDefault();
+
+                return GetItemsForCategory(result.Id);
+            }
+            else
+            {
+                return new List<ItemDto>();
+            }
+        }
 
         [HttpPost]
         [Route("{idItem:int}/image/upload")]
