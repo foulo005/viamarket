@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="viamarket" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Dev\\viamarket\\viamarket\\viamarket\\obj\\Release\\Package\\PackageTmp$" />
+    <parameterEntry kind="ProviderPath" scope="setAcl" match="^C:\\Dev\\viamarket\\viamarket\\viamarket\\obj\\Release\\Package\\PackageTmp$" />
+  </parameter>
+  <parameter name="DefaultConnection-Web.config Connection String" description="" value="Data Source=tcp:nc1mzmcwry.database.windows.net,1433;Initial Catalog=viamarket;Integrated Security=False;User ID=viamarket@nc1mzmcwry;Password=0ymP2gj50Ch9W14RILY4;Connect Timeout=30;Encrypt=True" tags="">
+    <parameterEntry kind="XmlFile" scope="C:\\Dev\\viamarket\\viamarket\\viamarket\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>
