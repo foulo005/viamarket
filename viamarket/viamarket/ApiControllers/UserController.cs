@@ -61,7 +61,7 @@ namespace ViaMarket.ApiControllers
         // registers a user and returns status 201 (created) if ok, otherwise 404 (not found)
         [HttpPost]
         [Route("")]
-        public HttpResponseMessage UpdateUser(UserDto account)
+        public UserDto UpdateUser(UserDto account)
         {
             //create user
             if (account.Id == null || account.Id.Length == 0)
@@ -77,14 +77,14 @@ namespace ViaMarket.ApiControllers
                 {
                     sendVerificationEmail(user);
 
-                    return Request.CreateResponse<UserDto>(HttpStatusCode.Created, Mapper.Map<UserDto>(user));
+                    return Mapper.Map<UserDto>(user);
 
                 }
                 else
                 {
                     UserDto accountFailed = Mapper.Map<UserDto>(user);
                     accountFailed.ErrorList = result.Errors.ToArray().ToList<string>();
-                    return Request.CreateResponse<UserDto>(HttpStatusCode.NotFound, accountFailed);
+                    return accountFailed;
                 }
             }
             //update user
@@ -96,7 +96,7 @@ namespace ViaMarket.ApiControllers
                     user.FirstName = account.FirstName;
                     user.LastName = account.LastName;
                     UserManager.Update(user);
-                    return Request.CreateResponse<UserDto>(HttpStatusCode.OK, Mapper.Map<UserDto>(user));
+                    return Mapper.Map<UserDto>(user);
                 }
                 else
                 {
@@ -112,7 +112,7 @@ namespace ViaMarket.ApiControllers
                 mail.From = new MailAddress(ApplicationConfig.ActivationFromAddress);
                 mail.To.Add(string.Format(ApplicationConfig.ActivationToAddress, user.UserName));
                 mail.Subject = ApplicationConfig.ActivationSubject;
-                mail.Body = string.Format(ApplicationConfig.ActivationMessage, user.Id);
+                mail.Body = string.Format(ApplicationConfig.ActivationMessage, user.FirstName);
                 mail.IsBodyHtml = true;
 
                 using (SmtpClient smtp = new SmtpClient(ApplicationConfig.ActivationSmtp, ApplicationConfig.ActivationSmtpPort))
