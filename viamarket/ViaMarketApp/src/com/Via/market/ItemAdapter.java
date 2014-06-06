@@ -63,8 +63,11 @@ public class ItemAdapter extends BaseAdapter {
 		}
 
 		holder.txtTitle.setText(itemNow.getTitle());
-		imageLoader = ImageLoader.getInstance();
-		imageLoader.displayImage(itemNow.getImagePreview(),holder.imageView, options, animateFirstListener);
+		
+			imageLoader = ImageLoader.getInstance();
+			imageLoader.displayImage(itemNow.getImagePreview(),holder.imageView, options, animateFirstListener);
+		
+		
 
 		return convertView;
 	}

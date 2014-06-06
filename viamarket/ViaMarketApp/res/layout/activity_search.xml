@@ -1,8 +1,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/LinearLayout1"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -10,36 +10,38 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".SearchActivity" >
 
-    <Spinner
-        android:id="@+id/categoriesSpinner"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp" />
+        android:layout_height="wrap_content" >
 
-    <EditText
-        android:id="@+id/searchEditText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
-        android:ems="10"
-        android:hint="@string/search" />
+        <Spinner
+            android:id="@+id/categoriesSpinner"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_weight="1" />
+
+        <EditText
+            android:id="@+id/searchEditText"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="left"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="@string/search"
+            android:maxLines="1" >
+
+            <requestFocus />
+        </EditText>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/searchButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-       
-        android:layout_marginTop="61dp"
+        android:layout_gravity="center_horizontal"
         android:text="@string/searchButton" />
-
-    <TextView
-        android:id="@+id/userNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-       
-        android:layout_marginTop="18dp"
-        android:text="@string/searchCenter"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
     
     
     <ListView
@@ -47,6 +49,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
     </ListView>
-    
 
 </LinearLayout>

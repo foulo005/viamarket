@@ -1,16 +1,10 @@
 package com.Via.market;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.NameValuePair;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.entity.mime.HttpMultipartMode;
-import org.apache.http.entity.mime.MultipartEntity;
-import org.apache.http.entity.mime.content.FileBody;
-import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.message.BasicNameValuePair;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,12 +26,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import ch.boye.httpclientandroidlib.HttpResponse;
-import ch.boye.httpclientandroidlib.client.HttpClient;
-import ch.boye.httpclientandroidlib.client.methods.HttpUriRequest;
-import ch.boye.httpclientandroidlib.impl.client.DefaultHttpClient;
-import ch.boye.httpclientandroidlib.protocol.BasicHttpContext;
-import ch.boye.httpclientandroidlib.protocol.HttpContext;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -147,6 +136,10 @@ public class SumUpItem extends Activity {
 			@Override
 			public void onClick(View v) {
 				SumUpItem.this.upload();
+				setResult(RESULT_OK);
+				Intent i = new Intent(getApplicationContext(),MarketTimeLine.class);
+				startActivity(i);
+				finish();
 			}
 		});
 
@@ -269,6 +262,7 @@ public class SumUpItem extends Activity {
 
 	public void upload() {
 		UploadItemTask uploadItem = new UploadItemTask();
+		Toast.makeText(getApplicationContext(), "Upload in progress", Toast.LENGTH_SHORT).show();
 		uploadItem.execute(TitleText, descriptionText, priceText, idCategory,
 				categoryText, idUser, Currency, idCurrency);
 
@@ -311,6 +305,7 @@ public class SumUpItem extends Activity {
 					System.out.println(listUri);
 					idObjRet = jObj.get("Id").toString();
 					String url = "http://viamarket-001-site1.myasp.net/api/item/"+idObjRet+"/image/upload";
+					
 					for(int i = 0; i<listUri.size();i++)
 					{
 						jsonParser.postImage(url, listUri.get(i));
@@ -335,6 +330,10 @@ public class SumUpItem extends Activity {
 		@Override
 		protected void onPostExecute(Boolean result) {
 			super.onPostExecute(result);
+			if(result)
+				Toast.makeText(getApplicationContext(), "Upload successful", Toast.LENGTH_SHORT).show();
+			else
+				Toast.makeText(getApplicationContext(), "Upload has failed", Toast.LENGTH_SHORT).show();
 		}
 
 	}

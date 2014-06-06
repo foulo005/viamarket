@@ -1,6 +1,7 @@
 package com.Via.market;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,14 +11,15 @@ import org.json.JSONObject;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -66,6 +68,8 @@ public class ItemDisplayList extends ListFragment {
 	private View view;
 	private ItemAdapter adpt;
 	private ProgressDialog dialog;
+	private Item refresh;
+	private TimeLineHttpRequest latest;
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -89,7 +93,8 @@ public class ItemDisplayList extends ListFragment {
 		listView = (ListView) view.findViewById(android.R.id.list);
 		adpt = new ItemAdapter(getActivity(), items, options);
 		adpt.notifyDataSetChanged();
-
+		String[] images = { null, null, null };
+		refresh = new Item("Load More Items", images);
 		listView.setAdapter(adpt);
 
 		return view;
@@ -100,8 +105,8 @@ public class ItemDisplayList extends ListFragment {
 		super.onActivityCreated(savedInstanceState);
 		// Call the 20 latest items added and display them into the market
 		// timeline
-		TimeLineHttpRequest latest = new TimeLineHttpRequest();
-		latest.execute(20, 0);
+		latest = new TimeLineHttpRequest();
+		latest.execute(10, 0);
 	}
 
 	@Override
@@ -112,27 +117,28 @@ public class ItemDisplayList extends ListFragment {
 
 	@Override
 	public void onListItemClick(ListView l, View v, int position, long id) {
-		/*
-		 * public Item(String itemID,String itemTitle,String itemDesc,String itemPrice,
-			String itemCreationDate,String curID, String catID, String userID,
-			String userName,String curCode,String catName,String ongoing,String[] imagesURLs
-		 */
-		Item item = (Item) l.getItemAtPosition(position);
-		Intent i = new Intent(this.getActivity(), ShowItemToSell.class);
-		i.putExtra("Id",item.getId());
-		i.putExtra("Title",item.getTitle());
-		i.putExtra("Description",item.getDescription());
-		i.putExtra("Price",item.getPrice());
-		i.putExtra("Date", item.getDate());
-		i.putExtra("CurId",item.getIdCurrency());
-		i.putExtra("CatId",item.getIdCategory());
-		i.putExtra("UserId",item.getApplicationUser_Id());
-		i.putExtra("UserName",item.getApplicationUser_Username());
-		i.putExtra("CurCode", item.getCurCode());
-		i.putExtra("CatName",item.getCatName());
-		i.putExtra("OnGoing",item.getSold());
-		i.putExtra("Images", item.getImagesArray());
-		startActivity(i);
+		if (position < l.getCount() - 1) {
+			Item item = (Item) l.getItemAtPosition(position);
+			Intent i = new Intent(this.getActivity(), ShowItemToSell.class);
+			i.putExtra("Id", item.getId());
+			i.putExtra("Title", item.getTitle());
+			i.putExtra("Description", item.getDescription());
+			i.putExtra("Price", item.getPrice());
+			i.putExtra("Date", item.getDate());
+			i.putExtra("CurId", item.getIdCurrency());
+			i.putExtra("CatId", item.getIdCategory());
+			i.putExtra("UserId", item.getApplicationUser_Id());
+			i.putExtra("UserName", item.getApplicationUser_Username());
+			i.putExtra("CurCode", item.getCurCode());
+			i.putExtra("CatName", item.getCatName());
+			i.putExtra("OnGoing", item.getSold());
+			i.putExtra("Images", item.getImagesArray());
+			startActivity(i);
+		} else
+			latest = new TimeLineHttpRequest();
+		items.remove(items.size()-1);
+		latest.execute(10, l.getCount() - 1);
+
 	}
 
 	public Item ItemFromJson(JSONObject json) throws JSONException {
@@ -202,7 +208,7 @@ public class ItemDisplayList extends ListFragment {
 			String loadURL = "http://viamarket-001-site1.myasp.net/api/item/latest/"
 					+ range[0] + "/" + range[1];
 			try {
-				json = jsonParser.loadListItem(loadURL);
+				json = jsonParser.loadListLatestItem(loadURL);
 
 				if (json != null)
 					return true;
@@ -228,14 +234,25 @@ public class ItemDisplayList extends ListFragment {
 						Item it = ItemFromJson(jObj);
 						items.add(it);
 					}
+					if (items.size() >= 10)
+						items.add(refresh);
 					adpt.setItemList(items);
+					listView.post(new Runnable() {
+						public void run() {
+
+							listView.setAdapter(adpt);
+						}
+					});
+
 					dialog.dismiss();
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
-			}
+			} else
+				Toast.makeText(getActivity(), "No items in the timeline",
+						Toast.LENGTH_LONG).show();
 		}
 
 	}

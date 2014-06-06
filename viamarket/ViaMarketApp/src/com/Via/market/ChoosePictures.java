@@ -347,6 +347,9 @@ public class ChoosePictures extends Activity {
 			}
 
 		}
+		if(requestCode == 10 && resultCode == RESULT_OK)
+				finish();
+		
 
 	}
 

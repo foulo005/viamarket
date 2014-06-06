@@ -30,23 +30,6 @@ public class ShowItemToSell extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.fragment_show_item_to_sell);
-		
-		/*i.putExtra("Id",item.getId());
-		i.putExtra("Title",item.getTitle());
-		i.putExtra("Description",item.getDescription());
-		i.putExtra("Price",item.getPrice());
-		i.putExtra("Date", item.getDate());
-		i.putExtra("CurId",item.getIdCurrency());
-		i.putExtra("CatId",item.getIdCategory());
-		i.putExtra("UserId",item.getApplicationUser_Id());
-		i.putExtra("UserName",item.getApplicationUser_Username());
-		i.putExtra("CurCode", item.getCurCode());
-		i.putExtra("CatName",item.getCatName());
-		i.putExtra("OnGoing",item.getSold());
-		i.putExtra("Images", item.getImagesArray());
-		Intent i = getIntent();*/
-		
-		// item = (Liste des putExtra) 
 		Intent i = getIntent();
 		title = (TextView)findViewById(R.id.textView1);
 		title.setText(i.getStringExtra("Title").toString());
@@ -80,6 +63,9 @@ public class ShowItemToSell extends Activity {
 		
 	}
 
-	
+	@Override
+	public void onBackPressed() {
+	finish();
+	}
 
 }
