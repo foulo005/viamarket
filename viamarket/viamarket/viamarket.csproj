@@ -232,6 +232,16 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Pictures\bike.png" />
+    <Content Include="Content\Pictures\book500.jpg" />
+    <Content Include="Content\Pictures\cook.png" />
+    <Content Include="Content\Pictures\hugo.png" />
+    <Content Include="Content\Pictures\maxime.png" />
+    <Content Include="Content\Pictures\money.png" />
+    <Content Include="Content\Pictures\nicolas.png" />
+    <Content Include="Content\Pictures\opportunity.png" />
+    <Content Include="Content\Pictures\sound.png" />
+    <Content Include="Content\Pictures\sven.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
