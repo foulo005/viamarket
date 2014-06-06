@@ -10,6 +10,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using ViaMarket.DataAccess;
 using ViaMarket.Models;
+using ViaMarket.ApiControllers;
+using ViaMarket.ApiControllers.Dto;
 
 namespace ViaMarket.Controllers
 {
@@ -17,6 +19,7 @@ namespace ViaMarket.Controllers
     public class AccountController : Controller
     {
         HomeViewModel model = new HomeViewModel();
+        UserController wsUsrCtrl = new UserController();
         public AccountController()
             : this(new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext())))
         {
@@ -70,8 +73,15 @@ namespace ViaMarket.Controllers
                 var user = await UserManager.FindAsync(model.UserName, model.Password);
                 if (user != null)
                 {
-                    await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
+                    if (user.Active == false)
+                    {
+                        ModelState.AddModelError("", "Your account is not active. Please use the activation link to activate your account.");
+                    }
+                    else
+                    {
+                        await SignInAsync(user, model.RememberMe);
+                        return RedirectToLocal(returnUrl);
+                    }
                 }
                 else
                 {
@@ -99,22 +109,32 @@ namespace ViaMarket.Controllers
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {   
-                var user = new ApplicationUser() 
-                { 
-                    UserName = model.UserName,
-                    FirstName = model.FirstName,
-                    LastName = model.LastName
-                };
-                var result = await UserManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+            {
+                UserDto user = new UserDto()
                 {
-                    await SignInAsync(user, isPersistent: false);
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Password = model.Password,
+                    UserName = model.UserName
+                };
+
+                user = wsUsrCtrl.UpdateUser(user);
+                
+
+
+                if (user.ErrorList == null || user.ErrorList.Count == 0)
+                {
+                    // after the registration we dont want the user to be logged in,
+                    // he has to activate his account first
+                    // await SignInAsync(user, isPersistent: false);
                     return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    AddErrors(result);
+                    foreach (var err in user.ErrorList)
+                    {
+                        ModelState.AddModelError("", err);
+                    }
                 }
             }
 
@@ -405,7 +425,8 @@ namespace ViaMarket.Controllers
 
         private class ChallengeResult : HttpUnauthorizedResult
         {
-            public ChallengeResult(string provider, string redirectUri) : this(provider, redirectUri, null)
+            public ChallengeResult(string provider, string redirectUri)
+                : this(provider, redirectUri, null)
             {
             }
 

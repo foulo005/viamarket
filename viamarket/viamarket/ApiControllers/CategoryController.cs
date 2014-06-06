@@ -11,6 +11,9 @@ using ViaMarket.DataAccess;
 
 namespace ViaMarket.ApiControllers
 {
+    /**
+     * This is the web service related to categories
+     */
     [RoutePrefix("api/category")]
     public class CategoryController : ApiController
     {
@@ -18,6 +21,7 @@ namespace ViaMarket.ApiControllers
 
         public CategoryController()
         {
+            // initialize db access and mappings for the dto's
             db = new ApplicationDbContext();
             Mapper.CreateMap<Category, CategoryDto>();
             Mapper.CreateMap<CategoryDto, Category>();
@@ -28,14 +32,22 @@ namespace ViaMarket.ApiControllers
         [HttpGet]
         public IEnumerable<CategoryDto> CategoryList()
         {
+            //in this case we need to add the category "Others" to the end of the list
+            //sort the list by name
             var categories = from c in db.Categories
                              where c.Name != "Others"
                              orderby c.Name ascending
                              select c;
+<<<<<<< HEAD
             var others = 
                              from c in db.Categories
                              where c.Name == "Others"
                                  select c;
+=======
+            var others = from c in db.Categories
+                         where c.Name == "Others"
+                         select c;
+>>>>>>> cad916811f11b53f66debc7ed0c72de5318ba709
 
             ICollection<Category> collection = categories.ToList();
             collection.Add(others.FirstOrDefault());
@@ -43,6 +55,7 @@ namespace ViaMarket.ApiControllers
             return Mapper.Map<ICollection<Category>, ICollection<CategoryDto>>(collection);
         }
 
+        //
         [HttpGet]
         [Route("{id:int}/count")]
         public int GetCountByCategory(int id)

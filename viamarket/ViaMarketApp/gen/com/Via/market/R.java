@@ -80,9 +80,9 @@ public final class R {
         public static final int imageButton4=0x7f0a0022;
         public static final int imageView=0x7f0a0038;
         public static final int imageView1=0x7f0a0003;
-        public static final int imageView2=0x7f0a0030;
-        public static final int imageView3=0x7f0a0031;
-        public static final int imageView4=0x7f0a0033;
+        public static final int imageView2=0x7f0a0031;
+        public static final int imageView3=0x7f0a0032;
+        public static final int imageView4=0x7f0a0030;
         public static final int label=0x7f0a003c;
         public static final int lastNameView=0x7f0a001c;
         public static final int list=0x7f0a0013;
@@ -111,7 +111,7 @@ public final class R {
         public static final int textView2=0x7f0a0001;
         public static final int textView3=0x7f0a0021;
         public static final int textView4=0x7f0a002c;
-        public static final int textView5=0x7f0a0032;
+        public static final int textView5=0x7f0a0033;
         public static final int textView6=0x7f0a0036;
         public static final int textView7=0x7f0a0037;
         public static final int textView8=0x7f0a0034;
