@@ -108,7 +108,12 @@ public class ItemDisplayList extends ListFragment {
 		latest = new TimeLineHttpRequest();
 		latest.execute(10, 0);
 	}
-
+	
+	@Override
+	public void onResume()
+	{
+		super.onResume();
+	}
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -119,7 +124,7 @@ public class ItemDisplayList extends ListFragment {
 	public void onListItemClick(ListView l, View v, int position, long id) {
 		if (position < l.getCount() - 1) {
 			Item item = (Item) l.getItemAtPosition(position);
-			Intent i = new Intent(this.getActivity(), ShowItemToSell.class);
+			Intent i = new Intent(getActivity(), ShowItemToSell.class);
 			i.putExtra("Id", item.getId());
 			i.putExtra("Title", item.getTitle());
 			i.putExtra("Description", item.getDescription());
@@ -134,10 +139,13 @@ public class ItemDisplayList extends ListFragment {
 			i.putExtra("OnGoing", item.getSold());
 			i.putExtra("Images", item.getImagesArray());
 			startActivity(i);
-		} else
+		} else if (latest.getStatus() == AsyncTask.Status.FINISHED){
 			latest = new TimeLineHttpRequest();
-		items.remove(items.size()-1);
-		latest.execute(10, l.getCount() - 1);
+			items.remove(items.size()-1);
+			latest.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, 10, l.getCount() - 1);
+		}
+			
+
 
 	}
 
@@ -243,7 +251,6 @@ public class ItemDisplayList extends ListFragment {
 							listView.setAdapter(adpt);
 						}
 					});
-
 					dialog.dismiss();
 				} catch (JSONException e) {
 					// TODO Auto-generated catch block
