@@ -3,13 +3,57 @@
 @{
     ViewBag.Title = "Home Page";
 }
-<table class="table-bordered">
-    @foreach (var item in Model.Items)
-    {
-        <tr>
-            <td>@item.Title</td>
-            <td>@item.Price</td>
-            <td>@item.Description</td>
-        </tr>
-    }
-</table>
+<div class="container custom-container">
+    <div class="row">
+        @foreach(var item in Model.Items)
+        {
+            <div class="col-xs-6 col-md-3">
+                <a href="~/Item/Details/@item.Id" class="thumbnail">
+                    @if (item.Image.Count() == 0)
+                    {
+                        <img src="/ItemsPictures/default.jpg" class="img-thumbnail img-responsive" />
+                    }
+                    else
+                    {
+                        <img src="@item.Image.ElementAt(0).PathPreview" class="img-thumbnail img-responsive" />
+                    }
+                    <h4 class="text-center">@item.Title</h4>
+                </a>
+            </div>
+        x
+        }
+    </div>
+</div>
+<div class="text-center custom-container container">
+    <div class="row">
+        <ul class="pagination pagination-lg">
+            @if (Model.Pages[0].id == 1)
+            {
+                <li class="disabled"><a href="#">&laquo;</a></li>
+            }
+            else
+            {
+                <li><a href="/Home/Index/@(Model.Pages[0].id-1)">&laquo;</a></li>
+            }
+            @foreach (var page in Model.Pages)
+            {
+                if (page.isCurrent)
+                {
+                    <li class="active"><a href="/Home/Index/@page.id">@page.id</a></li>
+                }
+                else
+                {
+                    <li><a href="/Home/Index/@page.id">@page.id</a></li>
+                }
+            }
+            @if (Model.Pages[Model.Pages.Count - 1].id == Model.MaxPages)
+            {
+                <li class="disabled"><a href="#">&raquo;</a></li>
+            }
+            else
+            {
+                <li><a href="/Home/Index/@(Model.Pages[Model.Pages.Count - 1].id+1)">&raquo;</a></li>
+            }
+        </ul>
+    </div>
+</div>

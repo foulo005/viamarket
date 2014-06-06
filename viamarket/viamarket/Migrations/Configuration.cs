@@ -1,4 +1,4 @@
-namespace viamarket.Migrations
+namespace ViaMarket.Migrations
 {
     using System;
     using System.Data.Entity;

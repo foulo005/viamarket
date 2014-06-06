@@ -59,8 +59,8 @@ C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.OAuth.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.Google.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Dev\viamarket\viamarket\viamarket\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Dev\viamarket\viamarket\viamarket\obj\Release\ViaMarket.csprojResolveAssemblyReference.cache
+C:\Dev\viamarket\viamarket\viamarket\obj\Release\ViaMarket.Migrations.sven2.resources
 C:\Dev\viamarket\viamarket\viamarket\obj\Release\ViaMarket.csproj.GenerateResource.Cache
 C:\Dev\viamarket\viamarket\viamarket\obj\Release\ViaMarket.dll
 C:\Dev\viamarket\viamarket\viamarket\obj\Release\ViaMarket.pdb
-C:\Dev\viamarket\viamarket\viamarket\obj\Release\ViaMarket.csprojResolveAssemblyReference.cache
-C:\Dev\viamarket\viamarket\viamarket\obj\Release\viamarket.Migrations.test.resources

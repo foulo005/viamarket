@@ -44,25 +44,27 @@ namespace ViaMarket.Controllers
             model.Id = category.Id;
             model.Name = category.Name;
             int numberByPage = 20;
-            int interval = 5;
-            int half = interval / 2 + 1;
             
             int items = ws.GetCountByCategory((int)(id));
             model.MaxPages = items % numberByPage == 0 ? items / numberByPage : items / numberByPage + 1;
-            model.Items = ws.GetLatest((int)id, numberByPage, (int)idPage - 1).ToList<ItemDto>(); // TO MODIFY TO FECTH DATA FOR PAGINATION
+            model.Items = ws.GetLatest((int)id, numberByPage, (int)idPage - 1).ToList<ItemDto>();
             model.Pages = new List<Page>();
 
+            int interval = 5;
+            int half = interval / 2 + 1;            
             int startIndex = 1;
-             int endIndex = model.MaxPages;          
-             if(model.MaxPages >= interval)
-             {
-                 startIndex = idPage <= half ? 1 : idPage >= model.MaxPages - half ? model.MaxPages - (interval - 1) : (int)idPage - (interval / 2);
+            int endIndex = model.MaxPages;          
+            if(model.MaxPages >= interval)
+            {
+                startIndex = idPage <= half ? 1 :
+                    idPage >= model.MaxPages - half ? model.MaxPages - (interval - 1) : (int)idPage - (interval / 2);
                 endIndex = startIndex + interval-1;
-             }
+            }
             for (int i=startIndex; i <= endIndex; i++)
             {
                 model.Pages.Add(new Page(i, i==(int)idPage));
             }
+
             return View(model);
         }
 
