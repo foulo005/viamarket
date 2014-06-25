@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Web.Http;
 using ViaMarket.App_Start;
 using ViaMarket.ApiControllers.Dto;
+using System.Data.Entity;
 
 namespace ViaMarket.ApiControllers
 {
@@ -56,6 +57,60 @@ namespace ViaMarket.ApiControllers
                 account = Mapper.Map<UserDto>(user);
             }
             return account;
+        }
+
+        [HttpPost]
+        [Route("contacts")]
+        public void UpdateContactList(string userId, List<ContactDto> contacts)
+        {
+            ApplicationUser user = UserManager.FindById(userId);
+            if (user != null)
+            {
+                var toDelete = from c in db.Contacts
+                               where c.IdAspNetUsers == userId
+                               && !contacts.Any(cont => c.Id.Equals(cont.Id))
+                               select c;
+
+                var toUpdate = from c in db.Contacts
+                               where c.IdAspNetUsers == userId
+                               && contacts.Any(cont => c.Id.Equals(cont.Id))
+                               select c;
+
+                var toCreate = from c in contacts
+                               where c.Id <= 0
+                               select c;
+
+
+                foreach (var contact in toDelete)
+                {
+                    db.Contacts.Remove(contact);
+                }
+
+                foreach (var contact in toUpdate)
+                {
+                    ContactDto dto = (from c in contacts
+                                     where c.Id == contact.Id
+                                     select c).SingleOrDefault();
+                    contact.Value = dto.Value;
+                    contact.ContactType = dto.ContactType;
+
+                    db.Contacts.Attach(contact);
+                    db.Entry(contact).State = EntityState.Modified;
+                }
+
+                foreach (var contact in toCreate)
+                {
+                    Contact entity = new Contact();
+
+                    entity.Value = contact.Value;
+                    entity.ContactType = contact.ContactType;
+
+                    db.Contacts.Attach(contact);
+                    db.Entry(contact).State = EntityState.Modified;
+                }
+                
+                    db.SaveChanges();   
+            }
         }
 
         // registers a user and returns status 201 (created) if ok, otherwise 404 (not found)
