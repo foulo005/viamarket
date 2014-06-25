@@ -1,6 +1,8 @@
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".LoginActivity" >
+    tools:context=".LoginActivity"
+ >
+    
 
     <!-- Login progress -->
 
@@ -39,6 +41,8 @@
         <LinearLayout
             style="@style/LoginFormContainer"
             android:layout_height="268dp"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="vertical" >
 
             <EditText

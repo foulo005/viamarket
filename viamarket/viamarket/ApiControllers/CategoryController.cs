@@ -38,9 +38,16 @@ namespace ViaMarket.ApiControllers
                              where c.Name != "Others"
                              orderby c.Name ascending
                              select c;
+<<<<<<< HEAD
+            var others = 
+                             from c in db.Categories
+                             where c.Name == "Others"
+                                 select c;
+=======
             var others = from c in db.Categories
                          where c.Name == "Others"
                          select c;
+>>>>>>> cad916811f11b53f66debc7ed0c72de5318ba709
 
             ICollection<Category> collection = categories.ToList();
             collection.Add(others.FirstOrDefault());

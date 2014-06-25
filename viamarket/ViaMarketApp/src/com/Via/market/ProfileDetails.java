@@ -1,10 +1,12 @@
 package com.Via.market;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 public class ProfileDetails extends Activity {
@@ -32,6 +34,18 @@ public class ProfileDetails extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.profile_details, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		
+		case R.id.Edition:
+			Intent i = new Intent(getApplicationContext(),EditProfile.class);
+			startActivity(i);
+			
+		}
 		return true;
 	}
 	

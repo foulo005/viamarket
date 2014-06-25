@@ -84,5 +84,7 @@
     <string name="title_activity_search_result">SearchResult</string>
     <string name="title_activity_on_going_sales">OnGoingSales</string>
     <string name="title_activity_sold_items">SoldItems</string>
+    <string name="title_activity_edit_profile">EditProfile</string>
+    <string name="editProf">Edit your profile</string>
 
 </resources>
